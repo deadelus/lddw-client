@@ -1,6 +1,13 @@
 <template>
   <section class="container">
+      
       <div class="row">
+        <!--<router-link :to="{ name: 'New' }"><span class="ico add"></span></router-link>-->
+        <!--<span v-on:click="toggle" class="ico add"></span>-->
+        <!--<new-post v-if="add"></new-post>-->
+      </div>
+
+      <div class="row" v-on:click="toggle">
         <post
           v-for="post in posts"
           v-bind:post="post"
@@ -32,14 +39,16 @@
 
 <script>
 import Post from '@/components/Post/Post'
+import NewPost from '@/components/Post/NewPost'
 
 export default {
   name: 'home',
-  components: { Post },
+  components: { Post, NewPost },
   data () {
     return {
       posts: [],
-      errors: []
+      errors: [],
+      add: false
     }
   },
   mounted () {
@@ -52,6 +61,9 @@ export default {
       })
   },
   methods: {
+    toggle: function () {
+      this.add = !this.add
+    }
   }
 }
 </script>

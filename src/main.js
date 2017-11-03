@@ -4,15 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import axios from 'axios'
 import VueResource from 'vue-resource'
 import Moment from 'vue-moment'
 
-import './assets/css/style.css'
 import './assets/css/bootstrap.css'
+import './assets/css/style.css'
 
 /* Auth plugin */
 import Auth from './auth'
+import MediaMaker from './mediamaker'
 
 // Filtre pour inverser le tableau de commentaire
 Vue.filter('reverse', function (array) {
@@ -22,11 +22,8 @@ Vue.filter('reverse', function (array) {
 Vue.use(VueResource)
 Vue.use(Auth)
 Vue.use(Moment)
-
-axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'Access-Control-Allow-Origin': '*'
-}
+Vue.use(MediaMaker)
+Vue.use(require('@websanova/vue-upload'))
 
 Vue.moment.locale('fr')
 Vue.config.productionTip = false

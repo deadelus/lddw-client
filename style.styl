@@ -9,6 +9,13 @@
 ***************/
 
 normalize()
+button(fsize, lheight, bg=#000, col=#fff)
+    text-align center
+    line-height lheight
+    font-size fsize
+    background bg
+    color col
+    cursor pointer
 
 @font-face
     font-family Noto
@@ -38,82 +45,95 @@ $bg = #ffffff
 $font = #000000
 $font2 = #A1A1A1
 
+div[contenteditable],
 textarea,
 input
-    outline: none 
-    border: none
-    border: #EAEAEA 2px solid
-    resize: none
-    padding: 15px
-    line-height: 1.4rem
+    outline none 
+    border none
+    border #EAEAEA 2px solid
+    resize none
+    padding 15px
+    line-height 1.4rem
 
 hide()
-    position: fixed
-    top: 0
-    right: 0
-    opacity: 0
-    z-index: -99999
+    position fixed
+    top 0
+    right 0
+    opacity 0
+    z-index -99999
 
 .hide
     hide()
 
 hr
-    margin: 10px 0
-    border-color: #CCCCCC
+    margin 10px 0
+    border-color #EAEAEACCC
 
 body
-    padding-bottom: 100px
-    font-family: Noto
+    padding-bottom 100px
+    font-family Noto
 
 span.ico
-    display: inline-block
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 15px
-    height: 15px
-    // fill: #000
-    cursor: pointer
+    display inline-block
+    background-repeat no-repeat
+    background-position center
+    width 15px
+    height 15px
+    cursor pointer
     &.search-submit
-        background-image: url('./../img/picto/search.svg') 
+        background-image url('./../img/picto/search.svg') 
     &.fb
-        background-image: url('./../img/picto/fb.svg') 
+        background-image url('./../img/picto/fb.svg') 
     &.tw
-        background-image: url('./../img/picto/tw.svg') 
+        background-image url('./../img/picto/tw.svg') 
     &.share
-        background-image: url('./../img/picto/share.svg') 
+        background-image url('./../img/picto/share.svg') 
     &.comment
-        background-image: url('./../img/picto/comment.svg') 
+        background-image url('./../img/picto/comment.svg') 
     &.bookmark
-        background-image: url('./../img/picto/bookmark.svg') 
+        background-image url('./../img/picto/bookmark.svg') 
     &.shop
-        background-image: url('./../img/picto/shop.svg') 
+        background-image url('./../img/picto/shop.svg') 
     &.trophy
-        background-image: url('./../img/picto/trophy.svg') 
+        background-image url('./../img/picto/trophy.svg') 
     &.gear
-        background-image: url('./../img/picto/gear.svg') 
+        background-image url('./../img/picto/gear.svg') 
+    &.arrow-left
+        background-image url('./../img/picto/arrow_right.svg')
+        transform rotate(-180deg) 
     &.vote
-        background-image: url('./../img/picto/arrow_right_circle.svg') 
+        background-image url('./../img/picto/arrow_right_circle.svg') 
     &.vote_up
-        background-image: url('./../img/picto/arrow_up.svg') 
-        fill: red
+        background-image url('./../img/picto/arrow_up.svg') 
+        fill red
         &:hover
-            fill: white
-            // background-color: red
+            fill white
+            // background-color red
     &.vote_down
-        background-image: url('./../img/picto/arrow_down.svg') 
-        fill: blue
+        background-image url('./../img/picto/arrow_down.svg') 
+        fill blue
         &:hover
-            fill: white
-            // background-color: blue
+            fill white
+    &.camera
+        background-image url('./../img/picto/camera.svg')
+    &.dragfile
+        background-image url('./../img/picto/drag.svg') 
+    &.cross
+        background-image url('./../img/picto/cross.svg') 
+    &.add
+        background-image url('./../img/picto/cross.svg') 
+        transform: rotate(45deg)
+
 
 .avatar
-    width: 50px
-    height: 50px
-    overflow: hidden
-    border-radius: 50%
+    width 50px
+    height 50px
+    overflow hidden
+    border-radius 50%
+    border 1px solid #EAEAEA
     img
-        width: 100%
-        height: auto
+        width 100%
+        height auto
 
 /***************
 
@@ -123,37 +143,45 @@ span.ico
 
 .container-fluid
     &.bartop
-        max-width: 1440px
-        padding-top: 50px 
-        padding-bottom: 50px 
-        font-size: 0
+        max-width 1440px
+        padding-top 50px 
+        padding-bottom 50px 
+        font-size 0
         .brand
-            float: left
-            height: 50px
-            overflow: visible
+            float left
+            height 50px
+            overflow visible
             .logo
-                width: 50px
-                height: auto
-                fill: #2c3e50
+                width 50px
+                height auto
+                fill #2c3e50
         .search
-            margin: 15px 0
-            display: flex
-            flex-direction: row
-            flex-wrap: nowrap
+            margin 15px 0
+            display flex
+            flex-direction row
+            flex-wrap nowrap
             .search-input
                 hide()
             .search-field
-                width: 100%
-                text-align: right
-                font-size: 1.5rem
-                line-height: 30px
-                padding: 0 5px
+                width 100%
+                text-align right
+                font-size 1.5rem
+                line-height 30px
+                padding 0 5px
         .menu
-            span
-                margin: 10px 15px 
-                height: 30px
-                text-align: center
-                cursor: pointer
+            a
+                margin-right 10px
+                span
+                    font-size 1.2rem
+                    line-height 30px
+                    margin 10px 15px 
+                    height 30px
+                    cursor pointer
+                    vertical-align top
+                    display: inline-block
+                    color: #000
+                    &:hover
+                        text-decoration: underline
 
 /***************
 
@@ -162,120 +190,116 @@ span.ico
 ***************/
 
 .posts
-    display: flex
-    margin-bottom: 50px 
+    display flex
+    margin-bottom 50px 
     aside
-        position: relative
+        position relative
         .btns
-            display: flex
-            position: absolute
-            flex-direction: column
-            top: 50%
-            right: calc("50% - 25px")
-            width: 50px
-            text-align: center
+            display flex
+            position absolute
+            flex-direction column
+            top 50%
+            right calc("50% - 25px")
+            width 50px
+            text-align center
             &.social-btns
-                display: none !important
+                display none !important
             .title
-                font-weight: bold
-                margin: 15px auto
+                font-weight bold
+                margin 15px auto
             span
-                margin: 10px auto
-                cursor: pointer
+                margin 10px auto
+                cursor pointer
     &:hover
         aside
             .btns
                 &.social-btns
-                    display: flex !important
+                    display flex !important
 
 .comment-form
     header
-        margin-top: 60px
-        background: rgba(204, 204, 204, 0.28)
+        margin-top 60px
+        background rgba(204, 204, 204, 0.28)
 .post, 
 .comments, 
 .comment-form, 
 .profile
     header
-        display: flex
-        flex-direction: row
-        flex-wrap: nowrap
-        padding: 20px 15px
+        display flex
+        flex-direction row
+        flex-wrap nowrap
+        padding 20px 15px
         .info
-            margin: auto 15px
+            margin auto 15px
             span
                 &.name
-                    display: block
-                    font-size: 1.2rem
-                    line-height: 20px
-                    color: $font   
+                    display block
+                    font-size 1.2rem
+                    line-height 20px
+                    color $font   
                 &.date
-                    display: block
-                    font-size: 0.9rem
-                    color: $font2
+                    display block
+                    font-size 0.9rem
+                    color $font2
     .title
-        font-size: 2rem
-        padding: 0 15px 0 15px
-        margin: 20px 0 10px 0
-        color: $font
-        font-weight: bold
+        font-size 2rem
+        padding 0 15px 0 15px
+        margin 20px 0 10px 0
+        color $font
+        font-weight bold
         
 .comments,
 .settings
-    margin-bottom: 40px
+    margin-bottom 40px
     .comment
-        margin-bottom: 40px
+        margin-bottom 40px
     .title
-        margin-bottom: 40px
+        margin-bottom 40px
     .content 
-        font-size: 1.4rem
-        margin: 15px 0
-        padding: 0 15px
+        font-size 1.4rem
+        margin 15px 0
+        padding 0 15px
 
 .comment-form
     .comment-edit
-        font-size: 1.4rem
-        min-height: 100px
-        width: 100%
-        outline: none 
-        padding: 15px
-        margin-bottom: 15px
-        border: solid #EAEAEA 2px
+        font-size 1.4rem
+        min-height 100px
+        width 100%
+        outline none 
+        padding 15px
+        margin-bottom 15px
+        border solid #EAEAEA 2px
 
-.comment-btn 
-    text-align: center
-    line-height: 50px
-    font-size: 1.8rem
-    background: #000000
-    color: #ffffff
+.comment-btn
+    button(1.8rem, 50px)
 
 .post
     .content
-        text-align: center
-        cursor: pointer
-        // max-height: 70vh
-        overflow: hidden
+        text-align center
+        cursor pointer
+        // max-height 70vh
+        overflow hidden
         a
-            display: block
-            width: 100%
+            display block
+            width 100%
         img
-            max-width: 100%
-            margin: auto
+            max-width 100%
+            margin auto
     footer
-        width: 100%
-        margin: 15px
-        overflow: auto
-        display: flex
+        width 100%
+        margin 15px
+        overflow auto
+        display flex
         .action
-            font-weight: bold
-            font-size: 1rem
-            color: $font
-            display: flex
-            line-height: 15px
-            margin-right: 30px
-            cursor: pointer
+            font-weight bold
+            font-size 1rem
+            color $font
+            display flex
+            line-height 15px
+            margin-right 30px
+            cursor pointer
             .ico
-                margin-right: 15px
+                margin-right 15px
 
 /*******
     
@@ -284,38 +308,63 @@ span.ico
 ********/
 
 .profile
-    margin-bottom: 60px
+    margin-bottom 60px
     header
         .avatar
-            width: 120px
-            height: 120px
+            width 120px
+            height 120px
         .info
-            height: 90px
-            margin: 0
-            margin-left: 60px
-            margin-top: 15px
-            margin-bottom: 15px
+            height 90px
+            margin 0
+            margin-left 60px
+            margin-top 15px
+            margin-bottom 15px
             position relative
             .name,.desc,.social
-                display: block
+                display block
             .name
-                font-size: 2.2rem !important
-                font-weight: bold
+                font-size 2.2rem !important
+                font-weight bold
             .desc
-                font-size: 1.3rem
-                margin-top: 15px
-                color: #737373
+                font-size 1.3rem
+                margin-top 15px
+                color #737373
             .social
-                position: absolute
-                bottom: 0
-                font-size: 0
+                position absolute
+                bottom 0
+                font-size 0
                 .ico
-                    margin-right: 15px
+                    margin-right 15px
 
+#profile
+    .btn-save
+        text-align: center;
+        color: #FFF;
+        background: #000000;
+    .profile
+        .btn-save
+            padding: 5px;
+            margin: 10px 15px;
+            width: 120px;
+            position: absolute;
+    .settings
+        .btn-save
+            button(1.8rem, 50px)
 
+.tuile
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .post
+        max-width: 250px;
+        max-height: 250px;
+        width: 100%;
+        padding: 10px;
+        &:hover
+            border solid 1px #EAEAEA
 
 .nb-dechet
-    font-weight: bold
+    font-weight bold
 
 
 /* 
@@ -325,65 +374,63 @@ span.ico
  */
 
 .flex
-    display: flex
+    display flex
     &.flex-row
-        flex-direction: row
+        flex-direction row
     &.col
-        flex-direction: column
+        flex-direction column
     &.nowrap
-        flex-wrap: nowrap
+        flex-wrap nowrap
 
 .settings
     .title
-        font-size: 2.2rem
-        font-weight: bold
+        font-size 2.2rem
+        font-weight bold
     .section-title
-        font-size: 1.4rem
-        color: #A1A1A1
+        font-size 1.4rem
+        color #A1A1A1
     .setting
-        margin-top: 30px
+        margin-top 30px
         .photo
             .old
-                max-width: 70px
-                width: 100%
-                border-radius: 50%
-                overflow: hidden
-                margin-right: 30px
+                max-width 70px
+                width 100%
+                border-radius 50%
+                overflow hidden
+                margin-right 30px
                 img
-                    width: 100%
+                    width 100%
             .btn
-                margin: auto 10px
+                margin auto 10px
+                cursor pointer
                 &:hover
-                    text-decoration: underline
-                    cursor: pointer
+                    text-decoration underline
     input, 
     textarea
-        font-size: 1.3rem
+        font-size 1.3rem
+        margin 10px 0
     textarea
         &#bio
-            min-height: 150px
+            min-height 150px
     label
-        font-size: 1.6rem
-        font-weight: bold
-        margin: 30px 0 10px 0
-        display: block
+        font-size 1.6rem
+        font-weight bold
+        display block
 
 a
     &:hover
-        text-decoration: none
+        text-decoration none
     &.social
-        padding: 15px
-        font-size: 1.2rem
-        text-align: center
-        display: block
-        max-width: 200px
-        margin: 15px 0
+        display block
+        max-width 200px
+        margin-bottom 15px
     &.facebook
-        color: white
-        background: #3B5997
+        button(1.2rem, 50px, #3B5997)
     &.twitter
-        color: white
-        background: #55ABED
+        button(1.2rem, 50px, #55ABED)
+    &.btn-logout
+        button(1.2rem, 50px, #bb3030)
+
 
 /*
 
@@ -392,22 +439,113 @@ a
 */
 
 .award
-    text-align: center
-    cursor: pointer
-    border: 1px solid transparent
+    text-align center
+    cursor pointer
+    border 1px solid transparent
     i
-        &::before
-            font-size: 7rem
-            margin: auto
+        &:before
+            font-size 7rem
+            margin auto
     &:hover
         box-sizing: border-box
         border: 1px solid #EAEAEA
     &.missing
         i
-            font-size: 7rem
-            margin: auto
+            font-size 7rem
+            margin auto
             svg
-                width: 50px
-                fill: #CCC
+                width 50px
+                fill #EAEAEA
         h3
-            color: #CCC
+            color #EAEAEA
+
+/**
+ 
+    Auth
+ 
+ */
+.login-link
+    line-height 50px
+    font-size 1.2rem
+    text-align center
+    color black
+.login-btn
+    button(1.2rem, 50px)
+
+ .linkauth
+    font-size 0.9rem
+    text-align left
+    width 100%
+    display inline-block
+    margin-top 10px
+    &:hover
+        text-decoration underline
+
+/**
+ 
+    Drag @ Preview
+ 
+ */
+#new-post
+    .title
+        font-size: 3rem
+        line-height: 3rem
+        text-align center
+        margin-bottom: 10px
+        height: auto        
+
+#dragzone
+    height 40vh
+    background rgba(204, 204, 204, 0.15)
+    position relative
+    display flex
+    flex-direction column
+    border 1px dashed #EAEAEA
+    cursor pointer
+    label
+        margin auto
+        cursor pointer
+        span
+            display block
+            margin auto
+            text-align center
+        span.btn-drag
+            button(1.2rem, 50px)
+            padding: 0 15px
+            margin-top: 10px
+    .ico.drag
+        height 50px
+        width 50px
+    &:hover
+        border-color #EAEAEA
+
+#fileInput
+    opacity 0
+    width 100%
+    position absolute
+    height 100%
+    cursor pointer
+
+#preview
+    position relative
+    border 2px solid #EAEAEA
+    cursor pointer
+    .close-btn
+        display: none
+        svg
+            fill #cccccc
+            width: 100%
+            height: 100%
+    &:hover
+        .close-btn
+            display: block
+            display: block
+            position absolute
+            width 30px
+            height 30px
+            top 10px
+            right 10px
+    .content
+        img
+            width: 100%
+            height: auto

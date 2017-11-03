@@ -13,7 +13,7 @@ const LOGIN_URL = API_BASE_URL + '/oauth/token'
  * @var{string} REFRESH_TOKEN_URL The endpoint for refreshing an access_token. This endpoint should be proxied
  *    by Webpack dev server and maybe nginx in production (cleaner calls and avoids CORS issues).
  */
-const REFRESH_TOKEN_URL = API_BASE_URL + '/oauth/token'
+const REFRESH_TOKEN_URL = API_BASE_URL + '/oauth/token/refresh'
 
 /**
  * Application
@@ -216,6 +216,7 @@ export default {
         console.log(store.state.user)
         console.log(response.body)
         user.name = response.body.data.name
+        user.bio = response.body.data.bio
         user.avatar = response.body.data.avatar
         user.email = response.body.data.email
         user.links = response.body.data.links

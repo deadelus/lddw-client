@@ -1,11 +1,13 @@
 <template>
   <div class="posts">
     <article class="col-lg-8 col-lg-offset-2">
-      <list
+      <div class="tuile">
+        <list
         v-for="post in posts"
         v-bind:post="post"
         v-bind:key="post.id"
       ></list>
+      </div>
     </article>            
   </div>
 </template>

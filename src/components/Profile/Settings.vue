@@ -11,45 +11,37 @@
                     <hr>
                     <div class="flex col">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" class="col-lg-6">
+                        <input v-model="update.email" type="text" id="email" class="col-lg-6" :placeholder="user.email">
                     </div>
                     <div class="flex col"> 
                         <label for="bio">Bio</label>
-                        <textarea name="bio" id="bio" class="col-lg-8"></textarea>
+                        <textarea v-model="update.bio" id="bio" class="col-lg-8" :placeholder="user.bio"></textarea>
                     </div>
                     <div class="flex col">
                         <label for="name">Nom affiché</label>
-                        <input type="text" name="name" id="name" class="col-lg-8">
-                    </div>
-                    <div class="flex col">
-                        <label for="photo">Photo</label>
-                        <div class="flex flex-row photo">
-                            <div class="old">
-                                <img src="http://placehold.it/50x50" alt="">
-                            </div>
-                            <div class="btn">
-                                Changer le photo
-                            </div>
-                            <input type="file" name="photo" class="hide" id="photo">
-                        </div>
+                        <input v-model="update.name" type="text" id="name" class="col-lg-8" :placeholder="user.name">
                     </div>
                 </div>
                 <div class="setting">
                     <div class="section-title">Connections</div>
                     <hr>
-                    <a v-show="isLoggedIn" v-on:click="logout" href="#">
+                    
+                    <a href="#" class="social facebook">
+                        Ajouter mon compte Facebook
+                    </a>
+
+                    <a href="#" class="social twitter">
+                        Ajouter mon compte Twitter
+                    </a>
+
+                    <a class="social btn-logout" @click.prevent="logout" href="#">
                         Se deconnecter
                     </a>
-
-                    <label class="title-social">Facebook</label>
-                    <a href="#" class="social facebook">
-                        Se connecter avec Facebook
-                    </a>
-
-                    <label class="title-social">Twitter</label>
-                    <a href="#" class="social twitter">
-                        Se connecter avec Twitter
-                    </a>
+                </div>
+                <div class="setting">
+                </div>
+                <div class="btn-save">
+                  Enregistrer les modifications
                 </div>
             </div>
         </div>
@@ -60,15 +52,19 @@
     name: 'settings',
     data () {
       return {
-        isLoggedIn: false
+        user: {},
+        update: {}
       }
     },
     mounted () {
-      this.isLoggedIn = this.$store.state.auth.isLoggedIn
+      this.user = this.$store.getters.user
     },
     methods: {
       logout: function () {
         this.$auth.logout()
+      },
+      upload: function () {
+        return false
       }
     }
   }
