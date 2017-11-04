@@ -4,6 +4,7 @@
       <div class="flex col">
         <h1>Nouvelle publication</h1>
         <input v-model="title" id="title-post" type="text"/>
+        <input v-model="tags" placeholder="Entrez vos tags ici" id="title-tag" type="text"/>
         <!--<div class="title col-lg-12">{{ msg }}</div>-->
       </div>
       <media></media>
@@ -19,6 +20,7 @@
     data () {
       return {
         title: '',
+        tags: '',
         post: {}
       }
     },
@@ -42,6 +44,9 @@
         if (this.title !== '') {
           data.append('title', this.title)
         }
+        if (this.tags !== '') {
+          data.append('tags', this.tags)
+        }
         data.append('file', this.post.file)
         this.$http({
           url: this.$store.getters.user.actions.new_post,
@@ -58,6 +63,7 @@
       },
       reset: function () {
         this.title = ''
+        this.tags = ''
       }
     },
     computed: {
@@ -67,3 +73,11 @@
     }
   }
 </script>
+<style>
+  input#title-tag{
+    font-size: 1.8rem;
+    margin-bottom: 15px !important;
+    border: 1px solid #EAEAEA;
+    /*background: rgb(248, 248, 248);*/
+  }
+</style>
