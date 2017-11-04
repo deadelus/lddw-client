@@ -17,15 +17,15 @@
                 <router-link :to="{ name: 'Trending' }">
                     <span>Trending</span>
                 </router-link>
-                <router-link :to="{ name: 'News' }">
+                <!--<router-link :to="{ name: 'News' }">
                     <span>Nouvelles publications</span>
-                </router-link>
-                <router-link :to="{ name: 'Shop' }">
+                </router-link>-->
+                <!--<router-link :to="{ name: 'Shop' }">
                     <span>Shop</span>
                 </router-link>
                 <router-link :to="{ name: 'Rewards' }">
                     <span>Trophés</span>
-                </router-link>
+                </router-link>-->
             </div>
 
 
@@ -64,18 +64,15 @@
     name: 'app-nav',
     data () {
       return {
-        isLoggedIn: false
+        isLoggedIn: false,
+        avatar: 'http://placehold.it/50X50'
       }
     },
     mounted () {
       this.$store.watch((state) => {
         this.isLoggedIn = this.$store.state.auth.isLoggedIn
+        this.avatar = this.$store.state.user.avatar || 'http://placehold.it/50X50'
       })
-    },
-    computed: {
-      avatar: function () {
-        return this.$store.state.user.avatar || 'http://placehold.it/50X50'
-      }
     }
   }
 </script>

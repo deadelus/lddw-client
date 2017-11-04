@@ -45,7 +45,8 @@ $bg = #ffffff
 $font = #000000
 $font2 = #A1A1A1
 
-div[contenteditable],
+// div[contenteditable],
+// .title-field .title,
 textarea,
 input
     outline none 
@@ -54,6 +55,10 @@ input
     resize none
     padding 15px
     line-height 1.4rem
+input#title-post
+    font-size: 3rem
+    text-align: center
+    margin-bottom: 15px
 
 hide()
     position fixed
@@ -123,7 +128,10 @@ span.ico
     &.add
         background-image url('./../img/picto/cross.svg') 
         transform: rotate(45deg)
-
+    &.coins
+        background-image url('./../img/picto/coins.svg') 
+    &.poo
+        background-image url('./../img/picto/poo.svg') 
 
 .avatar
     width 50px
@@ -198,7 +206,7 @@ span.ico
             display flex
             position absolute
             flex-direction column
-            top 50%
+            top 40%
             right calc("50% - 25px")
             width 50px
             text-align center
@@ -270,8 +278,11 @@ span.ico
         margin-bottom 15px
         border solid #EAEAEA 2px
 
-.comment-btn
+.comment-btn,
+.post-btn
     button(1.8rem, 50px)
+.post-btn
+    margin-top: 30px
 
 .post
     .content
@@ -283,8 +294,10 @@ span.ico
             display block
             width 100%
         img
-            max-width 100%
+            width 100%
             margin auto
+        &.thumb
+            max-height 50vh
     footer
         width 100%
         margin 15px
@@ -317,11 +330,10 @@ span.ico
             height 90px
             margin 0
             margin-left 60px
-            margin-top 15px
-            margin-bottom 15px
             position relative
-            .name,.desc,.social
+            .name,.desc
                 display block
+                margin-bottom: 30px
             .name
                 font-size 2.2rem !important
                 font-weight bold
@@ -329,12 +341,10 @@ span.ico
                 font-size 1.3rem
                 margin-top 15px
                 color #737373
-            .social
-                position absolute
-                bottom 0
-                font-size 0
-                .ico
-                    margin-right 15px
+            .links
+                display: flex
+                justify-content: space-between
+
 
 #profile
     .btn-save
@@ -549,3 +559,31 @@ a
         img
             width: 100%
             height: auto
+
+
+
+/**
+* PLAYER
+*/
+.play-btn
+    display: flex
+    width: 100%
+    height: 30vh
+    border 1px solid #eaeaea
+    svg
+        height: 50px
+        margin: auto
+        fill: #CCC
+    &:hover
+        background: #EAEAEA
+        svg
+            fill: #fff
+    
+
+a
+    color black 
+    &:hover
+        color: black 
+    &.router-link-exact-active.router-link-active
+        color: black
+        text-decoration: underline

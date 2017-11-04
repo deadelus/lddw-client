@@ -210,18 +210,16 @@ export default {
    * @return {void}
    */
   _getUserLog () {
-    const user = store.state.user
+    var user = store.state.user
     Vue.http.get(API_BASE_URL + '/api/user')
       .then((response) => {
-        console.log(store.state.user)
-        console.log(response.body)
-        user.name = response.body.data.name
-        user.bio = response.body.data.bio
-        user.avatar = response.body.data.avatar
-        user.email = response.body.data.email
-        user.links = response.body.data.links
-        user.actions = response.body.data.actions
-        user.roles = response.body.data.roles
+        user = response.body.data
+        // user.bio = response.body.data.bio
+        // user.avatar = response.body.data.avatar
+        // user.email = response.body.data.email
+        // user.links = response.body.data.links
+        // user.actions = response.body.data.actions
+        // user.roles = response.body.data.roles
         store.commit('UPDATE_USER', user)
         return true
       })

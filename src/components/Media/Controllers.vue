@@ -58,8 +58,15 @@
       createFile: function (e, file) {
         this.filepath = URL.createObjectURL(file)
         this.filetype = file.type
+
+        var post = {
+          isLoading: true,
+          file: file
+        }
+        this.$store.commit('UPDATE_POST', post)
       },
       remove: function () {
+        this.$store.commit('CLEAR_POST')
         URL.revokeObjectURL(this.filepath)
         this.filepath = false
         this.filetype = false

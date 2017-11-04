@@ -23,7 +23,6 @@ Vue.use(VueResource)
 Vue.use(Auth)
 Vue.use(Moment)
 Vue.use(MediaMaker)
-Vue.use(require('@websanova/vue-upload'))
 
 Vue.moment.locale('fr')
 Vue.config.productionTip = false

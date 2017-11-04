@@ -13,6 +13,10 @@ let syncedData = {
     links: {},
     actions: {},
     roles: {}
+  },
+  post: {
+    isLoading: false,
+    file: {}
   }
 }
 

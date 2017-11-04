@@ -7,6 +7,10 @@
         v-bind:post="post"
         v-bind:key="post.id"
       ></list>
+
+        <span class="more" v-if="paginate.next_uri" v-on:click="next(paginate.next_uri)">Voir plus</span>
+
+
       </div>
     </article>            
   </div>
@@ -19,18 +23,56 @@ export default {
   components: { List },
   data () {
     return {
-      posts: {}
+      posts: {},
+      paginate: {
+        uri: '',
+        next_uri: '',
+        prev_uri: ''
+      }
     }
   },
   mounted () {
     this.$http.get(this.$store.state.user.links.posts)
     .then((response) => {
       this.posts = response.body.data
-      console.log(this.posts)
+      this.paginate.next_uri = response.body.links.next
+      this.paginate.uri = response.body.links.current
+      this.paginate.prev_uri = response.body.links.prev
     })
     .catch((errorResponse) => {
       console.log(errorResponse)
     })
+  },
+  methods: {
+    next: function (uri) {
+      this.$http.get(uri)
+      .then((response) => {
+        let com = response.body.data
+        let old = this.posts
+        this.posts = old.concat(com)
+        this.paginate.next_uri = response.body.links.next
+        this.paginate.uri = response.body.links.current
+        this.paginate.prev_uri = response.body.links.prev
+      })
+      .catch((errorResponse) => {
+        console.log(errorResponse)
+      })
+    }
   }
 }
 </script>
+<style>
+  .singlepost .social-btns{
+    display: flex !important;
+  }
+  .more {
+    display: block;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 30px
+  }
+  .more:hover {
+    text-decoration: underline;
+  }
+</style>

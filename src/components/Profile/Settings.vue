@@ -14,7 +14,7 @@
                         <input v-model="update.email" type="text" id="email" class="col-lg-6" :placeholder="user.email">
                     </div>
                     <div class="flex col"> 
-                        <label for="bio">Bio</label>
+                        <label for="bio">Mini bio ({{ char }})</label>
                         <textarea v-model="update.bio" id="bio" class="col-lg-8" :placeholder="user.bio"></textarea>
                     </div>
                     <div class="flex col">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="setting">
                 </div>
-                <div class="btn-save">
+                <div class="btn-save" @click="updateInfo" v-if="filled">
                   Enregistrer les modifications
                 </div>
             </div>
@@ -53,18 +53,74 @@
     data () {
       return {
         user: {},
-        update: {}
+        update: {
+          name: '',
+          bio: '',
+          email: ''
+        }
       }
     },
     mounted () {
       this.user = this.$store.getters.user
     },
     methods: {
+      updateInfo: function () {
+        if (!this.filled) {
+          return
+        }
+        var data = new FormData()
+        data.append('_method', 'PUT')
+        if (this.update.name !== '') {
+          data.append('name', this.update.name)
+        }
+        if (this.update.bio !== '') {
+          data.append('bio', this.update.bio)
+        }
+        if (this.update.email !== '') {
+          data.append('email', this.update.email)
+        }
+
+        this.$http.post(this.user.actions.updateInfo, data)
+        .then((response) => {
+          this.user.name = response.body.data.name
+          this.user.bio = response.body.data.bio
+          this.user.email = response.body.data.email
+
+          this.reset()
+
+          this.$store.commit('UPDATE_USER', this.user)
+          // console.log(response)
+        })
+        .catch((errorResponse) => {
+          // console.log(errorResponse)
+        })
+      },
       logout: function () {
         this.$auth.logout()
       },
-      upload: function () {
-        return false
+      reset: function () {
+        this.update = {
+          name: '',
+          bio: '',
+          email: ''
+        }
+      }
+    },
+    computed: {
+      char: function () {
+        var max = 40
+        var long = this.update.bio.length
+        var char = max - long
+        if (char < 0) {
+          this.update.bio = this.update.bio.slice(0, max)
+        }
+        return this.update.bio.length + '/' + max
+      },
+      filled: function () {
+        if (this.update.name === '' && this.update.bio === '' && this.update.email === '') {
+          return false
+        }
+        return true
       }
     }
   }

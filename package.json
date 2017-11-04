@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@websanova/vue-upload": "^0.2.11-beta",
-    "axios": "^0.16.2",
     "gifshot": "^0.3.2",
     "vue": "^2.4.2",
     "vue-moment": "^2.1.0",

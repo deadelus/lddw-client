@@ -55,6 +55,7 @@ export default {
     this.$http.get(this.$apiURL + '/feed')
       .then((response) => {
         this.posts = response.body.data
+        console.log(response)
       })
       .catch((errorResponse) => {
         console.log(errorResponse)

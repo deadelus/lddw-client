@@ -3,7 +3,7 @@
   <div class="post">
       <router-link :to="{ name: 'Post', params: { id: post.id } }">   
           <div class="content">
-            <img src="http://placehold.it/1024x1024" alt="">
+            <img :src="post.meta.file_thumb" alt="">
           </div>
       </router-link>
   </div>
