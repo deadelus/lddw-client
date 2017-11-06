@@ -2,8 +2,8 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 
-// const API_BASE_URL = 'https://api.ladechetterieduweb.com'
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = 'https://api.ladechetterieduweb.com'
+// const API_BASE_URL = 'http://localhost:8000'
 /**
  * @var{string} LOGIN_URL The endpoint for logging in. This endpoint should be proxied by Webpack dev server
  *    and maybe nginx in production (cleaner calls and avoids CORS issues).
@@ -19,13 +19,13 @@ const REFRESH_TOKEN_URL = API_BASE_URL + '/oauth/token/refresh'
 /**
  * Application preprod
  */
-const CLIENT_ID = '2'
-const CLIENT_SECRET = 'gBQyBfYyuoAYJsWIZD6i9K2qwQhd7gSRc99BlGYZ'
+// const CLIENT_ID = '2'
+// const CLIENT_SECRET = 'gBQyBfYyuoAYJsWIZD6i9K2qwQhd7gSRc99BlGYZ'
 /**
  * Application prod
  */
-// const CLIENT_ID = '1'
-// const CLIENT_SECRET = 'WLFc0jrnlCTlYN28pzQifZuoXNasiYwbHRwMnrnZ'
+const CLIENT_ID = '1'
+const CLIENT_SECRET = 'WLFc0jrnlCTlYN28pzQifZuoXNasiYwbHRwMnrnZ'
 
 /**
  * TODO: This is here to demonstrate what an OAuth server will want. Ultimately you don't want to

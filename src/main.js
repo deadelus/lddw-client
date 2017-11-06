@@ -26,8 +26,8 @@ Vue.use(MediaMaker)
 
 Vue.moment.locale('fr')
 Vue.config.productionTip = false
-Vue.prototype.$assetURL = 'http://localhost:8000/storage'
-Vue.prototype.$apiURL = 'http://localhost:8000/api'
+Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
+Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
