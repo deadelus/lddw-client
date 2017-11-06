@@ -1,12 +1,12 @@
 <template>
     <!-- subscribe -->
     <div class="setting">
-        <a href="#" class="social facebook">
+        <!--<a href="#" class="social facebook">
             Se connecter avec Facebook
         </a>
         <a href="#" class="social twitter">
             Se connecter avec Twitter
-        </a>
+        </a>-->
         <div class="login-form">
             <div class="flex col">
                 <label for="username">Login</label>

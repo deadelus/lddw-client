@@ -27,9 +27,11 @@
             </div>
             
             <div id="tags">
-              <span class="tag"
-                v-for="tag in post.tags"
-              >#{{ tag.name }}</span>
+                <router-link v-for="tag in post.tags" :to="{ name: 'Search', params: {tagname: tag.name}}">
+                  <span class="tag">
+                    #{{ tag.name }}
+                  </span>
+                </router-link>
             </div>
             
 

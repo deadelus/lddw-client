@@ -26,6 +26,7 @@ Vue.use(MediaMaker)
 
 Vue.moment.locale('fr')
 Vue.config.productionTip = false
+Vue.prototype.$assetURL = 'http://localhost:8000/storage'
 Vue.prototype.$apiURL = 'http://localhost:8000/api'
 /* eslint-disable no-new */
 new Vue({

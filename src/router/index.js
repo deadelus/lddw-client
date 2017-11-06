@@ -7,8 +7,11 @@ import store from './../store'
 import Home from '@/components/Home'
 import Post from '@/components/Post'
 import New from '@/components/New'
+// Search
+import Result from '@/components/Result'
 // Auth
 import Subscribe from '@/components/Auth/Subscribe'
+import Confirmed from '@/components/Auth/Confirmed'
 import Social from '@/components/Auth/Social'
 import Local from '@/components/Auth/Local'
 // Profile end child view
@@ -38,14 +41,22 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/news',
-      name: 'News',
-      component: Home
-    },
-    {
       path: '/New',
       name: 'New',
-      component: New
+      component: New,
+      beforeEnter: (to, from, next) => {
+        if (store.state.auth.isLoggedIn) {
+          next()
+        } else {
+          router.push({name: 'Subscribe'})
+        }
+      }
+    },
+    {
+      path: '/search/tag/:tagname',
+      name: 'Search',
+      component: Result,
+      props: true
     },
     {
       path: '/post/:id',
@@ -56,7 +67,7 @@ const router = new Router({
         if (store.state.auth.isLoggedIn) {
           next()
         } else {
-          next(false)
+          router.push({name: 'Subscribe'})
         }
       }
     },
@@ -67,7 +78,7 @@ const router = new Router({
         if (store.state.auth.isLoggedIn) {
           next()
         } else {
-          next(false)
+          router.push({name: 'Subscribe'})
         }
       },
       children: [
@@ -96,18 +107,31 @@ const router = new Router({
     {
       path: '/auth',
       component: Subscribe,
+      beforeEnter: (to, from, next) => {
+        if (store.state.auth.isLoggedIn) {
+          router.push({name: 'Home'})
+        } else {
+          next()
+        }
+      },
       children: [
         {
-          path: '/',
+          path: '/auth/login',
           name: 'Auth',
           component: Social
         },
         {
-          path: '/subscribe',
+          path: '/auth/subscribe',
           name: 'Subscribe',
           component: Local
         }
       ]
+    },
+    {
+      path: '/validation/:confirmation_code',
+      name: 'Confirmation',
+      component: Confirmed,
+      props: true
     },
     {
       path: '/shop',

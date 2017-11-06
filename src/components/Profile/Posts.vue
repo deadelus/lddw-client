@@ -8,10 +8,10 @@
         v-bind:key="post.id"
       ></list>
 
-        <span class="more" v-if="paginate.next_uri" v-on:click="next(paginate.next_uri)">Voir plus</span>
 
 
       </div>
+      <span class="more" v-if="paginate.next_uri" v-on:click="next(paginate.next_uri)">Voir plus</span>
     </article>            
   </div>
 </template>

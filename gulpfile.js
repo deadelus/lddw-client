@@ -10,7 +10,7 @@ gulp.task('watch', function () {
 gulp.task('compress', function () {
   return gulp.src('./style.styl')
     .pipe(stylus({
-      compress: true
+      compress: false
     }))
     .pipe(gulp.dest('./src/assets/css/'));
 });

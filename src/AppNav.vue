@@ -17,9 +17,10 @@
                 <router-link :to="{ name: 'Trending' }">
                     <span>Trending</span>
                 </router-link>
-                <!--<router-link :to="{ name: 'News' }">
-                    <span>Nouvelles publications</span>
-                </router-link>-->
+
+                <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">
+                    <span>Nos Magnifiques T-shirts</span>
+                </a>
                 <!--<router-link :to="{ name: 'Shop' }">
                     <span>Shop</span>
                 </router-link>
@@ -50,9 +51,9 @@
             <!-- Else -->
             <div v-show="!isLoggedIn" class="col-lg-2">
                 <router-link :to="{ name: 'Auth' }">
-                    <div class="login-btn">
+                    <span>
                     Se connecter
-                    </div>
+                    </span>
                 </router-link>
             </div>
 
