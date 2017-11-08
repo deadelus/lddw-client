@@ -755,12 +755,12 @@ span.ico.poo {
 a:hover {
   text-decoration: none;
 }
-a.social {
+div.social {
   display: block;
   max-width: 200px;
   margin-bottom: 15px;
 }
-a.facebook {
+div.facebook {
   text-align: center;
   line-height: 50px;
   font-size: 1.2rem;
@@ -768,7 +768,7 @@ a.facebook {
   color: #fff;
   cursor: pointer;
 }
-a.twitter {
+div.twitter {
   text-align: center;
   line-height: 50px;
   font-size: 1.2rem;
@@ -776,7 +776,7 @@ a.twitter {
   color: #fff;
   cursor: pointer;
 }
-a.btn-logout {
+div.btn-logout {
   text-align: center;
   line-height: 50px;
   font-size: 1.2rem;
@@ -853,9 +853,8 @@ a.btn-logout {
   cursor: pointer;
 }
 .linkauth {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   text-align: left;
-  width: 100%;
   display: inline-block;
   margin-top: 10px;
 }

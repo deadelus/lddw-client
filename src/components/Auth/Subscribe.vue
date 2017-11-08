@@ -1,77 +1,95 @@
 <template>
-    <div id="subscribe">
-        <section class="container">
-            <div class="row">
-                <div class="settings">
-                    <div class="col-lg-6">
-                        <div class="col-lg-12">
-                            <header>
-                                <!--<div id="cover">
-                                    <img :src="this.$assetURL + '/cover.jpg'">
-                                </div>-->
-                                <div class="title">Bienvenue sur La Déchetterie Du Web !</div>
-                                <p>
-                                    Le site est actuellement en beta (version d'essaie) car Facebook met la pression avec la fermeture des groupes..<br><br>
-                                </p>
-                            </header>
-                            <ul>
-                                <h2>Bientôt</h2>
-                                <li>Monetisation de vos posts ! $$$</li>
-                                <li>Editeurs de mêmes</li>
-                                <li>Et tout les truc a la con des réseaux sociaux (Follow.. ect..)</li>
-                                <li>Plein d'autres choses</li>
-                                <br><br>
-                                <h2>Les rêgles de base</h2>
-                                <li>Balance ici tous les plus gros déchets du net</li>
-                                <li>Tag tes posts <b>NSFW</b> si c'est hard..</li>
-                                <li>Si tu es fragile et te sens pas prêt à voir du sale, je t'invite à revenir plus tard.</li>
-                                <li>Tout membre qui signale une publication sera immédiatement bloqué du groupe (les modérateurs en sont averti).</li>
-                                <br><br>
-                                <h2>Retrouve nous aussi</h2>
-                                <li>🎥 &nbsp;Youtube: bit.ly/LadéchetterieTV</li>
-                                <li>💩 &nbsp;La Page: bit.ly/Fb-Ladéchetterie</li>
-                                <li>☢️ &nbsp;Twitter: bit.ly/Twitter-Ladéchetterie</li>
-                                <li>👻 &nbsp;Snapchat / Instagram: "ladechetterie"</li>
-                                <br><br>
-                                Merci à tous de votre grande ouverture d'esprit sur ce site, ne rien prendre au premier degré ici
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="col-lg-12">
-                            <div class="section-title">Connexion / Inscription</div>
-                            <hr>
-                            <router-view></router-view>
-                        </div>
-                    </div>
-                </div>
+    <!-- subscribe -->
+    <div class="setting">
+        <error v-if="errors.length" v-bind:errors="errors"></error>
+        <success v-if="success.code" v-bind:msg="success.msg"></success>
+        <loading v-if="load"></loading>
+        
+        <div v-show="!load">
+            <div class="flex col">
+                <label for="name">Nom affiché <span class="error" v-if="this.error.name">Nom invalide. (min: 2 caractères)</span></label>
+                <input v-model="nom" type="text" class="col-lg-12">
             </div>
-        </section>
-    </div>
+            <div class="flex col">
+                <label for="email">Email <span class="error" v-if="this.error.email">Email invalide ou déja pris.</span></label>
+                <input v-model="email" type="text" class="col-lg-12">
+            </div>
+            <div class="flex col">
+                <label for="password">Mot de passe <span class="error" v-if="this.error.password">Mot de passe invalide. (min: 6 caractères)</span></label>
+                <input v-model="passw" type="password" class="col-lg-8">
+            </div>
+            <div class="flex col">
+                <label for="c_password">Mot de passe (confimation) <span class="error" v-if="this.error.c_password">Doit être identique au mot de passe.</span></label>
+                <input v-model="c_passw" type="password" class="col-lg-8">
+            </div>
+            <div class="flex col">
+                <div v-on:click="subscribe" class="login-btn col-lg-12">S'inscrire</div>
+            </div>
+        </div>
+    <router-link :to="{ name: 'Auth' }">
+        <span class="linkauth">Je souhaite me connecter.</span>
+    </router-link> 
+    </div>  
 </template>
 <script>
+  import Loading from '@/components/Info/Loading'
+  import Error from '@/components/Info/Error'
+  import Success from '@/components/Info/Success'
+
   export default {
     name: 'subscribe',
     data () {
       return {
-        form: false
+        load: false,
+        nom: '',
+        email: '',
+        passw: '',
+        c_passw: '',
+        success: {
+          code: false,
+          msg: ''
+        },
+        errors: [],
+        error: false
       }
     },
-    mounted () {
+    components: {Loading, Error, Success},
+    methods: {
+      subscribe: function () {
+        // this.$http.post('')
+        this.load = true
+        let creds = {
+          name: this.nom,
+          email: this.email,
+          password: this.passw,
+          c_password: this.c_passw
+        }
+        this.$http.post(this.$apiURL + '/auth/register', creds)
+          .then((response) => {
+            this.load = false
+            this.success.code = 200
+            this.success.msg = 'Un email de confirmation vous à été envoyé.'
+            this.nom = ''
+            this.email = ''
+            this.passw = ''
+            this.c_passw = ''
+            // console.log(response)
+          })
+          .catch((errorResponse) => {
+            this.load = false
+            this.error = errorResponse.body.error
+            this.errors = [{
+              name: 'Il y a des erreurs dans le formulaire.'
+            }]
+            // console.log(errorResponse)
+          })
+      }
     }
   }
 </script>
 <style>
-    #shop {
-        color: #23527c
-    }
-    #shop:hover {
-        text-decoration: underline;
-    }
-    #cover{
-        width: 100%;
-    }
-    #cover img {
-        width: 100%;
-    }
+  span.error {
+    color: #bb3030;
+    font-size: 1rem !important;
+  }
 </style>

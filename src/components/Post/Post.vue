@@ -26,13 +26,13 @@
                 {{ post.title }}
             </div>
             
-            <div id="tags">
+            <!--<div id="tags">
                 <router-link v-for="tag in post.tags" :to="{ name: 'Search', params: {tagname: tag.name}}">
                   <span class="tag">
                     #{{ tag.name }}
                   </span>
                 </router-link>
-            </div>
+            </div>-->
             
 
             <div class="content">

@@ -10,10 +10,13 @@ import New from '@/components/New'
 // Search
 import Result from '@/components/Result'
 // Auth
+import Auth from '@/components/Auth/Auth'
+import Login from '@/components/Auth/Login'
+import Social from '@/components/Auth/Social'
 import Subscribe from '@/components/Auth/Subscribe'
 import Confirmed from '@/components/Auth/Confirmed'
-import Social from '@/components/Auth/Social'
-import Local from '@/components/Auth/Local'
+import Forgot from '@/components/Auth/Forgot'
+import Reset from '@/components/Auth/Reset'
 // Profile end child view
 import Profile from '@/components/Profile'
 import UserPosts from '@/components/Profile/Posts'
@@ -106,7 +109,7 @@ const router = new Router({
     },
     {
       path: '/auth',
-      component: Subscribe,
+      component: Auth,
       beforeEnter: (to, from, next) => {
         if (store.state.auth.isLoggedIn) {
           router.push({name: 'Home'})
@@ -116,22 +119,38 @@ const router = new Router({
       },
       children: [
         {
-          path: '/auth/login',
+          path: '/',
           name: 'Auth',
+          component: Login
+        },
+        {
+          path: '/auth/login/facebook',
+          name: 'Facebook',
           component: Social
         },
         {
           path: '/auth/subscribe',
           name: 'Subscribe',
-          component: Local
+          component: Subscribe
+        },
+        {
+          path: '/validation/:confirmation_code',
+          name: 'Confirmation',
+          component: Confirmed,
+          props: true
+        },
+        {
+          path: '/forgot',
+          name: 'Forgot',
+          component: Forgot
+        },
+        {
+          path: '/password/reset/:token',
+          name: 'Reset',
+          component: Reset,
+          props: true
         }
       ]
-    },
-    {
-      path: '/validation/:confirmation_code',
-      name: 'Confirmation',
-      component: Confirmed,
-      props: true
     },
     {
       path: '/shop',

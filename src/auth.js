@@ -2,8 +2,19 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 
-const API_BASE_URL = 'https://api.ladechetterieduweb.com'
-// const API_BASE_URL = 'http://localhost:8000'
+/**
+ * Application preprod
+ */
+const API_BASE_URL = 'http://localhost:8000'
+const CLIENT_ID = '2'
+const CLIENT_SECRET = 'gBQyBfYyuoAYJsWIZD6i9K2qwQhd7gSRc99BlGYZ'
+/**
+ * Application prod
+ */
+// const API_BASE_URL = 'https://api.ladechetterieduweb.com'
+// const CLIENT_ID = '1'
+// const CLIENT_SECRET = 'WLFc0jrnlCTlYN28pzQifZuoXNasiYwbHRwMnrnZ'
+
 /**
  * @var{string} LOGIN_URL The endpoint for logging in. This endpoint should be proxied by Webpack dev server
  *    and maybe nginx in production (cleaner calls and avoids CORS issues).
@@ -15,18 +26,6 @@ const LOGIN_URL = API_BASE_URL + '/oauth/token'
  *    by Webpack dev server and maybe nginx in production (cleaner calls and avoids CORS issues).
  */
 const REFRESH_TOKEN_URL = API_BASE_URL + '/oauth/token/refresh'
-
-/**
- * Application preprod
- */
-// const CLIENT_ID = '2'
-// const CLIENT_SECRET = 'gBQyBfYyuoAYJsWIZD6i9K2qwQhd7gSRc99BlGYZ'
-/**
- * Application prod
- */
-const CLIENT_ID = '1'
-const CLIENT_SECRET = 'WLFc0jrnlCTlYN28pzQifZuoXNasiYwbHRwMnrnZ'
-
 /**
  * TODO: This is here to demonstrate what an OAuth server will want. Ultimately you don't want to
  * expose a client_secret here. You want your real project backend to take a username/password
@@ -101,8 +100,8 @@ export default {
 
     return Vue.http.post(LOGIN_URL, params, AUTH_BASIC_HEADERS)
       .then((response) => {
+        console.log(response)
         this._storeToken(response)
-
         if (redirect) {
           router.push({ name: redirect })
         }
@@ -206,7 +205,6 @@ export default {
     auth.accessToken = response.body.access_token
     auth.refreshToken = response.body.refresh_token
     store.commit('UPDATE_AUTH', auth)
-
     this._getUserLog()
   },
 
@@ -220,12 +218,6 @@ export default {
     Vue.http.get(API_BASE_URL + '/api/user')
       .then((response) => {
         user = response.body.data
-        // user.bio = response.body.data.bio
-        // user.avatar = response.body.data.avatar
-        // user.email = response.body.data.email
-        // user.links = response.body.data.links
-        // user.actions = response.body.data.actions
-        // user.roles = response.body.data.roles
         store.commit('UPDATE_USER', user)
         return true
       })

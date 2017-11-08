@@ -4,23 +4,20 @@
       <error v-if="errors.length" v-bind:errors="errors"></error>
       <success v-if="success.code" v-bind:msg="success.msg"></success>
       <loading v-if="load"></loading>
-      <div v-if="success.code">
-        {{ this.redirectionMsg }}
-      </div>
-      <!--<div @click="confirm">Essayer encore</div>-->
+      
+      <div v-if="errors.length" @click="confirm">Essayer encore</div>
     </div>  
 </template>
 <script>
-  import loading from '@/components/info/loading'
-  import error from '@/components/info/error'
-  import success from '@/components/info/success'
+  import Loading from '@/components/Info/Loading'
+  import Error from '@/components/Info/Error'
+  import Success from '@/components/Info/Success'
 
   export default {
     name: 'confirmed',
     data () {
       return {
         load: false,
-        redirectionMsg: '',
         success: {
           code: false,
           msg: ''
@@ -28,20 +25,18 @@
         errors: []
       }
     },
-    components: {loading, error, success},
+    components: {Loading, Error, Success},
     props: ['confirmation_code'],
     mounted () {
       this.confirm()
     },
     methods: {
       redirection: function () {
-        this.redirectionMsg = 'Redirection dans'
-        var count = 5
+        var count = 2
         var interval = setInterval(function () {
-          this.redirectionMsg = this.redirectionMsg + '  ...' + count--
           if (count === 0) {
             clearInterval(interval)
-            this.$router.push({ name: 'Auth' })
+            this.$router.push({ name: 'Home' })
           }
         }.bind(this), 1000)
       },
