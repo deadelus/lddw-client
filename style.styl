@@ -45,8 +45,8 @@ $bg = #ffffff
 $font = #000000
 $font2 = #A1A1A1
 
-// div[contenteditable],
 // .title-field .title,
+div[contenteditable],
 textarea,
 input
     outline none 
@@ -55,8 +55,11 @@ input
     resize none
     padding 15px
     line-height 1.4rem
-input#title-post
+
+#title-post
+    margin: 15px 0
     font-size 3rem
+    line-height 3.5rem
     margin-bottom 15px
 
 hide()
@@ -253,7 +256,7 @@ span.ico
         margin 20px 0 10px 0
         color $font
         font-weight bold
-        
+        word-wrap break-word
 .comments,
 .settings
     margin-bottom 40px
@@ -549,6 +552,7 @@ div
 
 #preview
     position relative
+    min-height: 100px
     border 2px solid #EAEAEA
     cursor pointer
     .close-btn
@@ -645,3 +649,31 @@ span.more
     cursor: pointer;
     &:hover
         text-decoration: underline
+
+
+
+  /*@keyframes cursor {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    51% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+  #title-post.placeholder:before{
+    content: 'Un peu de texte..'
+  }
+  #title-post:after{
+    content: '';
+    height: 3rem;
+    border: 1px solid black;
+    width: 0;
+    animation: cursor 1s infinite;
+    -webkit-animation: cursor 1s infinite;
+  }*/

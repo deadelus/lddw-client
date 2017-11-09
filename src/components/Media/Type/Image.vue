@@ -2,7 +2,7 @@
   <div id="preview-image">
     
     <!-- Image / Gif -->
-    <img :src="path" />
+    <img :src="path" alt="Image"/>
 
   </div>
 </template>

@@ -3,9 +3,9 @@
   <div class="posts">
     <aside class="col-lg-1 col-lg-offset-1">
         <div class="btns social-btns">
-            <div class="title">SHARE</div>
-            <span class="ico fb"></span>
-            <span class="ico tw"></span>
+            <div class="title">PARTAGE</div>
+            <span @click="share" class="ico fb"></span>
+            <!--<span class="ico tw"></span>-->
             <!-- <span class="ico share"></span> -->
             <span @click="Bmk(post.links.Bookmark)" class="ico bookmark"></span>
         </div>
@@ -22,22 +22,13 @@
                 </div>
             </header>
 
-            <div class="title">
-                {{ post.title }}
-            </div>
-            
-            <!--<div id="tags">
-                <router-link v-for="tag in post.tags" :to="{ name: 'Search', params: {tagname: tag.name}}">
-                  <span class="tag">
-                    #{{ tag.name }}
-                  </span>
-                </router-link>
-            </div>-->
-            
+            <div class="title" v-html="title"></div>
 
             <div class="content">
-              <preview-image v-if="this.post.meta.file_type === 'picture'" v-bind:path="this.post.meta.file_path"></preview-image>
-              <preview-video v-if="this.post.meta.file_type === 'video'" v-bind:path="this.post.meta.file_path"></preview-video>
+
+              <preview-image v-if="type === 'picture'" v-bind:path="path" v-bind:thumb="thumb"></preview-image>
+              <preview-video v-if="type === 'video'" v-bind:path="path" v-bind:thumb="thumb"></preview-video>
+
             </div>
 
             <footer>
@@ -74,13 +65,21 @@ import PreviewVideo from '@/components/Media/Type/Video.vue'
 
 export default {
   name: 'post',
+  data () {
+    return {
+      type: false,
+      path: false
+    }
+  },
   props: ['post'],
   components: {
     PreviewImage,
     PreviewVideo
   },
   mounted () {
-    console.log(this.post)
+    this.type = this.post.meta.file_type
+    this.path = this.post.meta.file_path
+    this.thumb = this.post.meta.file_thumb
   },
   computed: {
     format: function () {
@@ -88,21 +87,34 @@ export default {
     },
     bookmark: function () {
       if (this.post.info.nbBookmarks > 1) {
-        return this.post.info.nbBookmarks + ' Bookmarks'
+        return this.post.info.nbBookmarks + ' Signets'
       }
-      return this.post.info.nbBookmarks + ' Bookmark'
+      return this.post.info.nbBookmarks + ' Signet'
     },
     comments: function () {
       if (this.post.info.nbComments > 1) {
-        return this.post.info.nbComments + ' Comments'
+        return this.post.info.nbComments + ' Commentaires'
       }
-      return this.post.info.nbComments + ' Comment'
+      return this.post.info.nbComments + ' Commentaire'
     },
     votes: function () {
       if (this.post.info.nbVotes > 1) {
         return this.post.info.nbVotes + ' Votes'
       }
       return this.post.info.nbVotes + ' Vote'
+    },
+    title: function () {
+      if (!this.post.title) {
+        return
+      }
+      // /search/tag/
+      const regex = /#\S+/g
+      const str = this.post.title
+      var fixed = str.replace(regex, function (match) {
+        var urlparam = match.replace('#', '')
+        return '<a class="hashtag" href="/search/tag/' + urlparam + '">' + match + '</a>'
+      })
+      return fixed
     }
   },
   methods: {
@@ -112,7 +124,7 @@ export default {
         this.post.info.agVotes = response.body.data.vote
       })
       .catch((errorResponse) => {
-        console.log(errorResponse)
+        // console.log(errorResponse)
       })
     },
     Bmk: function (uri) {
@@ -126,8 +138,15 @@ export default {
         }
       })
       .catch((errorResponse) => {
-        console.log(errorResponse)
+        // console.log(errorResponse)
       })
+    },
+    share: function () {
+      var path = this.$router.match({name: 'Post', params: {id: this.post.id}})
+      var url = this.$URL + path.fullPath
+      var obj = {method: 'feed',link: url, picture: this.post.meta.file_thumb,name: this.post.title,description: 'Un déchêt dans la dechetterie'};
+      function callback(response){}
+      FB.ui(obj, callback);
     }
   }
 }
@@ -137,9 +156,13 @@ export default {
     padding: 0 15px;
     margin: 10px 0
   }
-  .tag{
-    margin-right: 10px;
-    font-weight: bold;
-    color: #2e67a5;
+  a.hashtag{
+    color: white;
+    background: #1f5584;
+    padding: 2px 5px;
+    font-weight: 100;
+  }
+  a.hashtag:hover{
+    text-decoration: underline;
   }
 </style>

@@ -15,7 +15,7 @@
                     <span>Ajouter</span>
                 </router-link>
                 <router-link :to="{ name: 'Trending' }">
-                    <span>Trending</span>
+                    <span>Populaire</span>
                 </router-link>
 
                 <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">

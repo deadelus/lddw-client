@@ -29,10 +29,10 @@
     </div>
 </template>
 <script>
-  import Social from '@/components/Auth/Social'
   import Loading from '@/components/Info/Loading'
   import Error from '@/components/Info/Error'
   import Success from '@/components/Info/Success'
+  import Social from '@/components/Auth/Social'
 
   export default {
     name: 'login',

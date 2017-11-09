@@ -31,6 +31,7 @@ import p404 from '@/components/Error/p404'
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

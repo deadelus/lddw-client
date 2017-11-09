@@ -1,3 +1,5 @@
 build/*.js
 config/*.js
 src/components/Auth/Btn/Facebook.vue
+src/components/Post/Post.vue
+src/main.js

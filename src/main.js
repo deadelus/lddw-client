@@ -30,17 +30,35 @@ Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
 // PROD
-// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
-// Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
-// Vue.prototype.$fbId = '2211517428989297'
+Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
+Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
+Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
-Vue.prototype.$assetURL = 'http://localhost:8000/storage'
-Vue.prototype.$apiURL = 'http://localhost:8000/api'
+// Vue.prototype.$assetURL = 'http://localhost:8000/storage'
+// Vue.prototype.$apiURL = 'http://localhost:8000/api'
+// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   created: function () {
     window.Vue = this
+    window.fbAsyncInit = function() {
+      FB.init({
+        // appId      : '2211517428989297',
+        appId      : '631741580331636',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView(); 
+    };
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   },
   router,
   store,
