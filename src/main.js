@@ -30,9 +30,9 @@ Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
 // PROD API
-// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
-// Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
-// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
+Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
+Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
 // Preprod API
 // Vue.prototype.$assetURL = 'http://preprod.ladechetterieduweb.com/storage'
@@ -40,9 +40,9 @@ Vue.config.productionTip = false
 // Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
 // Local API
-Vue.prototype.$assetURL = 'http://localhost:8000/storage'
-Vue.prototype.$apiURL = 'http://localhost:8000/api'
-Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+// Vue.prototype.$assetURL = 'http://localhost:8000/storage'
+// Vue.prototype.$apiURL = 'http://localhost:8000/api'
+// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 /* eslint-disable no-new */
 
 new Vue({

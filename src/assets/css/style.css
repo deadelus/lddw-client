@@ -441,12 +441,12 @@ span.ico.menu {
 @media (max-width: 768px) {
   .container-fluid.bartop .navbar.desktop {
     display: none !important;
+    border-bottom: 1px solid #eaeaea;
   }
 }
 @media (min-width: 768px) {
   .container-fluid.bartop .navbar.mobile {
     display: none !important;
-    border-bottom: 1px solid #eaeaea;
   }
 }
 /***************
