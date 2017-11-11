@@ -29,23 +29,30 @@ Vue.use(MediaMaker)
 Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
-// PROD
-Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
-Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
-Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
-
-// Vue.prototype.$assetURL = 'http://localhost:8000/storage'
-// Vue.prototype.$apiURL = 'http://localhost:8000/api'
+// PROD API
+// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
+// Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
 // Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+
+// Preprod API
+// Vue.prototype.$assetURL = 'http://preprod.ladechetterieduweb.com/storage'
+// Vue.prototype.$apiURL = 'http://preprod.ladechetterieduweb.com/api'
+// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+
+// Local API
+Vue.prototype.$assetURL = 'http://localhost:8000/storage'
+Vue.prototype.$apiURL = 'http://localhost:8000/api'
+Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 /* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   created: function () {
     window.Vue = this
     window.fbAsyncInit = function() {
       FB.init({
-        // appId      : '2211517428989297',
-        appId      : '631741580331636',
+        appId      : '2211517428989297',
+        // appId      : '631741580331636',
         cookie     : true,
         xfbml      : true,
         version    : 'v2.8'

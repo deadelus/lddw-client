@@ -61,7 +61,7 @@
       upload: function () {
         this.load = true
         this.errors = []
-
+        console.log(this.title)
         var data = new FormData()
         if (this.title !== '') {
           data.append('title', this.title)
@@ -76,6 +76,7 @@
           method: 'POST'
         })
         .then((response) => {
+          console.log('passe par la')
           this.$store.commit('CLEAR_POST')
           this.reset()
           this.load = false
@@ -84,6 +85,7 @@
           this.$router.push({name: 'Home'})
         })
         .catch((errorResponse) => {
+          console.log(errorResponse)
           this.load = false
           if (errorResponse.status === 500) {
             this.errors.push({

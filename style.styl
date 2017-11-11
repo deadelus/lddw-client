@@ -134,6 +134,10 @@ span.ico
         background-image url('./../img/picto/coins.svg') 
     &.poo
         background-image url('./../img/picto/poo.svg') 
+    &.menu
+        width: 50px
+        height: 50px
+        background-image url('./../img/picto/burguer.svg') 
 
 .avatar
     width 50px
@@ -145,6 +149,8 @@ span.ico
         width 100%
         height auto
 
+.container
+    padding-top 150px
 /***************
 
     Bartop
@@ -153,44 +159,62 @@ span.ico
 
 .container-fluid
     &.bartop
-        max-width 1440px
-        padding-top 50px 
-        padding-bottom 50px 
-        font-size 0
-        .brand
-            float left
-            height 50px
-            overflow visible
-            .logo
-                width 50px
-                height auto
-                fill #2c3e50
-        .search
-            margin 15px 0
-            display flex
-            flex-direction row
-            flex-wrap nowrap
-            .search-input
-                hide()
-            .search-field
-                width 100%
-                text-align right
-                font-size 1.5rem
-                line-height 30px
-                padding 0 5px
-        a
-            margin-right 10px
-            span
-                font-size 1.2rem
-                line-height 30px
-                margin 10px 15px 
-                height 30px
-                cursor pointer
-                vertical-align top
-                display inline-block
-                color #000
-                &:hover
-                    text-decoration underline
+        position fixed
+        width: 100%
+        background white
+        z-index 99999
+        min-height: 100px
+        padding-top 30px 
+        padding-bottom 30px 
+        @media (min-width: 768px)
+            padding-top 50px 
+            padding-bottom 50px 
+        .navbar
+            position relative
+            max-width 1440px
+            font-size 0
+            margin auto
+            .brand
+                float left
+                height 50px
+                overflow visible
+                .logo
+                    width 50px
+                    height auto
+                    fill #2c3e50
+            .search
+                margin 15px 0
+                display flex
+                flex-direction row
+                flex-wrap nowrap
+                .search-input
+                    hide()
+                .search-field
+                    width 100%
+                    text-align right
+                    font-size 1.5rem
+                    line-height 30px
+                    padding 0 5px
+            a
+                margin-right 10px
+                span
+                    font-size 1.2rem
+                    line-height 30px
+                    margin 10px 15px 
+                    height 30px
+                    cursor pointer
+                    vertical-align top
+                    display inline-block
+                    color #000
+                    &:hover
+                        text-decoration underline
+            &.desktop
+                @media (max-width: 768px)
+                    display none !important
+            &.mobile
+                @media (min-width: 768px)
+                    display none !important
+                    border-bottom 1px solid #EAEAEA
 
 /***************
 
@@ -205,30 +229,35 @@ span.ico
         position relative
         .btns
             display flex
-            position absolute
+            position relative
             flex-direction column
             top 40%
-            right calc("50% - 25px")
-            width 50px
+            width 70px
             text-align center
             &.social-btns
-                display none !important
+                opacity: 0
             .title
                 font-weight bold
-                margin 15px auto
+                margin 10px auto
             span
                 margin 10px auto
                 cursor pointer
+        @media (max-width: 992px)
+            display: none
     &:hover
         aside
             .btns
                 &.social-btns
-                    display flex !important
+                    opacity: 1
 
 .comment-form
     header
         margin-top 60px
         background rgba(204, 204, 204, 0.28)
+
+.profile
+    @media (max-width: 768px)
+        padding: 0 !important
 .post, 
 .comments, 
 .comment-form, 
@@ -320,31 +349,41 @@ span.ico
     Profile
 
 ********/
-
-.profile
-    margin-bottom 60px
-    header
-        .avatar
-            width 120px
-            height 120px
-        .info
-            height 90px
-            margin 0
-            margin-left 60px
-            position relative
-            .name,.desc
-                display block
-                margin-bottom 30px
-            .name
-                font-size 2.2rem !important
-                font-weight bold
-            .desc
-                font-size 1.3rem
-                margin-top 15px
-                color #737373
-            .links
-                display flex
-                justify-content space-between
+#profile
+    .profile
+        margin-bottom 60px
+        header
+            .avatar
+                width 120px
+                height 120px
+                @media (max-width: 768px)
+                    width: 100px
+                    height: 100px
+            .info
+                height 90px
+                margin 0
+                margin-left 60px
+                position relative
+                @media (max-width: 768px)
+                    margin-left: 20px
+                .name,.desc
+                    display block
+                    margin-bottom 30px
+                .name
+                    font-size 2.2rem !important
+                    font-weight bold
+                .desc
+                    font-size 1.3rem
+                    margin-top 15px
+                    color #737373
+                .links
+                    display flex
+                    justify-content space-between
+                    & > span
+                        margin-right: 10px
+                    @media (max-width: 768px)
+                        span.ico
+                            display: block
 
 #profile
     .btn-save

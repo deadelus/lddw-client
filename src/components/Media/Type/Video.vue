@@ -1,7 +1,7 @@
 <template>
   <div id="preview-video">
     <div class="video-wrapper">
-      <video width="640" height="360" controls>
+      <video controls>
           <source :src="path" type="video/mp4"></source>
           <!--<source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv" type="video/ogg"></source>-->
           Your browser does not support the <code>video</code> tag.
@@ -31,6 +31,12 @@
   }
 </script>
 <style>
+  video {
+    width: 750px !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
   video::-internal-media-controls-download-button {
     display:none;
   }
@@ -40,11 +46,7 @@
   }
 
   video::-webkit-media-controls-panel {
-      width: calc(100% + 30px); /* Adjust as needed */
-  }
-
-  video {
-    width: 100%;
+      width: calc(100% + 30px);  /*Adjust as needed */
   }
 
   .video-wrapper {

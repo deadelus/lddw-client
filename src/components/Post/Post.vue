@@ -10,7 +10,7 @@
             <span @click="Bmk(post.links.Bookmark)" class="ico bookmark"></span>
         </div>
     </aside>
-    <article class="col-lg-8">
+    <article class="col-12 col-lg-8">
         <div class="post">
             <header>
                 <div class="avatar">
@@ -25,10 +25,10 @@
             <div class="title" v-html="title"></div>
 
             <div class="content">
-
-              <preview-image v-if="type === 'picture'" v-bind:path="path" v-bind:thumb="thumb"></preview-image>
-              <preview-video v-if="type === 'video'" v-bind:path="path" v-bind:thumb="thumb"></preview-video>
-
+              <router-link :to="{ name: 'Post', params: {id: post.id} }">
+                <preview-image v-if="type === 'picture'" v-bind:path="path" v-bind:thumb="thumb"></preview-image>
+                <preview-video v-if="type === 'video'" v-bind:path="path" v-bind:thumb="thumb"></preview-video>
+              </router-link>
             </div>
 
             <footer>
@@ -50,7 +50,6 @@
     </article>
     <aside class="col-lg-1">
         <div class="btns">
-            <div class="title">&nbsp;</div>
             <span v-on:click="action(post.links.Vote_up)" class="ico vote_up"></span>
             <span class="title">{{ post.info.agVotes }}°</span>
             <span v-on:click="action(post.links.Vote_down)" class="ico vote_down"></span>
