@@ -4,7 +4,8 @@
     :params="fbSignInParams"
     @success="onSignInSuccess"
     @error="onSignInError">
-    <span v-show="load" class="loading"></span> Se connecter avec Facebook
+    <span v-show="load" class="loading"></span> 
+    <span v-show="!load" class="logo"><svg viewBox="0 0 8 15"><path id="faceboook" d="M4.796,3.263l0,1.482l2.398,0l-0.3,2.666l-2.098,0l0,7.408l-3.297,0l0,-7.408l-1.499,0l0,-2.666l1.499,0l0,-1.482c0,0 -0.267,-2.825 2.398,-3.263l3.297,0l0,2.374l-1.499,0c0,0 -0.853,-0.032 -0.899,0.889Z"/></svg></span> Se connecter avec Facebook
   </fb-signin-button>
 </template>
 
@@ -95,5 +96,12 @@ span.loading {
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.logo svg{
+  width: 20px;
+  height: 20px;
+  fill: white;
+  position: relative;
+  top: 5px; 
 }
 </style>

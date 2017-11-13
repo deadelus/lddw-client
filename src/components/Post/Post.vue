@@ -31,7 +31,7 @@
               </router-link>
             </div>
 
-            <footer>
+            <footer class="desktop">
                 <div class="action">
                     <span class="ico comment"></span>
                     <span class="label">{{ comments }}</span>
@@ -43,6 +43,22 @@
                 <div class="action">
                     <span class="ico vote"></span>
                     <span class="label">{{ votes }}</span>
+                </div>
+            </footer>
+
+            <footer class="mobile">
+                <div class="action" @click="share">
+                    <span class="ico share"></span>
+                    <span class="label">Partager</span>
+                </div>
+                <div class="action" @click="Bmk(post.links.Bookmark)">
+                    <span class="ico bookmark"></span>
+                    <span class="label">{{ bookmark }}</span>
+                </div>
+                <div class="action">
+                    <span v-on:click="action(post.links.Vote_up)" class="ico vote_up"></span>
+                    <span class="label">{{ post.info.agVotes }}°</span>
+                    <span v-on:click="action(post.links.Vote_down)" class="ico vote_down"></span>
                 </div>
             </footer>
             

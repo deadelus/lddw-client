@@ -11,11 +11,11 @@
 
         <div class="login-form" v-if="!isLoggedIn" v-show="!load">
             <div class="flex col">
-                <label for="username">Login</label>
+                <label for="username">Email</label>
                 <input v-model="username" type="text" class="col-lg-12">
             </div>
             <div class="flex col">
-                <label for="pawword">Password</label>
+                <label for="pawword">Mot de passe</label>
                 <input v-model="password" type="password" class="col-lg-12">
             </div>
             <div v-on:click="login" class="login-btn">Se connecter</div>
