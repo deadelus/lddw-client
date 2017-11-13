@@ -3,7 +3,7 @@
   <form action="" class="comment-form">
       <header>
           <div class="avatar">
-              <img src="http://placehold.it/50x50" alt="">
+              <img :src="user.avatar" alt="Avatar de l'utilisateur">
           </div>
           <div class="info">
               <span class="name">{{ user.name }}</span>

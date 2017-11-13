@@ -5,6 +5,7 @@
           
         <post
           v-bind:post="post"
+          v-bind:url="url"
           v-bind:key="post.id"
         ></post>
           
@@ -47,6 +48,10 @@ export default {
   data () {
     return {
       post: false,
+      owner: '',
+      title: '',
+      url: '',
+      loading: false,
       comments: [],
       paginate: {
         uri: '',
@@ -55,7 +60,19 @@ export default {
       }
     }
   },
-  mounted () {
+  metaInfo () {
+    return {
+      title: this.title,
+      titleTemplate: null,
+      meta: [
+        {property: 'og:title', content: this.title},
+        {property: 'or:author', content: this.owner},
+        {property: 'or:description', content: 'Encore un déchet recyclé dans La Déchetterie !'},
+        {property: 'og:url', content: this.url}
+      ]
+    }
+  },
+  beforeMount () {
     if (this.$route.params.id) {
       this.fetchData(this.$apiURL + '/post/' + this.$route.params.id)
     }
@@ -65,6 +82,10 @@ export default {
       this.$http.get(uri)
       .then((response) => {
         this.post = response.body.data
+        this.owner = this.post.owner.name
+        this.url = this.makeURL()
+        var txt = this.post.title
+        this.title = txt.slice(0, 20)
         this.fetchComment(this.post.links.Comment_read)
       })
       .catch((errorResponse) => {
@@ -98,6 +119,11 @@ export default {
       .catch((errorResponse) => {
         console.log(errorResponse)
       })
+    },
+    makeURL: function () {
+      let path = this.$router.match({name: 'Post', params: {id: this.post.id}})
+      let url = this.$URL + path.fullPath
+      return url
     }
   }
 }

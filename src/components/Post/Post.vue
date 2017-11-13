@@ -86,7 +86,7 @@ export default {
       path: false
     }
   },
-  props: ['post'],
+  props: ['post', 'url'],
   components: {
     PreviewImage,
     PreviewVideo
@@ -130,7 +130,7 @@ export default {
         return '<a class="hashtag" href="/search/tag/' + urlparam + '">' + match + '</a>'
       })
       return fixed
-    }
+    },
   },
   methods: {
     action: function (uri) {
@@ -157,9 +157,10 @@ export default {
       })
     },
     share: function () {
-      var path = this.$router.match({name: 'Post', params: {id: this.post.id}})
-      var url = this.$URL + path.fullPath
-      var obj = {method: 'feed',link: url, picture: this.post.meta.file_thumb,name: this.post.title,description: 'Un déchêt dans la dechetterie'};
+      var title = this.post.title || ''
+      var thumb = this.post.meta.file_thumb
+      var obj = {method: 'feed',link: this.url, picture: thumb, name: title, description: 'Un déchêt dans la dechetterie'};
+
       function callback(response){}
       FB.ui(obj, callback);
     }
