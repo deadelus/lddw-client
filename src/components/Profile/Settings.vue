@@ -61,7 +61,9 @@
       }
     },
     mounted () {
+      this.$Progress.start()
       this.user = this.$store.getters.user
+      this.$Progress.finish()
     },
     methods: {
       updateInfo: function () {

@@ -32,15 +32,18 @@ export default {
     }
   },
   mounted () {
+    this.$Progress.start()
     this.$http.get(this.$store.state.user.links.posts)
     .then((response) => {
       this.posts = response.body.data
       this.paginate.next_uri = response.body.links.next
       this.paginate.uri = response.body.links.current
       this.paginate.prev_uri = response.body.links.prev
+      this.$Progress.finish()
     })
     .catch((errorResponse) => {
-      console.log(errorResponse)
+      this.$Progress.fail()
+      // console.log(errorResponse)
     })
   },
   methods: {

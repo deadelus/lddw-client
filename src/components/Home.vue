@@ -8,7 +8,11 @@
       </div>-->
 
       <div class="row" v-on:click="toggle">
+
+        <loadpost v-show="loading"></loadpost>
+
         <post
+          v-show="!loading"
           v-for="post in posts"
           v-bind:post="post"
           v-bind:key="post.id"
@@ -22,15 +26,17 @@
 <script>
 import Post from '@/components/Post/Post'
 import NewPost from '@/components/Post/NewPost'
+import Loadpost from '@/components/Info/Loadpost'
 
 export default {
   name: 'home',
-  components: { Post, NewPost },
+  components: { Post, NewPost, Loadpost },
   data () {
     return {
       posts: [],
       errors: [],
       add: false,
+      loading: true,
       paginate: {
         uri: '',
         next_uri: '',
@@ -39,15 +45,20 @@ export default {
     }
   },
   mounted () {
+    this.$Progress.start()
+
     this.$http.get(this.$apiURL + '/feed')
       .then((response) => {
         this.posts = response.body.data
         this.paginate.next_uri = response.body.links.next
         this.paginate.uri = response.body.links.current
         this.paginate.prev_uri = response.body.links.prev
+        this.$Progress.finish()
+        this.loading = false
       })
       .catch((errorResponse) => {
-        console.log(errorResponse)
+        this.$Progress.fail()
+        // console.log(errorResponse)
       })
   },
   methods: {

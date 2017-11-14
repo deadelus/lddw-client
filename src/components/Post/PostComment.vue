@@ -2,10 +2,10 @@
     <div class="comment">
         <header>
             <div class="avatar">
-                <img src="http://placehold.it/50x50" alt="">
+                <img :src="comment.owner.name || 'http://placehold.it/50x50'" alt="Avatar">
             </div>
             <div class="info">
-                <span class="name">John Snow</span>
+                <span class="name">{{ comment.owner.name }}</span>
                 <span class="date">{{ format }}</span>
             </div>
         </header>
@@ -20,7 +20,8 @@ export default {
   props: ['comment'],
   computed: {
     format: function () {
-      return this.$moment(this.comment.created_at.date).startOf('hour').fromNow()
+      console.log(this.comment.created_at)
+      return this.$moment(this.comment.created_at.date).startOf('minutes').fromNow()
     }
   },
   methods: {

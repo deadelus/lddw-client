@@ -52,7 +52,7 @@ const router = new Router({
         if (store.state.auth.isLoggedIn) {
           next()
         } else {
-          router.push({name: 'Subscribe'})
+          router.push({name: 'Auth'})
         }
       }
     },
@@ -71,7 +71,7 @@ const router = new Router({
         if (store.state.auth.isLoggedIn) {
           next()
         } else {
-          router.push({name: 'Subscribe'})
+          router.push({name: 'Auth'})
         }
       }
     },
@@ -82,7 +82,7 @@ const router = new Router({
         if (store.state.auth.isLoggedIn) {
           next()
         } else {
-          router.push({name: 'Subscribe'})
+          router.push({name: 'Auth'})
         }
       },
       children: [

@@ -36,7 +36,9 @@
   export default {
     name: 'rewards',
     mounted () {
-      console.log('rewards loaded !')
+      this.$Progress.start()
+      this.$Progress.finish()
+    //   console.log('rewards loaded !')
     }
   }
 </script>

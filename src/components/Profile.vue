@@ -97,6 +97,7 @@ export default {
       this.remove()
     },
     upload: function (e) {
+      this.$Progress.start()
       var data = new FormData()
       var file = this.files[0]
       data.append('_method', 'PUT')
@@ -107,11 +108,13 @@ export default {
         method: 'POST'
       })
       .then((response) => {
+        this.$Progress.finish()
         this.user.avatar = response.body.data.avatar
         this.$store.commit('UPDATE_USER', this.user)
         this.reset()
       })
       .catch((errorResponse) => {
+        this.$Progress.fail()
         // console.log(errorResponse)
       })
     },

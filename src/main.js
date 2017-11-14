@@ -6,8 +6,10 @@ import router from './router'
 import store from './store'
 import VueResource from 'vue-resource'
 import Moment from 'vue-moment'
-import Meta from 'vue-meta'
+// import Meta from 'vue-meta'
+import VueProgressBar from 'vue-progressbar'
 
+/* Assets */
 import './assets/css/bootstrap.css'
 import './assets/css/style.css'
 
@@ -21,15 +23,20 @@ Vue.filter('reverse', function (array) {
   return array.slice().reverse()
 })
 
+Vue.use(VueProgressBar, {
+  color: '#2c3e50',
+  failedColor: 'red',
+  height: '2px'
+})
 
 Vue.use(FBSignInButton)
 Vue.use(VueResource)
 Vue.use(Auth)
 Vue.use(Moment)
 Vue.use(MediaMaker)
-Vue.use(Meta, {
-  keyName: 'metaInfo'
-})
+// Vue.use(Meta, {
+//   keyName: 'metaInfo'
+// })
 // keyName: 'metaInfo', // the component option name that vue-meta looks for meta info on.
 // attribute: 'data-vue-meta', // the attribute name vue-meta adds to the tags it observes
 // ssrAttribute: 'data-vue-meta-server-rendered', // the attribute name that lets vue-meta know that meta info has already been server-rendered
@@ -56,12 +63,12 @@ Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
 new Vue({
   el: '#app',
-  metaInfo: {
-    // if no subcomponents specify a metaInfo.title, this title will be used
-    title: 'La déchetterie du web',
-    // all titles will be injected into this template
-    titleTemplate: '%s | Home'
-  },
+  // metaInfo: {
+  //   // if no subcomponents specify a metaInfo.title, this title will be used
+  //   title: 'La déchetterie du web',
+  //   // all titles will be injected into this template
+  //   titleTemplate: '%s | Home'
+  // },
   created: function () {
     window.Vue = this
     window.fbAsyncInit = function() {
