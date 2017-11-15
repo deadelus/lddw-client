@@ -51,11 +51,11 @@
                         <router-link :to="{ name: 'UserPosts' }">
                             <span for="dechet" class="nb-dechet">{{ dechets }}</span>
                         </router-link>
-                        /
+                        &nbsp;/&nbsp;
                         <router-link :to="{ name: 'UserBookmarks' }">
                             <span for="dechet" class="nb-dechet">{{ bookmarks }}</span>
                         </router-link>
-                        /
+                        &nbsp;/&nbsp;
                         <router-link :to="{ name: 'UserTrophies' }">
                             <span for="reward" class="nb-dechet">{{ trophies }}</span> 
                         </router-link>
@@ -65,7 +65,7 @@
         </section>    
         <hr>
         <!-- posts -->
-        <section class="container">
+        <section class="container pad">
             <div class="row">
                 <router-view></router-view>
             </div>
@@ -138,25 +138,25 @@ export default {
   },
   computed: {
     dechets: function () {
-      var char = this.user.info.nb_posts + ' déchet'
+      var char = this.user.info.nb_posts + ' Déchet'
       if (this.user.info.nb_posts > 1) {
         return char + 's'
       }
       return char
     },
     trophies: function () {
-      var char = 1 + ' trophé'
+      var char = 1 + ' Trophé'
       return char
     },
     bookmarks: function () {
-      var char = this.user.info.nb_bookmarks + ' bookmark'
+      var char = this.user.info.nb_bookmarks + ' Signet'
       if (this.user.info.nb_bookmarks > 1) {
         return char + 's'
       }
       return char
     },
     followers: function () {
-      var char = this.user.info.nb_followers + ' follower'
+      var char = this.user.info.nb_followers + ' Follower'
       if (this.user.info.nb_followers > 1) {
         return char + 's'
       }
@@ -175,6 +175,9 @@ export default {
     }
     label{
         cursor: pointer;
+    }
+    .pad {
+      padding-top: 15px !important;
     }
 </style>
 

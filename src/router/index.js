@@ -25,6 +25,9 @@ import UserSettings from '@/components/Profile/Settings'
 import UserRewards from '@/components/Profile/Rewards'
 // other links
 import Shop from '@/components/Shop/Shop'
+import Disclaimer from '@/components/Disclaimer'
+import About from '@/components/Disclaimer/About'
+import Rules from '@/components/Disclaimer/Rules'
 // Errors
 import p404 from '@/components/Error/p404'
 
@@ -45,7 +48,7 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/New',
+      path: '/new',
       name: 'New',
       component: New,
       beforeEnter: (to, from, next) => {
@@ -55,6 +58,22 @@ const router = new Router({
           router.push({name: 'Auth'})
         }
       }
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
+    },
+    {
+      path: '/disclaimer',
+      component: Disclaimer,
+      children: [
+        {
+          path: 'rules',
+          name: 'Rules',
+          component: Rules
+        }
+      ]
     },
     {
       path: '/search/tag/:tagname',
@@ -92,17 +111,17 @@ const router = new Router({
           component: UserPosts
         },
         {
-          path: '/bookmarks',
+          path: 'bookmarks',
           name: 'UserBookmarks',
           component: UserBookmarks
         },
         {
-          path: '/settings',
+          path: 'settings',
           name: 'UserSettings',
           component: UserSettings
         },
         {
-          path: '/trophies',
+          path: 'trophies',
           name: 'UserTrophies',
           component: UserRewards
         }

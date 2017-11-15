@@ -224,6 +224,43 @@ template {
   font-weight: bold;
   src: url("../fonts/Noto_Sans/NotoSans-BoldItalic.ttf");
 }
+.brand-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px;
+  border: 1px solid #eaeaea;
+  height: 100px;
+  background: rgba(234,234,234,0.08);
+}
+.brand-title .logo {
+  width: 70px;
+  fill: #2d3e51;
+  margin: auto 0;
+}
+.brand-title .title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: auto 0;
+  padding: 0 15px;
+  color: #2d3e51;
+  width: 100%;
+}
+.brand-title h1,
+.brand-title p {
+  margin: 0;
+}
 div[contenteditable],
 textarea,
 input {
@@ -249,6 +286,18 @@ input {
   opacity: 0;
   z-index: -99999;
 }
+p {
+  line-height: 2.5rem;
+}
+a span {
+  cursor: pointer;
+  vertical-align: top;
+  display: inline-block;
+  color: #000;
+}
+a span:hover {
+  text-decoration: underline;
+}
 hr {
   margin: 10px 0;
   border-color: rgba(234,234,234,0.8) C;
@@ -264,6 +313,33 @@ span.ico {
   width: 15px;
   height: 15px;
   cursor: pointer;
+}
+span.ico.medium {
+  width: 30px;
+  height: 30px;
+}
+span.ico.large {
+  width: 50px;
+  height: 50px;
+}
+span.ico.xlarge {
+  width: 100px;
+  height: 100px;
+}
+span.ico.facebook {
+  background-image: url("./../img/picto/social/facebook.svg");
+}
+span.ico.twitter {
+  background-image: url("./../img/picto/social/twitter.svg");
+}
+span.ico.snapchat {
+  background-image: url("./../img/picto/social/snapchat.svg");
+}
+span.ico.insta {
+  background-image: url("./../img/picto/social/instagram.svg");
+}
+span.ico.youtube {
+  background-image: url("./../img/picto/social/youtube.svg");
 }
 span.ico.search-submit {
   background-image: url("./../img/picto/search.svg");
@@ -303,17 +379,9 @@ span.ico.vote {
 }
 span.ico.vote_up {
   background-image: url("./../img/picto/arrow_up.svg");
-  fill: #f00;
-}
-span.ico.vote_up:hover {
-  fill: #fff;
 }
 span.ico.vote_down {
   background-image: url("./../img/picto/arrow_down.svg");
-  fill: #00f;
-}
-span.ico.vote_down:hover {
-  fill: #fff;
 }
 span.ico.camera {
   background-image: url("./../img/picto/camera.svg");
@@ -337,13 +405,9 @@ span.ico.poo {
   background-image: url("./../img/picto/poo.svg");
 }
 span.ico.burguer {
-  width: 30px;
-  height: 30px;
   background-image: url("./../img/picto/burguer.svg");
 }
 span.ico.cam {
-  width: 30px;
-  height: 30px;
   background-image: url("./../img/picto/camera.svg");
 }
 .avatar {
@@ -362,7 +426,7 @@ span.ico.cam {
 }
 @media (max-width: 768px) {
   .container {
-    padding-top: 50px;
+    padding-top: 70px;
   }
 }
 /***************
@@ -496,13 +560,6 @@ span.ico.cam {
   line-height: 30px;
   margin: 10px 15px;
   height: 30px;
-  cursor: pointer;
-  vertical-align: top;
-  display: inline-block;
-  color: #000;
-}
-.container-fluid.bartop .navbar a span:hover {
-  text-decoration: underline;
 }
 @media (max-width: 768px) {
   .container-fluid.bartop .navbar.desktop {
@@ -1190,28 +1247,28 @@ span.more:hover {
 }
 /*@keyframes cursor {
     0% {
-        opacity: 0;
+        opacity 0
     }
     50% {
-        opacity: 0;
+        opacity 0
     }
     51% {
-        opacity: 1;
+        opacity 1
     }
     100% {
-        opacity: 1;
+        opacity 1
     }
   }
   #title-post.placeholder:before{
-    content: 'Un peu de texte..'
+    content 'Un peu de texte..'
   }
   #title-post:after{
-    content: '';
-    height: 3rem;
-    border: 1px solid black;
-    width: 0;
-    animation: cursor 1s infinite;
-    -webkit-animation: cursor 1s infinite;
+    content ''
+    height 3rem
+    border 1px solid black
+    width 0
+    animation cursor 1s infinite
+    -webkit-animation cursor 1s infinite
   }*/
 @-moz-keyframes loading {
   to {

@@ -18,15 +18,19 @@
                     <span>Populaire</span>
                 </router-link>
 
+                <router-link :to="{ name: 'Trending' }">
+                    <span class="nsfw">NSFW</span>
+                </router-link>
+
                 <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">
                     <span>Nos Magnifiques T-shirts</span>
                 </a>
-                <!--<router-link :to="{ name: 'Shop' }">
-                    <span>Shop</span>
+                <router-link :to="{ name: 'Rules' }">
+                    <span>Rêgles</span>
                 </router-link>
-                <router-link :to="{ name: 'Rewards' }">
-                    <span>Trophés</span>
-                </router-link>-->
+                <router-link :to="{ name: 'About' }">
+                    <span>A propos</span>
+                </router-link>
             </div>
 
 
@@ -60,7 +64,7 @@
         </div>
         <div class="navbar mobile">
             <div class="burguer" @click="collapse">
-                <span class="ico burguer"></span>
+                <span class="ico medium burguer"></span>
             </div>
 
             <div class="title">
@@ -71,7 +75,7 @@
 
             <div class="cam">
                 <router-link :to="{ name: 'New' }">
-                    <span class="ico cam"></span>
+                    <span class="ico medium cam"></span>
                 </router-link>
             </div>
 
@@ -126,3 +130,10 @@
     }
   }
 </script>
+<style>
+    .nsfw{
+        background: black;
+        color: white !important;
+        padding: 0 10px;
+    }
+</style>

@@ -45,6 +45,27 @@ $bg = #ffffff
 $font = #000000
 $font2 = #A1A1A1
 
+.brand-title
+    display flex
+    padding 15px
+    border 1px solid #eaeaea
+    height: 100px;
+    background rgba(234, 234, 234, 0.08)
+    .logo
+        width 70px
+        fill #2d3e51
+        margin auto 0
+    .title
+        display flex
+        flex-direction column
+        flex-wrap wrap
+        margin auto 0
+        padding 0 15px
+        color #2d3e51
+        width 100%
+    h1, p
+        margin 0
+
 // .title-field .title,
 div[contenteditable],
 textarea,
@@ -57,7 +78,7 @@ input
     line-height 1.4rem
 
 #title-post
-    margin: 15px 0
+    margin 15px 0
     font-size 3rem
     line-height 3.5rem
     margin-bottom 15px
@@ -71,6 +92,18 @@ hide()
 
 .hide
     hide()
+
+p
+    line-height: 2.5rem
+
+a
+    span
+        cursor pointer
+        vertical-align top
+        display inline-block
+        color #000
+        &:hover
+            text-decoration underline
 
 hr
     margin 10px 0
@@ -87,10 +120,29 @@ span.ico
     width 15px
     height 15px
     cursor pointer
+    &.medium
+        width 30px
+        height 30px
+    &.large
+        width 50px
+        height 50px
+    &.xlarge
+        width 100px
+        height 100px
+    &.facebook
+        background-image url('./../img/picto/social/facebook.svg') 
+    &.twitter
+        background-image url('./../img/picto/social/twitter.svg') 
+    &.snapchat
+        background-image url('./../img/picto/social/snapchat.svg') 
+    &.insta
+        background-image url('./../img/picto/social/instagram.svg') 
+    &.youtube
+        background-image url('./../img/picto/social/youtube.svg') 
     &.search-submit
         background-image url('./../img/picto/search.svg') 
     &.fb
-        background-image url('./../img/picto/fb.svg') 
+        background-image url('./../img/picto/fb.svg')
     &.tw
         background-image url('./../img/picto/tw.svg') 
     &.share
@@ -112,15 +164,8 @@ span.ico
         background-image url('./../img/picto/arrow_right_circle.svg') 
     &.vote_up
         background-image url('./../img/picto/arrow_up.svg') 
-        fill red
-        &:hover
-            fill white
-            // background-color red
     &.vote_down
         background-image url('./../img/picto/arrow_down.svg') 
-        fill blue
-        &:hover
-            fill white
     &.camera
         background-image url('./../img/picto/camera.svg')
     &.dragfile
@@ -135,12 +180,8 @@ span.ico
     &.poo
         background-image url('./../img/picto/poo.svg') 
     &.burguer
-        width: 30px
-        height: 30px
         background-image url('./../img/picto/burguer.svg') 
     &.cam
-        width: 30px
-        height: 30px
         background-image url('./../img/picto/camera.svg')
 
 .avatar
@@ -155,8 +196,8 @@ span.ico
 
 .container
     padding-top 150px
-    @media (max-width: 768px)
-        padding-top 50px
+    @media (max-width 768px)
+        padding-top 70px
 /***************
 
     Bartop
@@ -166,14 +207,14 @@ span.ico
 .container-fluid
     &.bartop
         position fixed
-        width: 100%
+        width 100%
         background white
         z-index 999
         padding-top 25px 
         padding-bottom 25px
-        height: 100px
-        @media (max-width: 768px)
-            height: 50px
+        height 100px
+        @media (max-width 768px)
+            height 50px
             padding-top 10px 
             padding-bottom 10px
         .navbar
@@ -185,9 +226,9 @@ span.ico
                 max-width 750px
                 margin auto
                 .list
-                    display: flex
-                    flex-direction: column             
-                    margin: 0
+                    display flex
+                    flex-direction column             
+                    margin 0
                     border-bottom 1px solid #000
                     // border-bottom 1px solid #EAEAEA
                     background white
@@ -201,29 +242,29 @@ span.ico
                         z-index 999
                         width 100%
                         div.avatar
-                            margin: auto
+                            margin auto
                     .close-list
                         position fixed
                         top 50px
                         left 0
                         width 100%
-                        height: 100%
+                        height 100%
                         z-index 10
                         &.inactive
-                            display: none
+                            display none
             .profile,
             .brand, 
             .burguer,
             .cam
                 position absolute
-                top: 0
+                top 0
             .profile,
             .cam
                 right 0
             .cam, 
             .burguer
                 & span 
-                    margin: 0
+                    margin 0
             .brand
                 float left
                 overflow visible
@@ -250,14 +291,8 @@ span.ico
                     line-height 30px
                     margin 10px 15px 
                     height 30px
-                    cursor pointer
-                    vertical-align top
-                    display inline-block
-                    color #000
-                    &:hover
-                        text-decoration underline
             &.desktop
-                @media (max-width: 768px)
+                @media (max-width 768px)
                     display none !important
             &.mobile
                 .menu
@@ -265,13 +300,13 @@ span.ico
                     top 50px
                     left 0
                     width 100%
-                    // height: 100%
+                    // height 100%
                 .title
                     font-size 2.3rem
                     text-align center
                     a.router-link-exact-active.router-link-active
-                        text-decoration: none
-                @media (min-width: 768px)
+                        text-decoration none
+                @media (min-width 768px)
                     display none !important
 
 /***************
@@ -293,20 +328,20 @@ span.ico
             width 70px
             text-align center
             &.social-btns
-                opacity: 0
+                opacity 0
             .title
                 font-weight bold
                 margin 10px auto
             span
                 margin 10px auto
                 cursor pointer
-        @media (max-width: 992px)
-            display: none
+        @media (max-width 992px)
+            display none
     &:hover
         aside
             .btns
                 &.social-btns
-                    opacity: 1
+                    opacity 1
 
 .comment-form
     header
@@ -314,8 +349,8 @@ span.ico
         background rgba(204, 204, 204, 0.28)
 
 .profile
-    @media (max-width: 768px)
-        padding: 0 !important
+    @media (max-width 768px)
+        padding 0 !important
 .post, 
 .comments, 
 .comment-form, 
@@ -392,11 +427,11 @@ span.ico
         overflow auto
         display flex
         &.desktop
-            @media (max-width: 992px)
-                display: none
+            @media (max-width 992px)
+                display none
         &.mobile
-            @media (min-width: 992px)
-                display: none
+            @media (min-width 992px)
+                display none
         .action
             font-weight bold
             font-size 1rem
@@ -420,16 +455,16 @@ span.ico
             .avatar
                 width 120px
                 height 120px
-                @media (max-width: 768px)
-                    width: 100px
-                    height: 100px
+                @media (max-width 768px)
+                    width 100px
+                    height 100px
             .info
                 height 90px
                 margin 0
                 margin-left 60px
                 position relative
-                @media (max-width: 768px)
-                    margin-left: 20px
+                @media (max-width 768px)
+                    margin-left 20px
                 .name,.desc
                     display block
                     margin-bottom 30px
@@ -444,10 +479,10 @@ span.ico
                     display flex
                     justify-content space-between
                     & > span
-                        margin-right: 10px
-                    @media (max-width: 768px)
+                        margin-right 10px
+                    @media (max-width 768px)
                         span.ico
-                            display: block
+                            display block
 
 #profile
     .btn-save
@@ -556,7 +591,7 @@ div
     text-align center
     cursor pointer
     border 1px solid transparent
-    height: 200px
+    height 200px
     i
         &:before
             font-size 7rem
@@ -565,7 +600,7 @@ div
         box-sizing border-box
         border 1px solid #EAEAEA
     &.earned
-        background: #6b6b6b
+        background #6b6b6b
         i
             font-size 7rem
             margin auto
@@ -573,7 +608,7 @@ div
                 width 50px
                 fill white
         h4, span
-            color: white
+            color white
         &:hover
             border-color black
     &.missing
@@ -655,7 +690,7 @@ div
 
 #preview
     position relative
-    min-height: 100px
+    min-height 100px
     border 2px solid #EAEAEA
     cursor pointer
     .close-btn
@@ -712,7 +747,7 @@ a
     border 1px solid #EAEAEA
     .loading
         display block
-        margin: auto
+        margin auto
         width 40px
         height 40px
         border-left 4px solid #2d3e51
@@ -742,41 +777,41 @@ a
         font-size 1.2rem
 
 span.more
-    display: block;
-    text-align: center;
-    padding: 15px;
-    max-width: 200px;
-    color: black;
-    font-size: 2rem;
-    margin: 15px auto;
-    cursor: pointer;
+    display block
+    text-align center
+    padding 15px
+    max-width 200px
+    color black
+    font-size 2rem
+    margin 15px auto
+    cursor pointer
     &:hover
-        text-decoration: underline
+        text-decoration underline
 
 
 
   /*@keyframes cursor {
     0% {
-        opacity: 0;
+        opacity 0
     }
     50% {
-        opacity: 0;
+        opacity 0
     }
     51% {
-        opacity: 1;
+        opacity 1
     }
     100% {
-        opacity: 1;
+        opacity 1
     }
   }
   #title-post.placeholder:before{
-    content: 'Un peu de texte..'
+    content 'Un peu de texte..'
   }
   #title-post:after{
-    content: '';
-    height: 3rem;
-    border: 1px solid black;
-    width: 0;
-    animation: cursor 1s infinite;
-    -webkit-animation: cursor 1s infinite;
+    content ''
+    height 3rem
+    border 1px solid black
+    width 0
+    animation cursor 1s infinite
+    -webkit-animation cursor 1s infinite
   }*/
