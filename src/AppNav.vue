@@ -18,9 +18,9 @@
                     <span>Populaire</span>
                 </router-link>
 
-                <router-link :to="{ name: 'Trending' }">
+                <!--<router-link :to="{ name: 'Trending' }">
                     <span class="nsfw">NSFW</span>
-                </router-link>
+                </router-link>-->
 
                 <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">
                     <span>Nos Magnifiques T-shirts</span>
@@ -48,7 +48,8 @@
             <div v-show="isLoggedIn" class="profile">
                 <router-link :to="{ name: 'UserPosts' }">
                     <div class="avatar">
-                        <img :src="avatar" alt="">
+                        <img v-if="avatar" :src="avatar" alt="avatar">
+                        <img v-if="!avatar" src="./assets/user.png" alt="avatar">
                     </div>
                 </router-link>
             </div>
@@ -93,7 +94,8 @@
                     </a>
                     <router-link v-show="isLoggedIn" :to="{ name: 'UserPosts' }">
                         <div class="avatar">
-                            <img :src="avatar" alt="">
+                            <img v-if="avatar" :src="avatar" alt="avatar">
+                            <img v-if="!avatar" src="./assets/user.png" alt="avatar">
                         </div>
                     </router-link>
                     <!-- Else -->
@@ -120,7 +122,7 @@
     mounted () {
       this.$store.watch((state) => {
         this.isLoggedIn = this.$store.state.auth.isLoggedIn
-        this.avatar = this.$store.state.user.avatar || 'http://placehold.it/50X50'
+        this.avatar = this.$store.state.user.avatar
       })
     },
     methods: {

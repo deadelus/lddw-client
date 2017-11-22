@@ -9,7 +9,8 @@
                         <input type="hidden" name="_method" value="PUT"/>
                         <header>
                             <label for="avatar" class="avatar" v-if="!filepath">
-                                <img :src="user.avatar || 'http://placehold.it/50x50'" alt="avatar">
+                                <img v-if="user.avatar" :src="user.avatar" alt="avatar">
+                                <img v-if="!user.avatar" src="./../assets/user.png" alt="avatar">
                             </label>
                             <div class="avatar" @click="reset" v-if="filepath">
                                 <img :src="filepath" alt="avatar">

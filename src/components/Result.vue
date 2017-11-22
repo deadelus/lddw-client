@@ -2,11 +2,11 @@
   <section class="container">
 
       <div class="row" v-on:click="toggle">
-        <post
+        <thumb
           v-for="post in posts"
           v-bind:post="post"
           v-bind:key="post.id"
-        ></post>
+        ></thumb>
 
         <span class="more" v-if="paginate.next_uri" v-on:click="next(paginate.next_uri)">Voir plus</span>
 
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import Post from '@/components/Post/Post'
+import Thumb from '@/components/Post/Thumb'
 import NewPost from '@/components/Post/NewPost'
 
 export default {
   name: 'search',
-  components: { Post, NewPost },
+  components: { Thumb, NewPost },
   data () {
     return {
       posts: [],

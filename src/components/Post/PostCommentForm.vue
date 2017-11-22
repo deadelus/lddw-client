@@ -3,7 +3,8 @@
   <form action="" class="comment-form">
       <header>
           <div class="avatar">
-              <img :src="user.avatar" alt="Avatar de l'utilisateur">
+              <img v-if="user.avatar" :src="user.avatar" alt="avatar">
+              <img v-if="!user.avatar" src="./../../assets/user.png" alt="avatar">
           </div>
           <div class="info">
               <span class="name">{{ user.name }}</span>
@@ -39,10 +40,11 @@ export default {
       })
       .then((response) => {
         this.msg = ''
-        console.log(response)
+        var comment = response.body.data
+        this.$emit('add', comment)
       })
       .catch((errorResponse) => {
-        console.log(errorResponse)
+        // console.log(errorResponse)
       })
     }
   },

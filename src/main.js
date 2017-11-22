@@ -17,6 +17,24 @@ import './assets/css/style.css'
 import Auth from './auth'
 import MediaMaker from './mediamaker'
 import FBSignInButton from 'vue-facebook-signin-button'
+import Modal from '@/components/Modal/Modal'
+
+const Dialog = Vue.extend(Modal);
+
+Vue.directive('confirm', {
+  bind(el, binding, vnode) {
+    const yesMethod = binding.value;
+    el.handleClick = (e) => {
+      const data = { doYes: yesMethod, show: true };
+      let dialog = new Dialog({ data: data }).$mount();
+      document.getElementById('app').appendChild(dialog.$el);
+    }
+    el.addEventListener('click', el.handleClick);
+  },
+  unbind(el) {
+    el.removeEventListener('click', el.handleClick);
+  }
+});
 
 // Filtre pour inverser le tableau de commentaire
 Vue.filter('reverse', function (array) {
@@ -34,6 +52,7 @@ Vue.use(VueResource)
 Vue.use(Auth)
 Vue.use(Moment)
 Vue.use(MediaMaker)
+
 // Vue.use(Meta, {
 //   keyName: 'metaInfo'
 // })
@@ -46,18 +65,18 @@ Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
 // PROD API
-// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
-// Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
-// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
-
-// Preprod API
-Vue.prototype.$assetURL = 'http://preprod.ladechetterieduweb.com/storage'
-Vue.prototype.$apiURL = 'http://preprod.ladechetterieduweb.com/api'
+Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
+Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
 Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
+// Preprod API
+// Vue.prototype.$assetURL = 'http://preprod.ladechetterieduweb.com/storage'
+// Vue.prototype.$apiURL = 'http://preprod.ladechetterieduweb.com/api'
+// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+
 // Local API
-// Vue.prototype.$assetURL = 'http://localhost:8000/storage'
-// Vue.prototype.$apiURL = 'http://localhost:8000/api'
+// Vue.prototype.$assetURL = 'http://127.0.0.1:8000/storage'
+// Vue.prototype.$apiURL = 'http://127.0.0.1:8000/api'
 // Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 /* eslint-disable no-new */
 

@@ -2,6 +2,7 @@
   <div class="posts">
     <article class="col-lg-8 col-lg-offset-2">
       <div class="tuile">
+      
         <list
         v-for="post in posts"
         v-bind:post="post"

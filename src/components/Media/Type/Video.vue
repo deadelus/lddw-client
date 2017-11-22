@@ -2,8 +2,7 @@
   <div id="preview-video">
     <div class="video-wrapper">
       <video controls>
-          <source :src="path" type="video/mp4"></source>
-          <!--<source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv" type="video/ogg"></source>-->
+          <source :src="path" type="video/webm"></source>
           Your browser does not support the <code>video</code> tag.
       </video>
       <div class="video-controls">
@@ -35,6 +34,7 @@
     width: 750px !important;
     max-width: 100% !important;
     height: auto !important;
+    max-height: 500px;
   }
 
   video::-internal-media-controls-download-button {

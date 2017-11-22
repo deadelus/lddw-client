@@ -6,7 +6,6 @@
         <post
           v-show="!loading"
           v-bind:post="post"
-          v-bind:url="url"
           v-bind:key="post.id"
         ></post>
 
@@ -24,9 +23,10 @@
                   <!-- COMMENT FEED -->
                   <post-comment  
                     v-if="comment"
-                    v-for="comment in comments"
+                    v-for="(comment, index) in comments"
                     v-bind:comment="comment"
                     v-bind:key="comment.id"
+                    v-on:remove="comments.splice(index, 1)"
                   ></post-comment>
                   <!-- END COMMENT FEED -->
               </div>
@@ -34,6 +34,7 @@
               <post-comment-form
                 v-show="isLoggedIn"
                 v-bind:url="post.links.Comment_create"
+                @add="addcomment"
               ></post-comment-form>
 
           </div>  
@@ -55,7 +56,6 @@ export default {
       post: false,
       owner: '',
       title: '',
-      url: '',
       loading: true,
       isLoggedIn: false,
       comments: [],
@@ -66,20 +66,6 @@ export default {
       }
     }
   },
-  // Meta ok for now
-  // metaInfo () {
-  //   return {
-  //     title: this.title,
-  //     titleTemplate: null,
-  //     meta: [
-  //       {vmid: 'og:title', name: 'og:title', content: this.title},
-  //       {vmid: 'og:author', name: 'og:author', content: this.owner},
-  //       {vmid: 'og:description', name: 'og:description', content: 'Encore un déchet recyclé dans La Déchetterie !'},
-  //       {vmid: 'og:url', name: 'og:url', content: this.url}
-  //       {vmid: 'og:image', name: 'og:image', content: this.$apiURL + this.post.meta.file_thumb}
-  //     ]
-  //   }
-  // },
   beforeMount () {
     if (this.$route.params.id) {
       this.fetchData(this.$apiURL + '/post/' + this.$route.params.id)
@@ -96,15 +82,11 @@ export default {
       .then((response) => {
         this.post = response.body.data
         this.owner = this.post.owner.name
-        this.url = this.makeURL()
-        // var txt = this.post.title || ''
-        // this.title = txt.slice(0, 20)
         this.loading = false
         this.fetchComment(this.post.links.Comment_read)
       })
       .catch((errorResponse) => {
         this.$Progress.fail()
-        // console.log(errorResponse)
       })
     },
     fetchComment: function (uri) {
@@ -119,7 +101,6 @@ export default {
       })
       .catch((errorResponse) => {
         this.$Progress.fail()
-        // console.log(errorResponse)
       })
     },
     nextComment: function (url) {
@@ -131,16 +112,13 @@ export default {
         this.paginate.next_uri = response.body.links.next
         this.paginate.uri = response.body.links.current
         this.paginate.prev_uri = response.body.links.prev
-        console.log(this.comments)
       })
       .catch((errorResponse) => {
-        console.log(errorResponse)
       })
     },
-    makeURL: function () {
-      let path = this.$router.match({name: 'Post', params: {id: this.post.id}})
-      let url = this.$URL + path.fullPath
-      return url
+    addcomment: function (comment) {
+      let old = this.comments
+      this.comments = old.concat(comment)
     }
   }
 }

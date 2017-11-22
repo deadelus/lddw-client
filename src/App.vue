@@ -6,15 +6,10 @@
   </div>
 </template>
 <script>
-
-import AppNav from '@/AppNav.vue'
+import AppNav from '@/AppNav'
 
 export default {
   name: 'app',
-  components: { AppNav },
-  data () {
-    return {
-    }
-  }
+  components: { AppNav }
 }
 </script>

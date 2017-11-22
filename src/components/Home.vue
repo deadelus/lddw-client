@@ -11,12 +11,13 @@
 
         <loadpost v-show="loading"></loadpost>
 
-        <post
+        <thumb
           v-show="!loading"
-          v-for="post in posts"
+          v-for="(post, index) in posts"
           v-bind:post="post"
           v-bind:key="post.id"
-        ></post>
+          v-on:remove="posts.splice(index, 1)"
+        ></thumb>
 
         <span class="more" v-if="paginate.next_uri" v-on:click="next(paginate.next_uri)">Voir plus</span>
 
@@ -24,13 +25,13 @@
   </section>
 </template>
 <script>
-import Post from '@/components/Post/Post'
+import Thumb from '@/components/Post/Thumb'
 import NewPost from '@/components/Post/NewPost'
 import Loadpost from '@/components/Info/Loadpost'
 
 export default {
   name: 'home',
-  components: { Post, NewPost, Loadpost },
+  components: { Thumb, NewPost, Loadpost },
   data () {
     return {
       posts: [],

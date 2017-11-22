@@ -9,9 +9,6 @@
 <script>
   export default {
     name: 'preview-image',
-    props: ['path'],
-    mounted () {
-      // console.log('Image Mouted')
-    }
+    props: ['path']
   }
 </script>

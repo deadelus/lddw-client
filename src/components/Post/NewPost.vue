@@ -61,13 +61,9 @@
       upload: function () {
         this.load = true
         this.errors = []
-        console.log(this.title)
         var data = new FormData()
         if (this.title !== '') {
           data.append('title', this.title)
-        }
-        if (this.tags !== '') {
-          data.append('tags', this.tags)
         }
         data.append('file', this.post.file)
         this.$http({
@@ -76,16 +72,16 @@
           method: 'POST'
         })
         .then((response) => {
-          console.log('passe par la')
           this.$store.commit('CLEAR_POST')
           this.reset()
           this.load = false
           this.success.code = 200
           this.success.msg = 'Déchet publié !'
           this.$router.push({name: 'Home'})
+          console.log(response)
         })
         .catch((errorResponse) => {
-          console.log(errorResponse)
+          // console.log(errorResponse)
           this.load = false
           if (errorResponse.status === 500) {
             this.errors.push({
@@ -94,14 +90,13 @@
           }
           if (errorResponse.error.title) {
             this.errors.push({
-              name: 'Titre trop long. (max: 75 caractères)'
+              name: 'Titre trop long. (max: 250 caractères)'
             })
           }
         })
       },
       reset: function () {
         this.title = ''
-        this.tags = ''
       },
       autoresize: function (e) {
         var el = e.target
