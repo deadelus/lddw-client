@@ -597,6 +597,11 @@ span.ico.cam {
   display: flex;
   margin-bottom: 50px;
 }
+@media (max-width: 1200px) {
+  .posts article {
+    width: 100%;
+  }
+}
 .posts aside {
   position: relative;
 }
@@ -742,9 +747,12 @@ span.ico.cam {
 .post .content {
   text-align: center;
   cursor: pointer;
-  max-height: 500px;
   overflow: hidden;
   position: relative;
+}
+.post .content.thumb {
+  max-height: 500px;
+  background: #000;
 }
 .post .content .layer-video {
   width: 100%;
@@ -787,9 +795,6 @@ span.ico.cam {
 .post .content img {
   width: 100%;
   margin: auto;
-}
-.post .content.thumb {
-  max-height: 50vh;
 }
 .post footer {
   width: 100%;
@@ -1184,8 +1189,10 @@ div.btn-logout {
 #preview {
   position: relative;
   min-height: 100px;
+  max-height: 30vh;
   border: 2px solid #eaeaea;
   cursor: pointer;
+  overflow: scroll;
 }
 #preview .close-btn {
   display: none;
@@ -1204,7 +1211,7 @@ div.btn-logout {
   top: 10px;
   right: 10px;
 }
-#preview .content img {
+#preview img {
   width: 100%;
   height: auto;
 }

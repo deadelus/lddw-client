@@ -65,19 +65,22 @@ Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
 // PROD API
-Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
-Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
-Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
+// Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
+// Vue.prototype.$API = 'https://api.ladechetterieduweb.com'
+// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
 // Preprod API
 // Vue.prototype.$assetURL = 'http://preprod.ladechetterieduweb.com/storage'
 // Vue.prototype.$apiURL = 'http://preprod.ladechetterieduweb.com/api'
+// Vue.prototype.$API = 'http://preprod.ladechetterieduweb.com'
 // Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
 // Local API
-// Vue.prototype.$assetURL = 'http://127.0.0.1:8000/storage'
-// Vue.prototype.$apiURL = 'http://127.0.0.1:8000/api'
-// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+Vue.prototype.$assetURL = 'http://local.dev.foo:8000/storage'
+Vue.prototype.$apiURL = 'http://local.dev.foo:8000/api'
+Vue.prototype.$API = 'http://local.dev.foo:8000'
+Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 /* eslint-disable no-new */
 
 new Vue({

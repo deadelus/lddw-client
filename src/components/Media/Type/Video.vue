@@ -2,6 +2,7 @@
   <div id="preview-video">
     <div class="video-wrapper">
       <video controls>
+          <source :src="path" type="video/mp4"></source>
           <source :src="path" type="video/webm"></source>
           Your browser does not support the <code>video</code> tag.
       </video>

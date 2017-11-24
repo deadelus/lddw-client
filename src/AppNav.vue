@@ -119,6 +119,17 @@
         avatar: 'http://placehold.it/50X50'
       }
     },
+    // Vue 2.2
+    // beforeRouteUpdate (to, from, next) {
+    //   console.log('yest')
+    //   this.collapsed = false
+    //   next()
+    // },
+    watch: {
+      '$route' (to, from) {
+        this.collapsed = false
+      }
+    },
     mounted () {
       this.$store.watch((state) => {
         this.isLoggedIn = this.$store.state.auth.isLoggedIn

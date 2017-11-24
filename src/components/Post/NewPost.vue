@@ -12,7 +12,7 @@
         <error v-if="errors.length" v-bind:errors="errors"></error>
 
         <textarea v-if="!load" v-model="title" @keydown="autoresize" id="title-post" type="text" placeholder="Un peu de texte..."></textarea>
-        <!--<input v-model="tags" placeholder="Entrez vos tags ici" id="title-tag" type="text"/>-->
+
       </div>
       
       <media v-if="!load"></media>
@@ -59,6 +59,10 @@
     },
     methods: {
       upload: function () {
+        var t = this
+        t.$Progress.tempColor('#2ecc71')
+        t.$Progress.start()
+
         this.load = true
         this.errors = []
         var data = new FormData()
@@ -69,9 +73,18 @@
         this.$http({
           url: this.$store.getters.user.actions.new_post,
           body: data,
-          method: 'POST'
+          method: 'POST',
+          progress: function (pe) {
+            // if (pe.lengthComputable) {
+            //   var val = pe.loaded / pe.total
+            //   // console.log(pe.loaded + '/' + pe.total)
+            //   // console.log((100 * val) + '%')
+            //   t.$Progress.set(100 + val)
+            // }
+          }
         })
         .then((response) => {
+          t.$Progress.finish()
           this.$store.commit('CLEAR_POST')
           this.reset()
           this.load = false
@@ -82,6 +95,7 @@
         })
         .catch((errorResponse) => {
           // console.log(errorResponse)
+          this.$Progress.fail()
           this.load = false
           if (errorResponse.status === 500) {
             this.errors.push({

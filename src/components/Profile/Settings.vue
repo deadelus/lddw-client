@@ -24,7 +24,7 @@
                 </div>
                 <div class="setting">
                     <div class="section-title">Connections</div>
-                    <hr>
+                    <!--<hr>
                     
                     <a href="#" class="social facebook">
                         Ajouter mon compte Facebook
@@ -32,7 +32,7 @@
 
                     <a href="#" class="social twitter">
                         Ajouter mon compte Twitter
-                    </a>
+                    </a>-->
 
                     <a class="social btn-logout" @click.prevent="logout" href="#">
                         Se deconnecter
