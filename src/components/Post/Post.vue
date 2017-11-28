@@ -34,7 +34,7 @@
                 </div>
             </header>
 
-            <div class="title" v-html="titleParsed"></div>
+            <div v-if="title" class="title" v-html="titleParsed"></div>
 
             <div class="content">
               <preview-image v-if="this.post.meta.file_type === 'picture'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-image>
@@ -82,7 +82,7 @@
             <span v-on:click="action(post.links.Vote_down)" class="ico vote_down"></span>
         </div>
     </aside>
-
+    
     <edit-modal 
       v-if="showEditModal" 
       v-bind:title="title" 
@@ -109,6 +109,7 @@
 <script>
 import PreviewImage from '@/components/Media/Type/Image.vue'
 import PreviewVideo from '@/components/Media/Type/Video.vue'
+import PostModal from '@/components/Modal/PostModal'
 import EditModal from '@/components/Modal/EditModal'
 import ReportModal from '@/components/Modal/ReportModal'
 import NsfwModal from '@/components/Modal/NsfwModal'
@@ -123,7 +124,8 @@ export default {
       collapsed: false,
       showEditModal: false,
       showReportModal: false,
-      showNSFWModal: false
+      showNSFWModal: false,
+      showPostModal: false
     }
   },
   props: ['post'],

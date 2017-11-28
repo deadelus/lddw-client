@@ -13,31 +13,28 @@
           
       </div>
 
-      <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-              <div class="comments">
-                  <div class="title">
-                      Commentaires
-                  </div>
-                  <span class="more" v-if="paginate.next_uri" v-on:click="nextComment(paginate.next_uri)">Plus de commentaire</span>
-                  <!-- COMMENT FEED -->
-                  <post-comment  
-                    v-if="comment"
-                    v-for="(comment, index) in comments"
-                    v-bind:comment="comment"
-                    v-bind:key="comment.id"
-                    v-on:remove="comments.splice(index, 1)"
-                  ></post-comment>
-                  <!-- END COMMENT FEED -->
-              </div>
+      <div class="comment-block">
+        <div class="comments">
+            <div class="title">
+                Commentaires
+            </div>
+            <span class="more" v-if="paginate.next_uri" v-on:click="nextComment(paginate.next_uri)">Plus de commentaire</span>
+            <!-- COMMENT FEED -->
+            <post-comment  
+              v-if="comment"
+              v-for="(comment, index) in comments"
+              v-bind:comment="comment"
+              v-bind:key="comment.id"
+              v-on:remove="comments.splice(index, 1)"
+            ></post-comment>
+            <!-- END COMMENT FEED -->
+        </div>
 
-              <post-comment-form
-                v-show="isLoggedIn"
-                v-bind:url="post.links.Comment_create"
-                @add="addcomment"
-              ></post-comment-form>
-
-          </div>  
+        <post-comment-form
+          v-show="isLoggedIn"
+          v-bind:url="post.links.Comment_create"
+          @add="addcomment"
+        ></post-comment-form>
       </div>
   </section>
 </template>

@@ -92,6 +92,16 @@
                     <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">
                         <span>Nos Magnifiques T-shirts</span>
                     </a>
+                    
+                    <router-link :to="{ name: 'Rules' }">
+                        <span>Rêgles</span>
+                    </router-link>
+
+                    <router-link :to="{ name: 'About' }">
+                        <span>A propos</span>
+                    </router-link>
+
+                    <!-- iF -->
                     <router-link v-show="isLoggedIn" :to="{ name: 'UserPosts' }">
                         <div class="avatar">
                             <img v-if="avatar" :src="avatar" alt="avatar">

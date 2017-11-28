@@ -65,7 +65,7 @@ Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
 // PROD API
-// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com/storage'
+// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com'
 // Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
 // Vue.prototype.$API = 'https://api.ladechetterieduweb.com'
 // Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
@@ -95,8 +95,8 @@ new Vue({
     window.Vue = this
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '631741580331636',
-        // appId      : '2211517428989297',
+        // appId      : '631741580331636',
+        appId      : '2211517428989297',
         cookie     : true,
         xfbml      : true,
         version    : 'v2.8'

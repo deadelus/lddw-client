@@ -34,24 +34,21 @@
                 </div>
             </header>
 
-            <div class="title" v-html="titleParsed"></div>
+            <div v-if="title" class="title" v-html="titleParsed"></div>
 
-            <div class="content thumb">
-              <router-link :to="{ name: 'Post', params: {id: this.post.id} }">
-                <div v-if="this.post.meta.file_type === 'video'" class="layer-video">
-                  <div class="round">
-                    <div class="play">
-                    </div>
-                  </div>
-                </div>
-                <img :src="this.post.meta.file_thumb" :alt="'thumbnail n°'+this.post.id"/>
-              </router-link>
+            <div class="content">
+                <preview-image v-if="this.post.meta.file_type === 'picture'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-image>
+                <preview-gif v-if="this.post.meta.file_type === 'gif'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
+                <preview-video 
+                  v-if="this.post.meta.file_type === 'video'" 
+                  v-bind:name="this.post.meta.file_name">
+                </preview-video>
             </div>
 
             <footer class="desktop">
                 <div class="action">
                     <span class="ico comment"></span>
-                    <span class="label">{{ comments }}</span>
+                    <span class="label">{{ nbcomments }}</span>
                 </div>
                 <div class="action">
                     <span class="ico bookmark"></span>
@@ -65,8 +62,12 @@
 
             <footer class="mobile">
                 <div class="action" @click="share">
-                    <span class="ico share"></span>
+                    <span class="ico fb"></span>
                     <span class="label">Partager</span>
+                </div>
+                <div class="action" @click="showComment">
+                    <span class="ico comment"></span>
+                    <span class="label">{{ nbcomments }}</span>
                 </div>
                 <div class="action" @click="Bmk(post.links.Bookmark)">
                     <span class="ico bookmark"></span>
@@ -78,7 +79,35 @@
                     <span v-on:click="action(post.links.Vote_down)" class="ico vote_down"></span>
                 </div>
             </footer>
-            
+
+            <div class="comment-block" v-if="boxComment">
+                <div class="comments">
+                  <div v-if="comments.length === 0" class="title">
+                      Aucun commentaire
+                  </div>
+                  <div v-if="comments > 0" class="title">
+                      Commentaires
+                  </div>
+                  <span class="more" v-if="paginate.next_uri" v-on:click="nextComment(paginate.next_uri)">Plus de commentaire</span>
+                  <!-- COMMENT FEED -->
+                  <post-comment  
+                    v-if="comment"
+                    v-for="(comment, index) in comments"
+                    v-bind:comment="comment"
+                    v-bind:key="comment.id"
+                    v-on:remove="comments.splice(index, 1)"
+                  ></post-comment>
+                  <!-- END COMMENT FEED -->
+                </div>
+                
+                <span class="more" @click="boxComment = false">Fermer</span>
+
+
+                <post-comment-form
+                  v-bind:url="post.links.Comment_create"
+                  @add="addcomment"
+                ></post-comment-form>
+            </div>
         </div>
     </article>
     <aside class="col-lg-1">
@@ -88,7 +117,7 @@
             <span v-on:click="action(post.links.Vote_down)" class="ico vote_down"></span>
         </div>
     </aside>
-
+    
     <edit-modal 
       v-if="showEditModal" 
       v-bind:title="title" 
@@ -108,13 +137,16 @@
       v-bind:uri="post.actions.update" 
       @close="showReportModal = false" 
     ></report-modal>
-
-  </div>
+    
+    </div>
 </template>
 
 <script>
 import PreviewImage from '@/components/Media/Type/Image.vue'
 import PreviewVideo from '@/components/Media/Type/Video.vue'
+import PostComment from '@/components/Post/PostComment.vue'
+import PostCommentForm from '@/components/Post/PostCommentForm.vue'
+import Loadpost from '@/components/Info/Loadpost'
 import EditModal from '@/components/Modal/EditModal'
 import ReportModal from '@/components/Modal/ReportModal'
 import NsfwModal from '@/components/Modal/NsfwModal'
@@ -128,7 +160,17 @@ export default {
       collapsed: false,
       showEditModal: false,
       showReportModal: false,
-      showNSFWModal: false
+      showNSFWModal: false,
+      boxComment: false,
+      firstloadComment: true,
+      loading: true,
+      isLoggedIn: false,
+      comments: [],
+      paginate: {
+        uri: '',
+        next_uri: '',
+        prev_uri: ''
+      }
     }
   },
   props: ['post'],
@@ -137,11 +179,14 @@ export default {
     PreviewVideo,
     EditModal,
     ReportModal,
-    NsfwModal
+    NsfwModal,
+    PostCommentForm,
+    PostComment
   },
   mounted () {
     this.title = this.post.title
     this.nbVotes = this.post.info.nbVotes
+    this.isLoggedIn = this.$store.state.auth.isLoggedIn
   },
   computed: {
     currentUserID: function () {
@@ -167,7 +212,7 @@ export default {
       }
       return this.post.info.nbBookmarks + ' Signet'
     },
-    comments: function () {
+    nbcomments: function () {
       if (this.post.info.nbComments > 1) {
         return this.post.info.nbComments + ' Commentaires'
       }
@@ -217,14 +262,6 @@ export default {
         // console.log(errorResponse)
       })
     },
-    // share: function () {
-    //   var title = this.post.title || ''
-    //   var thumb = this.post.meta.file_thumb
-    //   var obj = {method: 'feed', link: this.url(), picture: thumb, name: title, description: 'Un déchêt dans la dechetterie'};
-
-    //   function callback(response){}
-    //   FB.ui(obj, callback);
-    // },
     share: function () {
       // var title = this.post.title || ''
 
@@ -280,6 +317,43 @@ export default {
       let path = this.$router.match({name: 'Post', params: {id: this.post.id}})
       let url = this.$URL + path.fullPath
       return url
+    },
+    showComment: function () {
+      this.boxComment = !this.boxComment
+      if (this.firstloadComment) {
+        this.firstloadComment = false
+        this.fetchComments(this.post.links.Comment_read)
+      }
+    },
+    fetchComments: function (uri) {
+      this.$http.get(uri)
+      .then((response) => {
+        let comments = response.body.data
+        this.comments = comments.reverse()
+        this.paginate.next_uri = response.body.links.next
+        this.paginate.uri = response.body.links.current
+        this.paginate.prev_uri = response.body.links.prev
+      })
+      .catch((errorResponse) => {
+        // error
+      })
+    },
+    nextComment: function (url) {
+      this.$http.get(url)
+      .then((response) => {
+        let com = response.body.data
+        let old = this.comments
+        this.comments = com.reverse().concat(old)
+        this.paginate.next_uri = response.body.links.next
+        this.paginate.uri = response.body.links.current
+        this.paginate.prev_uri = response.body.links.prev
+      })
+      .catch((errorResponse) => {
+      })
+    },
+    addcomment: function (comment) {
+      let old = this.comments
+      this.comments = old.concat(comment)
     }
   }
 }

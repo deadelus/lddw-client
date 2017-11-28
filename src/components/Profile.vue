@@ -30,7 +30,7 @@
                                     </span>
                                     <span class="gold">
                                       <span class="ico coins"></span>
-                                      <span>199</span>
+                                      <span>1 ShitCoin</span>
                                     </span>
                                     <span class="tosetting">
                                         <router-link :to="{ name: 'UserSettings' }">

@@ -224,6 +224,9 @@ template {
   font-weight: bold;
   src: url("../fonts/Noto_Sans/NotoSans-BoldItalic.ttf");
 }
+.popuped {
+  overflow: hidden;
+}
 .brand-title {
   display: -webkit-box;
   display: -webkit-flex;
@@ -423,11 +426,12 @@ span.ico.cam {
   height: auto;
 }
 .container {
-  padding-top: 150px;
+  padding-top: 108px;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .container {
-    padding-top: 70px;
+    width: 100%;
+    padding-top: 58px;
   }
 }
 /***************
@@ -444,7 +448,7 @@ span.ico.cam {
   padding-bottom: 25px;
   height: 100px;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .container-fluid.bartop {
     height: 50px;
     padding-top: 10px;
@@ -458,8 +462,13 @@ span.ico.cam {
   margin: auto;
 }
 .container-fluid.bartop .navbar .menu {
-  max-width: 750px;
+  width: 100%;
   margin: auto;
+}
+@media (min-width: 900px) {
+  .container-fluid.bartop .navbar .menu {
+    max-width: 750px;
+  }
 }
 .container-fluid.bartop .navbar .menu .list {
   display: -webkit-box;
@@ -472,7 +481,7 @@ span.ico.cam {
   -ms-flex-direction: column;
   flex-direction: column;
   margin: 0;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #ccc;
   background: #fff;
   overflow: hidden;
   height: 0px;
@@ -481,7 +490,7 @@ span.ico.cam {
   transition: height 0.3s;
 }
 .container-fluid.bartop .navbar .menu .list.active {
-  height: 215px;
+  height: 315px;
 }
 .container-fluid.bartop .navbar .menu .list a {
   z-index: 999;
@@ -562,7 +571,7 @@ span.ico.cam {
   margin: 10px 15px;
   height: 30px;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .container-fluid.bartop .navbar.desktop {
     display: none !important;
   }
@@ -580,7 +589,7 @@ span.ico.cam {
 .container-fluid.bartop .navbar.mobile .title a.router-link-exact-active.router-link-active {
   text-decoration: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .container-fluid.bartop .navbar.mobile {
     display: none !important;
   }
@@ -595,11 +604,22 @@ span.ico.cam {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 50px;
+  border-bottom: #ccc 8px solid transparent;
 }
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
+  .posts {
+    border-bottom: 8px solid #ccc;
+  }
+}
+.posts article {
+  background: #fff;
+  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+}
+@media (min-width: 992px) {
   .posts article {
-    width: 100%;
+    max-width: 770px;
   }
 }
 .posts aside {
@@ -643,11 +663,21 @@ span.ico.cam {
   filter: none;
   opacity: 1;
 }
+.comment-block {
+  max-width: 770px;
+  width: 100%;
+  margin: auto;
+}
 .comment-form header {
   margin-top: 60px;
   background: rgba(204,204,204,0.28);
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .comment-form header {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 900px) {
   .profile {
     padding: 0 !important;
   }
@@ -709,19 +739,42 @@ span.ico.cam {
 .settings {
   margin-bottom: 40px;
 }
-.comments .comment,
-.settings .comment {
-  margin-bottom: 40px;
+@media (max-width: 900px) {
+  .comments,
+  .settings {
+    margin-bottom: 15px;
+  }
 }
+.comments .comment,
+.settings .comment,
 .comments .title,
 .settings .title {
   margin-bottom: 40px;
 }
+@media (max-width: 992px) {
+  .comments .comment,
+  .settings .comment,
+  .comments .title,
+  .settings .title {
+    margin-bottom: 8px;
+  }
+}
 .comments .content,
 .settings .content {
-  font-size: 1.4rem;
-  margin: 15px 0;
-  padding: 0 15px;
+  font-size: 1.4rem !important;
+  background: inherit !important;
+  text-align: left !important;
+  padding: 15px;
+}
+@media (max-width: 992px) {
+  .comments .content,
+  .settings .content {
+    margin: 8px 0;
+    padding: 0 15px;
+  }
+}
+.comment-form {
+  font-size: 0;
 }
 .comment-form .comment-edit {
   font-size: 1.4rem;
@@ -731,6 +784,12 @@ span.ico.cam {
   padding: 15px;
   margin-bottom: 15px;
   border: solid #eaeaea 2px;
+}
+@media (max-width: 992px) {
+  .comment-form .comment-edit {
+    min-height: 0px;
+    margin-bottom: 8px;
+  }
 }
 .comment-btn,
 .post-btn {
@@ -745,14 +804,12 @@ span.ico.cam {
   margin-top: 30px;
 }
 .post .content {
+  background: #000;
+  font-size: 0;
   text-align: center;
   cursor: pointer;
   overflow: hidden;
   position: relative;
-}
-.post .content.thumb {
-  max-height: 500px;
-  background: #000;
 }
 .post .content .layer-video {
   width: 100%;
@@ -763,6 +820,7 @@ span.ico.cam {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  z-index: 100;
 }
 .post .content .layer-video .round {
   height: 50px;
@@ -798,8 +856,8 @@ span.ico.cam {
 }
 .post footer {
   width: 100%;
-  margin: 15px 0 0 0;
-  padding: 0 15px;
+  padding: 15px;
+  margin-top: 15px;
   overflow: auto;
   display: -webkit-box;
   display: -webkit-flex;
@@ -833,6 +891,11 @@ span.ico.cam {
 .post footer .action .label {
   margin: 0 15px;
 }
+@media (max-width: 450px) {
+  .post footer .action .label {
+    margin: 0 8px;
+  }
+}
 /*******
     
     Profile
@@ -845,7 +908,7 @@ span.ico.cam {
   width: 120px;
   height: 120px;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #profile .profile header .avatar {
     width: 100px;
     height: 100px;
@@ -857,7 +920,7 @@ span.ico.cam {
   margin-left: 60px;
   position: relative;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #profile .profile header .info {
     margin-left: 20px;
   }
@@ -888,7 +951,7 @@ span.ico.cam {
 #profile .profile header .info .links > span {
   margin-right: 10px;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #profile .profile header .info .links span.ico {
     display: block;
   }
@@ -1373,7 +1436,7 @@ div.dropdown .dropdown-menu {
   -webkit-transition: transform 0.3s;
   transition: transform 0.3s;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   div.dropdown .dropdown-menu {
     width: 150px;
   }
@@ -1402,7 +1465,7 @@ div.dropdown .dropdown-menu li {
   font-size: 1rem;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   div.dropdown .dropdown-menu li {
     font-size: 1.5rem;
   }
