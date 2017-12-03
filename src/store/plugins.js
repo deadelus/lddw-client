@@ -5,7 +5,8 @@ const localStoragePlugin = store => {
     const syncedData = {
       auth: state.auth,
       user: state.user,
-      post: state.post
+      post: state.post,
+      cgu: state.cgu
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(syncedData))

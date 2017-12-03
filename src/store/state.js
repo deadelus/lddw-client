@@ -17,6 +17,10 @@ let syncedData = {
   post: {
     isLoading: false,
     file: {}
+  },
+  cgu: {
+    version: '0.1',
+    accepted: false
   }
 }
 

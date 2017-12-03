@@ -21,7 +21,7 @@
             <div v-on:click="login" class="login-btn">Se connecter</div>
             <router-link :to="{ name: 'Forgot' }">
                 <span class="linkauth">Mot de passe oublié.</span>
-            </router-link>&nbsp;/&nbsp;
+            </router-link>
             <router-link :to="{ name: 'Subscribe' }">
                 <span class="linkauth">Je n'ai pas encore de compte.</span>
             </router-link> 

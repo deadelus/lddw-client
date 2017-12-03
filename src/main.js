@@ -65,10 +65,10 @@ Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
 // PROD API
-// Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com'
-// Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
-// Vue.prototype.$API = 'https://api.ladechetterieduweb.com'
-// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com'
+Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
+Vue.prototype.$API = 'https://api.ladechetterieduweb.com'
+Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
 // Preprod API
 // Vue.prototype.$assetURL = 'http://preprod.ladechetterieduweb.com/storage'
@@ -77,10 +77,10 @@ Vue.config.productionTip = false
 // Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 
 // Local API
-Vue.prototype.$assetURL = 'http://local.dev.foo:8000/storage'
-Vue.prototype.$apiURL = 'http://local.dev.foo:8000/api'
-Vue.prototype.$API = 'http://local.dev.foo:8000'
-Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+// Vue.prototype.$assetURL = 'http://local.dev.foo:8000/storage'
+// Vue.prototype.$apiURL = 'http://local.dev.foo:8000/api'
+// Vue.prototype.$API = 'http://local.dev.foo:8000'
+// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
 /* eslint-disable no-new */
 
 new Vue({
@@ -95,8 +95,8 @@ new Vue({
     window.Vue = this
     window.fbAsyncInit = function() {
       FB.init({
-        // appId      : '631741580331636',
-        appId      : '2211517428989297',
+        appId      : '631741580331636',
+        // appId      : '2211517428989297',
         cookie     : true,
         xfbml      : true,
         version    : 'v2.8'
@@ -110,6 +110,9 @@ new Vue({
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+  },
+  mounted: function () {
+    console.log(this.$store.getters.cgu)
   },
   router,
   store,

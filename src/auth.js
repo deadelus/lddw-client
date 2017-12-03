@@ -5,15 +5,15 @@ import store from './store'
 /**
  * Application prod
  */
-// const API_BASE_URL = 'https://api.ladechetterieduweb.com'
-// const CLIENT_ID = '2'
-// const CLIENT_SECRET = 'TrY9E5Evt58tpLcmsfo64PAcnXJF9S3d90zt9MBa'
+const API_BASE_URL = 'https://api.ladechetterieduweb.com'
+const CLIENT_ID = '2'
+const CLIENT_SECRET = 'TrY9E5Evt58tpLcmsfo64PAcnXJF9S3d90zt9MBa'
 /**
  * Application preprod local
  */
-const API_BASE_URL = 'http://local.dev.foo:8000'
-const CLIENT_ID = '5'
-const CLIENT_SECRET = '0jDrJ3e5osD9gCQ6eT4yyHmK4eQiYnINvQ0RE6Xx'
+// const API_BASE_URL = 'http://local.dev.foo:8000'
+// const CLIENT_ID = '5'
+// const CLIENT_SECRET = '0jDrJ3e5osD9gCQ6eT4yyHmK4eQiYnINvQ0RE6Xx'
 /**
  * App Preprod Api
  */

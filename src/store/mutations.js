@@ -3,6 +3,15 @@ const defaultPost = {
   file: {}
 }
 
+const defaultCGU = {
+  version: '0.1',
+  accepted: false
+}
+
+export const UPDATE_CGU = (state, cgu) => {
+  state.cgu = cgu
+}
+
 export const UPDATE_POST = (state, post) => {
   state.post = post
 }
@@ -28,4 +37,6 @@ export const CLEAR_ALL_DATA = (state) => {
   state.user = {}
   // Post
   state.post = defaultPost
+  // CGU
+  state.cgu = defaultCGU
 }

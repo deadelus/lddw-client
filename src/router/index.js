@@ -188,4 +188,9 @@ const router = new Router({
   ]
 })
 
+// router.beforeEach((to, from, next) => {
+//   console.log(store.getters.cgu)
+//   next()
+// })
+
 export default router

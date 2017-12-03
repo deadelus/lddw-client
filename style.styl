@@ -373,10 +373,35 @@ span.ico
 .profile
     @media (max-width 900px)
         padding 0 !important
+// .profile
+//     header
+//         position relative
+//         display flex
+//         flex-direction row
+//         flex-wrap nowrap
+//         padding-top 15px
+//         .info
+//             padding-left 20px
+//             span
+//                 &.name
+//                     display flex
+//                     font-size 1.2rem
+//                     line-height 20px
+//                     color $font   
+//                 &.date
+//                     display block
+//                     font-size 0.9rem
+//                     color $font2
+//     .title
+//         font-size 2rem
+//         padding 0 15px 0 15px
+//         margin 20px 0 10px 0
+//         color $font
+//         font-weight bold
+//         word-wrap break-word
 .post, 
 .comments, 
-.comment-form, 
-.profile
+.comment-form
     header
         position relative
         display flex
@@ -482,6 +507,8 @@ span.ico
         img
             width 100%
             margin auto
+        video
+            max-height: 50vh
     footer
         width 100%
         padding 15px 
@@ -504,7 +531,7 @@ span.ico
             line-height 15px
             cursor pointer
             .label
-                margin 0 15px
+                margin 0 15px 0 8px
                 @media (max-width: 450px)
                     margin: 0 8px;
 
@@ -517,6 +544,9 @@ span.ico
     .profile
         margin-bottom 60px
         header
+            display: flex
+            flex-wrap: nowrap
+            margin-top: 15px
             .avatar
                 width 120px
                 height 120px
@@ -526,28 +556,32 @@ span.ico
             .info
                 height 90px
                 margin 0
-                margin-left 60px
+                padding-left 20px
                 position relative
-                @media (max-width 900px)
-                    margin-left 20px
                 .name,.desc
                     display block
                     margin-bottom 30px
                 .name
                     font-size 2.2rem !important
                     font-weight bold
+                    line-height: 3rem
+                    display: flex
+                    flex-wrap: nowrap
                 .desc
                     font-size 1.3rem
                     margin-top 15px
                     color #737373
                 .links
                     display flex
-                    justify-content space-between
+                    font-size: 0
+                    margin-bottom: 15px
                     & > span
-                        margin-right 10px
-                    @media (max-width 900px)
-                        span.ico
-                            display block
+                        padding-right 10px
+                        cursor: pointer
+                        span.label
+                            font-size: 1.2rem
+                            vertical-align: top
+                            padding: 0 5px
 
 #profile
     .btn-save
@@ -563,28 +597,34 @@ span.ico
     .settings
         .btn-save
             button(1.8rem, 50px)
+    .social.btn-logout
+        btn()
 
-.tuile
-    display flex
-    flex-direction row
-    flex-wrap wrap
-    .post
-        max-width 250px
-        max-height 250px
-        width 100%
-        padding 10px
-        box-sizing: border-box
-        border solid 1px transparent
-        &:hover
-            border solid 1px #EAEAEA
-        .content
-            max-height: 230px
+    .posts
+        border: none
+        .tuile
+            display flex
+            flex-direction row
+            flex-wrap wrap
+            .post
+                max-width 200px
+                // max-height 200px
+                width 100%
+                padding 10px
+                box-sizing: border-box
+                border solid 1px transparent
+                // margin: auto
+                &:hover
+                    border solid 1px #EAEAEA
+                a
+                    display: block
+                    height: 100%
 
 .nb-dechet
     font-weight bold
 
 
-/* 
+ /*
 
     Setting
 
@@ -634,24 +674,24 @@ span.ico
         font-weight bold
         display block
 
-a
+a,div
     &:hover
         text-decoration none
-div
     &.social
         display block
         max-width 200px
         margin-bottom 15px
-    &.facebook
-        button(1.2rem, 50px, #3B5997)
-    &.twitter
-        button(1.2rem, 50px, #55ABED)
-    &.btn-logout
-        button(1.2rem, 50px, #bb3030)
+        cursor: pointer
+        &.facebook
+            button(1.2rem, 50px, #3B5997)
+        &.twitter
+            button(1.2rem, 50px, #55ABED)
+        &.btn-logout
+            button(1.2rem, 50px, #bb3030)
+
 
 
 /*
-
     Awards
 
 */
@@ -690,11 +730,11 @@ div
         h4, span
             color #afafaf
 
-/**
+/*
  
     Auth
+*/
  
- */
 .login-link
     line-height 50px
     font-size 1.2rem
@@ -708,15 +748,16 @@ div
     font-size 1.2rem
     text-align left
     display inline-block
-    margin-top 10px
+    line-height: 3rem;
+    padding-right: 10px;
     &:hover
         text-decoration underline
 
-/**
- 
+ /*
     Drag @ Preview
  
- */
+*/
+
 #new-post
     .title
         font-size 3rem
@@ -784,10 +825,12 @@ div
         height auto
 
 
+/*
 
-/**
 * PLAYER
+
 */
+
 .play-btn
     display flex
     width 100%
@@ -841,6 +884,7 @@ a
     background green
     width 100%
     padding 15px
+    margin-bottom 15px
     div
         color #eaeaea
         width 100%
@@ -860,7 +904,7 @@ span.more
 
 
 
-  /*@keyframes cursor {
+  @keyframes cursor {
     0% {
         opacity 0
     }
@@ -884,10 +928,10 @@ span.more
     width 0
     animation cursor 1s infinite
     -webkit-animation cursor 1s infinite
-  }*/
+  }
 
 
-/**
+/*
 
     Drop Down
 

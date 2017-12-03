@@ -13,5 +13,11 @@ export const getters = {
    */
   post: state => {
     return state.post
+  },
+  /**
+   * Get CGU
+   */
+  cgu: state => {
+    return state.cgu
   }
 }

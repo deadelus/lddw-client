@@ -20,23 +20,21 @@
                             
                             <div class="info">
                                 <span class="name">
-                                  {{ user.name }}
+                                  <span>{{ user.name }}</span>
+                                  &nbsp;
+                                  <router-link :to="{ name: 'UserSettings' }">
+                                      <span class="ico gear"></span>
+                                  </router-link>
                                 </span>
                                 <span class="desc">{{ user.bio }}</span>
                                 <span class="links">
                                     <span class="level">
                                       <span class="ico poo"></span>
-                                      <span>Newbie</span>
+                                      <span class="label">Newbie</span>
                                     </span>
                                     <span class="gold">
                                       <span class="ico coins"></span>
-                                      <span>1 ShitCoin</span>
-                                    </span>
-                                    <span class="tosetting">
-                                        <router-link :to="{ name: 'UserSettings' }">
-                                            <span class="ico gear"></span>
-                                            <span>Paramètres</span>
-                                        </router-link>
+                                      <span class="label">1 ShitCoin</span>
                                     </span>
                                 </span>
                             </div>

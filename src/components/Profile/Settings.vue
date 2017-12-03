@@ -24,8 +24,8 @@
                 </div>
                 <div class="setting">
                     <div class="section-title">Connections</div>
-                    <!--<hr>
-                    
+                    <hr>
+                    <!--
                     <a href="#" class="social facebook">
                         Ajouter mon compte Facebook
                     </a>

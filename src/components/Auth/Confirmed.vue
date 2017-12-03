@@ -5,7 +5,10 @@
       <success v-if="success.code" v-bind:msg="success.msg"></success>
       <loading v-if="load"></loading>
       
-      <div v-if="errors.length" @click="confirm">Essayer encore</div>
+      <div v-if="errors.length" @click="newconfirm" class="error-btn">
+        Envoyer un nouveau lien de confirmation.
+      </div>
+    
     </div>  
 </template>
 <script>
@@ -59,7 +62,35 @@
               name: errorResponse.body.error
             }]
           })
+      },
+      newconfirm: function () {
+        this.errors = false
+        this.load = true
+        let params = {
+          confirmation_code: this.confirmation_code
+        }
+        this.$http.post(this.$apiURL + '/auth/resend', params)
+          .then((response) => {
+            this.load = false
+            this.success.code = true
+            this.success.msg = 'Un nouveau lien de confirmation vous à été envoyé.'
+          })
+          .catch((errorResponse) => {
+            this.load = false
+            this.errors = [{
+              name: errorResponse.body.error
+            }]
+          })
       }
     }
   }
 </script>
+<style>
+  error-btn{
+    margin: 15px 0;
+    text-align: center;
+    cursor: pointer;
+    color: #2d3e52;
+    text-decoration: underline;
+  }
+</style>

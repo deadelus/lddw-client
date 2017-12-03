@@ -684,8 +684,7 @@ span.ico.cam {
 }
 .post header,
 .comments header,
-.comment-form header,
-.profile header {
+.comment-form header {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -703,14 +702,12 @@ span.ico.cam {
 }
 .post header .info,
 .comments header .info,
-.comment-form header .info,
-.profile header .info {
+.comment-form header .info {
   margin: auto 15px;
 }
 .post header .info span.name,
 .comments header .info span.name,
-.comment-form header .info span.name,
-.profile header .info span.name {
+.comment-form header .info span.name {
   display: block;
   font-size: 1.2rem;
   line-height: 20px;
@@ -718,16 +715,14 @@ span.ico.cam {
 }
 .post header .info span.date,
 .comments header .info span.date,
-.comment-form header .info span.date,
-.profile header .info span.date {
+.comment-form header .info span.date {
   display: block;
   font-size: 0.9rem;
   color: #a1a1a1;
 }
 .post .title,
 .comments .title,
-.comment-form .title,
-.profile .title {
+.comment-form .title {
   font-size: 2rem;
   padding: 0 15px 0 15px;
   margin: 20px 0 10px 0;
@@ -854,6 +849,9 @@ span.ico.cam {
   width: 100%;
   margin: auto;
 }
+.post .content video {
+  max-height: 50vh;
+}
 .post footer {
   width: 100%;
   padding: 15px;
@@ -889,7 +887,7 @@ span.ico.cam {
   cursor: pointer;
 }
 .post footer .action .label {
-  margin: 0 15px;
+  margin: 0 15px 0 8px;
 }
 @media (max-width: 450px) {
   .post footer .action .label {
@@ -904,6 +902,16 @@ span.ico.cam {
 #profile .profile {
   margin-bottom: 60px;
 }
+#profile .profile header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  margin-top: 15px;
+}
 #profile .profile header .avatar {
   width: 120px;
   height: 120px;
@@ -917,13 +925,8 @@ span.ico.cam {
 #profile .profile header .info {
   height: 90px;
   margin: 0;
-  margin-left: 60px;
+  padding-left: 20px;
   position: relative;
-}
-@media (max-width: 900px) {
-  #profile .profile header .info {
-    margin-left: 20px;
-  }
 }
 #profile .profile header .info .name,
 #profile .profile header .info .desc {
@@ -933,6 +936,14 @@ span.ico.cam {
 #profile .profile header .info .name {
   font-size: 2.2rem !important;
   font-weight: bold;
+  line-height: 3rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 #profile .profile header .info .desc {
   font-size: 1.3rem;
@@ -944,17 +955,17 @@ span.ico.cam {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-between;
-  -ms-justify-content: space-between;
-  justify-content: space-between;
+  font-size: 0;
+  margin-bottom: 15px;
 }
 #profile .profile header .info .links > span {
-  margin-right: 10px;
+  padding-right: 10px;
+  cursor: pointer;
 }
-@media (max-width: 900px) {
-  #profile .profile header .info .links span.ico {
-    display: block;
-  }
+#profile .profile header .info .links > span span.label {
+  font-size: 1.2rem;
+  vertical-align: top;
+  padding: 0 5px;
 }
 #profile .btn-save {
   text-align: center;
@@ -975,7 +986,10 @@ span.ico.cam {
   color: #fff;
   cursor: pointer;
 }
-.tuile {
+#profile .posts {
+  border: none;
+}
+#profile .posts .tuile {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -989,24 +1003,24 @@ span.ico.cam {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.tuile .post {
-  max-width: 250px;
-  max-height: 250px;
+#profile .posts .tuile .post {
+  max-width: 200px;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
   border: solid 1px transparent;
 }
-.tuile .post:hover {
+#profile .posts .tuile .post:hover {
   border: solid 1px #eaeaea;
 }
-.tuile .post .content {
-  max-height: 230px;
+#profile .posts .tuile .post a {
+  display: block;
+  height: 100%;
 }
 .nb-dechet {
   font-weight: bold;
 }
-/* 
+/*
 
     Setting
 
@@ -1077,15 +1091,19 @@ span.ico.cam {
   font-weight: bold;
   display: block;
 }
-a:hover {
+a:hover,
+div:hover {
   text-decoration: none;
 }
+a.social,
 div.social {
   display: block;
   max-width: 200px;
   margin-bottom: 15px;
+  cursor: pointer;
 }
-div.facebook {
+a.social.facebook,
+div.social.facebook {
   text-align: center;
   line-height: 50px;
   font-size: 1.2rem;
@@ -1093,7 +1111,8 @@ div.facebook {
   color: #fff;
   cursor: pointer;
 }
-div.twitter {
+a.social.twitter,
+div.social.twitter {
   text-align: center;
   line-height: 50px;
   font-size: 1.2rem;
@@ -1101,7 +1120,8 @@ div.twitter {
   color: #fff;
   cursor: pointer;
 }
-div.btn-logout {
+a.social.btn-logout,
+div.social.btn-logout {
   text-align: center;
   line-height: 50px;
   font-size: 1.2rem;
@@ -1110,7 +1130,6 @@ div.btn-logout {
   cursor: pointer;
 }
 /*
-
     Awards
 
 */
@@ -1158,11 +1177,10 @@ div.btn-logout {
 .award.missing span {
   color: #afafaf;
 }
-/**
+/*
  
     Auth
- 
- */
+*/
 .login-link {
   line-height: 50px;
   font-size: 1.2rem;
@@ -1181,16 +1199,16 @@ div.btn-logout {
   font-size: 1.2rem;
   text-align: left;
   display: inline-block;
-  margin-top: 10px;
+  line-height: 3rem;
+  padding-right: 10px;
 }
 .linkauth:hover {
   text-decoration: underline;
 }
-/**
- 
+/*
     Drag @ Preview
  
- */
+*/
 #new-post .title {
   font-size: 3rem;
   line-height: 3rem;
@@ -1278,8 +1296,10 @@ div.btn-logout {
   width: 100%;
   height: auto;
 }
-/**
+/*
+
 * PLAYER
+
 */
 .play-btn {
   display: -webkit-box;
@@ -1342,6 +1362,7 @@ a.router-link-exact-active.router-link-active {
   background: #008000;
   width: 100%;
   padding: 15px;
+  margin-bottom: 15px;
 }
 #success-wrapper div {
   color: #eaeaea;
@@ -1361,32 +1382,19 @@ span.more {
 span.more:hover {
   text-decoration: underline;
 }
-/*@keyframes cursor {
-    0% {
-        opacity 0
-    }
-    50% {
-        opacity 0
-    }
-    51% {
-        opacity 1
-    }
-    100% {
-        opacity 1
-    }
-  }
-  #title-post.placeholder:before{
-    content 'Un peu de texte..'
-  }
-  #title-post:after{
-    content ''
-    height 3rem
-    border 1px solid black
-    width 0
-    animation cursor 1s infinite
-    -webkit-animation cursor 1s infinite
-  }*/
-/**
+#title-post.placeholder:before {
+  content: 'Un peu de texte..';
+}
+#title-post:after {
+  content: '';
+  height: 3rem;
+  border: 1px solid #000;
+  width: 0;
+  -webkit-animation: cursor 1s infinite;
+  animation: cursor 1s infinite;
+  -webkit-animation: cursor 1s infinite;
+}
+/*
 
     Drop Down
 
@@ -1505,5 +1513,93 @@ a.hashtag:hover {
     -webkit-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+@-moz-keyframes cursor {
+  0% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  50% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  51% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+  100% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes cursor {
+  0% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  50% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  51% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+  100% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+@-o-keyframes cursor {
+  0% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  50% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  51% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+  100% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+@keyframes cursor {
+  0% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  50% {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  51% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+  100% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
   }
 }

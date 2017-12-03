@@ -38,8 +38,12 @@
 
             <div class="content">
               <preview-image v-if="this.post.meta.file_type === 'picture'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-image>
-              <preview-video v-if="this.post.meta.file_type === 'video'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-video>
               <preview-gif v-if="this.post.meta.file_type === 'gif'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
+              <preview-video 
+                v-if="this.post.meta.file_type === 'video'" 
+                v-bind:path="this.post.meta.path"
+                v-bind:thumb="this.post.meta.file_thumb">
+                </preview-video>
             </div>
 
             <footer class="desktop">
@@ -159,9 +163,9 @@ export default {
     },
     bookmark: function () {
       if (this.post.info.nbBookmarks > 1) {
-        return this.post.info.nbBookmarks + ' Signets'
+        return this.post.info.nbBookmarks + ' Favoris'
       }
-      return this.post.info.nbBookmarks + ' Signet'
+      return this.post.info.nbBookmarks + ' Favoris'
     },
     comments: function () {
       if (this.post.info.nbComments > 1) {
@@ -216,22 +220,12 @@ export default {
       })
     },
     share: function () {
-      // var title = this.post.title || ''
-
-      // var file = this.post.meta.file_path
-
-      // if (this.post.meta.file_type === 'video') {
-      //   file = this.post.meta.file_thumb
-      // }
-      // console.log(this.$API + '/redirect/'+ this.post.id +'/?redirect_url=' + this.url())
+      
       var obj = {
         method: 'share', 
+        display: 'popup',
         href: this.$API + '/redirect/'+ this.post.id +'/?redirect_url=' + this.url(),
-        mobile_iframe: true,
         hashtag: '#ladechetterie'
-        // picture: file, 
-        // name: title, 
-        // description: 'Un déchêt dans la dechetterie'
       };
 
       function callback(response){}

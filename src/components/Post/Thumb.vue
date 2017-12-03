@@ -41,7 +41,8 @@
                 <preview-gif v-if="this.post.meta.file_type === 'gif'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
                 <preview-video 
                   v-if="this.post.meta.file_type === 'video'" 
-                  v-bind:name="this.post.meta.file_name">
+                  v-bind:path="this.post.meta.file_path"
+                  v-bind:thumb="this.post.meta.file_thumb">
                 </preview-video>
             </div>
 
@@ -102,7 +103,6 @@
                 
                 <span class="more" @click="boxComment = false">Fermer</span>
 
-
                 <post-comment-form
                   v-bind:url="post.links.Comment_create"
                   @add="addcomment"
@@ -143,6 +143,7 @@
 
 <script>
 import PreviewImage from '@/components/Media/Type/Image.vue'
+import PreviewGif from '@/components/Media/Type/Gif.vue'
 import PreviewVideo from '@/components/Media/Type/Video.vue'
 import PostComment from '@/components/Post/PostComment.vue'
 import PostCommentForm from '@/components/Post/PostCommentForm.vue'
@@ -176,6 +177,7 @@ export default {
   props: ['post'],
   components: {
     PreviewImage,
+    PreviewGif,
     PreviewVideo,
     EditModal,
     ReportModal,
@@ -208,9 +210,9 @@ export default {
     },
     bookmark: function () {
       if (this.post.info.nbBookmarks > 1) {
-        return this.post.info.nbBookmarks + ' Signets'
+        return this.post.info.nbBookmarks + ' Favoris'
       }
-      return this.post.info.nbBookmarks + ' Signet'
+      return this.post.info.nbBookmarks + ' Favoris'
     },
     nbcomments: function () {
       if (this.post.info.nbComments > 1) {
@@ -263,22 +265,12 @@ export default {
       })
     },
     share: function () {
-      // var title = this.post.title || ''
 
-      // var file = this.post.meta.file_path
-
-      // if (this.post.meta.file_type === 'video') {
-      //   file = this.post.meta.file_thumb
-      // }
-      // console.log(this.$API + '/redirect/'+ this.post.id +'/?redirect_url=' + this.url())
       var obj = {
         method: 'share', 
+        display: 'popup',
         href: this.$API + '/redirect/'+ this.post.id +'/?redirect_url=' + this.url(),
-        mobile_iframe: true,
-        hashtag: '#ladechetterie'
-        // picture: file, 
-        // name: title, 
-        // description: 'Un déchêt dans la dechetterie'
+        hashtag: '#ladechetterie',
       };
 
       function callback(response){}
