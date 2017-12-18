@@ -1,5 +1,5 @@
 <template>
-      <div id="home">
+      <div id="trend">
 
         <loadpost v-show="loading"></loadpost>
 
@@ -22,7 +22,7 @@ import NewPost from '@/components/Post/NewPost'
 import Loadpost from '@/components/Info/Loadpost'
 
 export default {
-  name: 'home',
+  name: 'trend',
   components: { Thumb, NewPost, Loadpost },
   data () {
     return {
@@ -38,9 +38,10 @@ export default {
   },
   mounted () {
     this.$Progress.start()
-    // console.log(this.$route)
-    this.$http.get(this.$apiURL + '/feed')
+
+    this.$http.get(this.$apiURL + '/trending')
       .then((response) => {
+        console.log(response)
         this.posts = response.body.data
         this.paginate.next_uri = response.body.links.next
         this.paginate.uri = response.body.links.current
@@ -50,7 +51,7 @@ export default {
       })
       .catch((errorResponse) => {
         this.$Progress.fail()
-        // console.log(errorResponse)
+        console.log(errorResponse)
       })
   },
   methods: {

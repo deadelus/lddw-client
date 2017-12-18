@@ -5,14 +5,18 @@ import store from './../store'
 // components
 // pages
 import Home from '@/components/Home'
+import Gif from '@/components/Gif'
+import Video from '@/components/Video'
+import NSFW from '@/components/NSFW'
+import Trend from '@/components/Trend'
+import Hot from '@/components/Hot'
 import Post from '@/components/Post'
-import New from '@/components/New'
+import Upload from '@/components/Upload'
 // Search
 import Result from '@/components/Result'
 // Auth
 import Auth from '@/components/Auth/Auth'
 import Login from '@/components/Auth/Login'
-import Social from '@/components/Auth/Social'
 import Subscribe from '@/components/Auth/Subscribe'
 import Confirmed from '@/components/Auth/Confirmed'
 import Forgot from '@/components/Auth/Forgot'
@@ -25,9 +29,10 @@ import UserSettings from '@/components/Profile/Settings'
 import UserRewards from '@/components/Profile/Rewards'
 // other links
 import Shop from '@/components/Shop/Shop'
-import Disclaimer from '@/components/Disclaimer'
+// Law About
 import About from '@/components/Disclaimer/About'
 import Rules from '@/components/Disclaimer/Rules'
+// import Disclaimer from '@/components/Disclaimer'
 // Errors
 import p404 from '@/components/Error/p404'
 
@@ -39,18 +44,42 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home,
-      alias: '/Trending'
-    },
-    {
-      path: '/trending',
-      name: 'Trending',
       component: Home
     },
     {
-      path: '/new',
+      path: '/gif',
+      name: 'Gif',
+      component: Gif
+    },
+    {
+      path: '/video',
+      name: 'Video',
+      component: Video
+    },
+    {
+      path: '/nsfw',
+      name: 'NSFW',
+      component: NSFW
+    },
+    {
+      path: '/populaire',
+      name: 'Trending',
+      component: Trend
+    },
+    {
+      path: '/nouveau',
       name: 'New',
-      component: New,
+      component: Home
+    },
+    {
+      path: '/hot',
+      name: 'Hot',
+      component: Hot
+    },
+    {
+      path: '/ajoute-un-dechet',
+      name: 'Upload',
+      component: Upload,
       beforeEnter: (to, from, next) => {
         if (store.state.auth.isLoggedIn) {
           next()
@@ -60,20 +89,19 @@ const router = new Router({
       }
     },
     {
-      path: '/about',
+      path: '/a-propos',
       name: 'About',
       component: About
     },
     {
+      path: '/regles',
+      name: 'Rules',
+      component: Rules
+    },
+    {
       path: '/disclaimer',
-      component: Disclaimer,
-      children: [
-        {
-          path: 'rules',
-          name: 'Rules',
-          component: Rules
-        }
-      ]
+      name: 'Disclaimer',
+      component: Rules
     },
     {
       path: '/search/tag/:tagname',
@@ -142,11 +170,6 @@ const router = new Router({
           path: '/',
           name: 'Auth',
           component: Login
-        },
-        {
-          path: '/auth/login/facebook',
-          name: 'Facebook',
-          component: Social
         },
         {
           path: '/auth/subscribe',

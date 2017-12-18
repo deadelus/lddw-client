@@ -21,7 +21,8 @@ let syncedData = {
   cgu: {
     version: '0.1',
     accepted: false
-  }
+  },
+  majeur: false
 }
 
 // Sync with local storage.

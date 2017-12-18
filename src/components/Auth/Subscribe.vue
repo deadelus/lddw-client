@@ -26,9 +26,6 @@
                 <div v-on:click="subscribe" class="login-btn col-lg-12">S'inscrire</div>
             </div>
         </div>
-    <router-link :to="{ name: 'Auth' }">
-        <span class="linkauth">Je souhaite me connecter.</span>
-    </router-link> 
     </div>  
 </template>
 <script>

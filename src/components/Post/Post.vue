@@ -1,7 +1,7 @@
 <template>
   <!-- post -->
   <div class="posts">
-    <aside class="col-lg-1 col-lg-offset-1">
+    <aside class="col-lg-3">
         <div class="btns social-btns">
             <div class="title">PARTAGE</div>
             <span @click="share" class="ico fb"></span>
@@ -10,7 +10,7 @@
             <span @click="Bmk(post.links.Bookmark)" class="ico bookmark"></span>
         </div>
     </aside>
-    <article class="col-12 col-lg-8">
+    <article class="col-12 col-lg-6">
         <div class="post">
             <header>
                 <div class="avatar">
@@ -79,7 +79,7 @@
             
         </div>
     </article>
-    <aside class="col-lg-1">
+    <aside class="col-lg-3">
         <div class="btns">
             <span v-on:click="action(post.links.Vote_up)" class="ico vote_up"></span>
             <span class="title">{{ post.info.agVotes }}°</span>

@@ -1,18 +1,16 @@
 <template>
   <!-- post -->
-  <section class="container" v-if="post">
-      <div class="row singlepost">
-          
-        <post
-          v-show="!loading"
-          v-bind:post="post"
-          v-bind:key="post.id"
-        ></post>
+  <div v-if="post">
+      
+    <post
+      v-show="!loading"
+      v-bind:post="post"
+      v-bind:key="post.id"
+    ></post>
 
-        <loadpost v-show="loading"></loadpost>
-          
-      </div>
+    <loadpost v-show="loading"></loadpost>
 
+    <div class="col-12 col-lg-8 col-lg-offset-2">    
       <div class="comment-block">
         <div class="comments">
             <div class="title">
@@ -36,7 +34,9 @@
           @add="addcomment"
         ></post-comment-form>
       </div>
-  </section>
+    </div>
+
+  </div>
 </template>
 
 <script>

@@ -1,74 +1,62 @@
 <template>
     <!-- header profile -->
     <div id="profile">
-        <section class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="profile">
-                        <form enctype="multipart/form-data" action="" metods="POST">
-                        <input type="hidden" name="_method" value="PUT"/>
-                        <header>
-                            <label for="avatar" class="avatar" v-if="!filepath">
-                                <img v-if="user.avatar" :src="user.avatar" alt="avatar">
-                                <img v-if="!user.avatar" src="./../assets/user.png" alt="avatar">
-                            </label>
-                            <div class="avatar" @click="reset" v-if="filepath">
-                                <img :src="filepath" alt="avatar">
-                            </div>
+        
+        <div class="profile">
+            <form enctype="multipart/form-data" action="" metods="POST">
+            <input type="hidden" name="_method" value="PUT"/>
+            <header>
+                <label for="avatar" class="avatar" v-if="!filepath">
+                    <img v-if="user.avatar" :src="user.avatar" :alt="user.name">
+                    <img v-if="!user.avatar" src="./../assets/user.png" alt="avatar">
+                </label>
+                <div class="avatar" @click="reset" v-if="filepath">
+                    <img :src="filepath" alt="avatar">
+                </div>
 
-                            <input @change="sync" id="avatar" name="avatar" type="file" accept="image/*;" class="hide">
-                            
-                            <div class="info">
-                                <span class="name">
-                                  <span>{{ user.name }}</span>
-                                  &nbsp;
-                                  <router-link :to="{ name: 'UserSettings' }">
-                                      <span class="ico gear"></span>
-                                  </router-link>
-                                </span>
-                                <span class="desc">{{ user.bio }}</span>
-                                <span class="links">
-                                    <span class="level">
-                                      <span class="ico poo"></span>
-                                      <span class="label">Newbie</span>
-                                    </span>
-                                    <span class="gold">
-                                      <span class="ico coins"></span>
-                                      <span class="label">1 ShitCoin</span>
-                                    </span>
-                                </span>
-                            </div>
-                        </header>
-                        <span @click="upload" class="btn-save" v-if="filepath">
-                            Enregistrer
+                <input @change="sync" id="avatar" name="avatar" type="file" accept="image/*;" class="hide">
+                
+                <div class="info">
+                    <span class="name">
+                      <span>{{ user.name }}</span>
+                      &nbsp;
+                      <router-link :to="{ name: 'UserSettings' }">
+                          <span class="ico gear"></span>
+                      </router-link>
+                    </span>
+                    <span class="desc">{{ user.bio }}</span>
+                    <span class="links">
+                        <span class="level">
+                          <span class="ico poo"></span>
+                          <span class="label">Newbie</span>
                         </span>
-                        </form>
-                    </div>
+                        
+                    </span>
                 </div>
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="col-lg-12">
-                        <router-link :to="{ name: 'UserPosts' }">
-                            <span for="dechet" class="nb-dechet">{{ dechets }}</span>
-                        </router-link>
-                        &nbsp;/&nbsp;
-                        <router-link :to="{ name: 'UserBookmarks' }">
-                            <span for="dechet" class="nb-dechet">{{ bookmarks }}</span>
-                        </router-link>
-                        &nbsp;/&nbsp;
-                        <router-link :to="{ name: 'UserTrophies' }">
-                            <span for="reward" class="nb-dechet">{{ trophies }}</span> 
-                        </router-link>
-                    </div>
-                </div>
-            </div>
-        </section>    
+            </header>
+            <span @click="upload" class="btn-save" v-if="filepath">
+                Enregistrer
+            </span>
+            </form>
+        </div>
+
+        <router-link :to="{ name: 'UserPosts' }">
+            <span for="dechet" class="nb-dechet">{{ dechets }}</span>
+        </router-link>
+        &nbsp;/&nbsp;
+        <router-link :to="{ name: 'UserBookmarks' }">
+            <span for="dechet" class="nb-dechet">{{ bookmarks }}</span>
+        </router-link>
+        &nbsp;/&nbsp;
+        <router-link :to="{ name: 'UserTrophies' }">
+            <span for="reward" class="nb-dechet">{{ trophies }}</span> 
+        </router-link>
+        
         <hr>
         <!-- posts -->
-        <section class="container pad">
-            <div class="row">
-                <router-view></router-view>
-            </div>
-        </section>
+
+        <router-view></router-view>
+
     </div>
 </template>
 

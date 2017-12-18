@@ -35,8 +35,10 @@ export default {
   },
   props: ['tagname'],
   mounted () {
-    this.$http.get(this.$apiURL + '/post/search/' + this.tagname)
+    console.log('ok')
+    this.$http.get(this.$apiURL + '/search/' + this.tagname)
       .then((response) => {
+        console.log(response)
         this.posts = response.body.data
         this.paginate.next_uri = response.body.links.next
         this.paginate.uri = response.body.links.current

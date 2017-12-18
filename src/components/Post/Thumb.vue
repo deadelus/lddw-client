@@ -1,7 +1,7 @@
 <template>
   <!-- post -->
   <div class="posts">
-    <aside class="col-lg-1 col-lg-offset-1">
+    <aside class="col-lg-3">
         <div class="btns social-btns">
             <div class="title">PARTAGE</div>
             <span @click="share" class="ico fb"></span>
@@ -10,7 +10,7 @@
             <span @click="Bmk(post.links.Bookmark)" class="ico bookmark"></span>
         </div>
     </aside>
-    <article class="col-12 col-lg-8">
+    <article class="col-12 col-lg-6">
         <div class="post">
             <header>
                 <div class="avatar">
@@ -36,7 +36,7 @@
 
             <div v-if="title" class="title" v-html="titleParsed"></div>
 
-            <div class="content">
+            <div class="content" v-if="this.showNSFW">
                 <preview-image v-if="this.post.meta.file_type === 'picture'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-image>
                 <preview-gif v-if="this.post.meta.file_type === 'gif'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
                 <preview-video 
@@ -45,14 +45,18 @@
                   v-bind:thumb="this.post.meta.file_thumb">
                 </preview-video>
             </div>
+            
+            <div class="content" v-if="!this.showNSFW" @click="showConfirmNSFW = true">
+              <img src="./../../assets/nsfw.jpg" alt="nsfw"/>
+            </div>
 
             <footer class="desktop">
-                <div class="action">
+                <div class="action" @click="showComment">
                     <span class="ico comment"></span>
                     <span class="label">{{ nbcomments }}</span>
                 </div>
                 <div class="action">
-                    <span class="ico bookmark"></span>
+                    <span class="ico bookmark" @click="Bmk(post.links.Bookmark)"></span>
                     <span class="label">{{ bookmark }}</span>
                 </div>
                 <div class="action">
@@ -110,7 +114,7 @@
             </div>
         </div>
     </article>
-    <aside class="col-lg-1">
+    <aside class="col-lg-3">
         <div class="btns">
             <span v-on:click="action(post.links.Vote_up)" class="ico vote_up"></span>
             <span class="title">{{ post.info.agVotes }}°</span>
@@ -131,6 +135,12 @@
       v-bind:uri="post.actions.update" 
       @close="showNSFWModal = false" 
     ></nsfw-modal>
+
+    <confirm-nsfw-modal
+      v-if="showConfirmNSFW" 
+      @close="showConfirmNSFW = false"
+      @show="show"
+    ></confirm-nsfw-modal>
     
     <report-modal 
       v-if="showReportModal" 
@@ -151,6 +161,7 @@ import Loadpost from '@/components/Info/Loadpost'
 import EditModal from '@/components/Modal/EditModal'
 import ReportModal from '@/components/Modal/ReportModal'
 import NsfwModal from '@/components/Modal/NsfwModal'
+import ConfirmNsfwModal from '@/components/Modal/ConfirmNsfwModal'
 
 
 export default {
@@ -161,11 +172,13 @@ export default {
       collapsed: false,
       showEditModal: false,
       showReportModal: false,
-      showNSFWModal: false,
+      showNSFWModal: false, 
+      showConfirmNSFW: false, 
       boxComment: false,
       firstloadComment: true,
       loading: true,
       isLoggedIn: false,
+      showNSFW: false,
       comments: [],
       paginate: {
         uri: '',
@@ -183,10 +196,12 @@ export default {
     ReportModal,
     NsfwModal,
     PostCommentForm,
-    PostComment
+    PostComment,
+    ConfirmNsfwModal
   },
   mounted () {
     this.title = this.post.title
+    this.showNSFW = !this.post.nsfw
     this.nbVotes = this.post.info.nbVotes
     this.isLoggedIn = this.$store.state.auth.isLoggedIn
   },
@@ -298,9 +313,9 @@ export default {
       /** Todo report Post */
       console.log('OK')
     },
-    voteNSFW: function () {
-      /** Todo report Post */
-      console.log('OK')
+    show: function () {
+      this.showNSFW = true
+      this.showConfirmNSFW = false
     },
     collapse: function () {
       this.collapsed = !this.collapsed

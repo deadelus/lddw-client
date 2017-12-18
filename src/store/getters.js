@@ -19,5 +19,11 @@ export const getters = {
    */
   cgu: state => {
     return state.cgu
+  },
+  /**
+   * Get age majeur
+   */
+  majeur: state => {
+    return state.majeur
   }
 }

@@ -1,15 +1,15 @@
 <template>
     <!-- subscribe -->
-    <div class="setting">
+    <div class="setting" v-if="!isLoggedIn">
         <error v-if="errors.length" v-bind:errors="errors"></error>
         <success v-if="isLoggedIn" v-bind:msg="success.msg"></success>
         <loading v-if="load"></loading>
 
-        <social v-if="!isLoggedIn"></social>
+        <social></social>
 
         <br>
 
-        <div class="login-form" v-if="!isLoggedIn" v-show="!load">
+        <div class="login-form" v-show="!load">
             <div class="flex col">
                 <label for="username">Email</label>
                 <input v-model="username" type="text" class="col-lg-12">
@@ -18,13 +18,7 @@
                 <label for="pawword">Mot de passe</label>
                 <input v-model="password" type="password" class="col-lg-12">
             </div>
-            <div v-on:click="login" class="login-btn">Se connecter</div>
-            <router-link :to="{ name: 'Forgot' }">
-                <span class="linkauth">Mot de passe oublié.</span>
-            </router-link>
-            <router-link :to="{ name: 'Subscribe' }">
-                <span class="linkauth">Je n'ai pas encore de compte.</span>
-            </router-link> 
+            <div v-on:click="login" class="login-btn">Se connecter</div> 
         </div>
     </div>
 </template>
@@ -49,9 +43,6 @@
         errors: []
       }
     },
-    mounted () {
-      this.isLoggedIn = this.$store.state.auth.isLoggedIn
-    },
     components: {Loading, Error, Success, Social},
     methods: {
       login: function () {
@@ -71,16 +62,15 @@
               name: 'L\'utilisateur n\'existe pas.'
             }]
             this.load = false
-            this.$router.push({ name: 'Home' })
             return
           }
 
-          this.isLoggedIn = this.$store.state.auth.isLoggedIn
           this.load = false
           this.success.code = 200
           this.success.msg = 'Vous êtes connecté !'
           this.username = ''
           this.password = ''
+          this.$emit('loggued')
         })
       }
     }

@@ -19,6 +19,12 @@
                             <div class="section-title">Connexion / Inscription</div>
                             <hr>
                             <router-view></router-view>
+                            <router-link :to="{ name: 'Forgot' }">
+                                <span class="linkauth">Mot de passe oublié.</span>
+                            </router-link>
+                            <router-link :to="{ name: 'Subscribe' }">
+                                <span class="linkauth">Je n'ai pas encore de compte.</span>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -35,6 +41,12 @@
       }
     },
     mounted () {
+      this.$store.watch((state) => {
+        this.isLoggedIn = this.$store.state.auth.isLoggedIn
+        if (this.isLoggedIn) {
+          this.$router.push('/')
+        }
+      })
     }
   }
 </script>

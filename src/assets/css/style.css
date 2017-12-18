@@ -299,9 +299,6 @@ a span {
   display: inline-block;
   color: #000;
 }
-a span:hover {
-  text-decoration: underline;
-}
 hr {
   margin: 10px 0;
   border-color: rgba(234,234,234,0.8) C;
@@ -425,20 +422,133 @@ span.ico.cam {
   width: 100%;
   height: auto;
 }
-.container {
-  padding-top: 108px;
+/***************
+
+    Lateral
+
+***************/
+div.lateral.left-bar {
+  position: fixed;
 }
-@media (max-width: 900px) {
-  .container {
-    width: 100%;
-    padding-top: 58px;
-  }
+div.lateral.left-bar,
+div.lateral.right-bar {
+  height: -webkit-calc(100% - 108px);
+  height: calc(100% - 108px);
+  width: 200px;
+  overflow-y: scroll;
+}
+div.lateral.left-bar .menu ul,
+div.lateral.right-bar .menu ul,
+div.lateral.left-bar .users ul,
+div.lateral.right-bar .users ul {
+  margin: 10px 0;
+  padding: 0;
+}
+div.lateral.left-bar .menu ul li,
+div.lateral.right-bar .menu ul li,
+div.lateral.left-bar .users ul li,
+div.lateral.right-bar .users ul li {
+  list-style: none;
+}
+div.lateral.left-bar span.title,
+div.lateral.right-bar span.title {
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: #aaa;
+  display: block;
+}
+div.lateral.left-bar span.link,
+div.lateral.right-bar span.link {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 10px;
+}
+div.lateral.left-bar span.link:hover,
+div.lateral.right-bar span.link:hover {
+  background: #eee;
+  cursor: pointer;
+}
+div.lateral.left-bar span.link svg,
+div.lateral.right-bar span.link svg {
+  width: 20px;
+  height: 20px;
+  fill: #999;
+}
+div.lateral.left-bar span.link span,
+div.lateral.right-bar span.link span {
+  padding: 0 10px;
+}
+div.lateral.left-bar span.link img,
+div.lateral.right-bar span.link img {
+  width: 35px;
+  height: 35px;
+}
+div.lateral.left-bar a.router-link-exact-active.router-link-active span.link,
+div.lateral.right-bar a.router-link-exact-active.router-link-active span.link {
+  background: #eee;
+}
+div.lateral.left-bar a.router-link-exact-active.router-link-active span.link svg,
+div.lateral.right-bar a.router-link-exact-active.router-link-active span.link svg {
+  fill: #ec4a9f;
+}
+div.lateral.right-bar {
+  text-align: right;
+  max-width: 300px;
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+}
+div.lateral.right-bar .users,
+div.lateral.right-bar .facebook-page,
+div.lateral.right-bar .ads {
+  width: 100%;
+}
+div.lateral.right-bar .users {
+  overflow: hidden;
+}
+div.lateral.right-bar .users .name {
+  text-align: left;
+  height: 35px;
+  line-height: 18px;
+/* line-height: 35px; */
+/* overflow: hidden; */
 }
 /***************
 
     Bartop
 
 ***************/
+.container-fluid .center {
+  position: relative;
+  max-width: 1440px;
+  margin: auto;
+  padding-top: 108px;
+}
+@media (max-width: 900px) {
+  .container-fluid .center {
+    width: 100%;
+    padding-top: 58px;
+  }
+}
 .container-fluid.bartop {
   position: fixed;
   width: 100%;
@@ -458,8 +568,8 @@ span.ico.cam {
 .container-fluid.bartop .navbar {
   position: relative;
   max-width: 1440px;
-  font-size: 0;
   margin: auto;
+  font-size: 0;
 }
 .container-fluid.bartop .navbar .menu {
   width: 100%;
@@ -1217,7 +1327,7 @@ div.social.btn-logout {
   height: auto;
 }
 #dragzone {
-  height: 40vh;
+  height: 240px;
   background: rgba(204,204,204,0.15);
   position: relative;
   display: -webkit-box;
@@ -1257,6 +1367,70 @@ div.social.btn-logout {
 }
 #dragzone:hover {
   border-color: #eaeaea;
+}
+.choices {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+.choices svg,
+.choices img {
+  height: 50px;
+  width: 50px;
+  margin: auto;
+}
+.choices div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+  width: 33%;
+  height: 15vh;
+  border: 1px solid #eaeaea;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.choices div:hover {
+  border-color: #ccc;
+}
+.choices div span {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  height: 30%;
+}
+.nsfwcheckbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #b31f48;
+  color: #fff;
+}
+.nsfwcheckbox input {
+  width: 30px;
+  height: 30px;
+  margin: 0 20px 0 0;
+}
+.nsfwcheckbox label {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 #fileInput {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -1320,7 +1494,7 @@ a {
 }
 a.router-link-exact-active.router-link-active {
   color: #000;
-  text-decoration: underline;
+  text-decoration: none !important;
 }
 #loading-wrapper {
   display: -webkit-box;

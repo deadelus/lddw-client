@@ -1,17 +1,13 @@
 <template>
   <div class="posts">
-    <article class="col-lg-8 col-lg-offset-2">
       <div class="tuile">
         <list
           v-for="post in posts"
           v-bind:post="post"
           v-bind:key="post.id"
         ></list>
-
-      
+        <div class="more" v-if="paginate.next_uri" v-on:click="next(paginate.next_uri)">Voir plus</div>
       </div>
-      <span class="more" v-if="paginate.next_uri" v-on:click="next(paginate.next_uri)">Voir plus</span>
-    </article>            
   </div>
 </template>
 <script>

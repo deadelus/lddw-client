@@ -8,6 +8,8 @@ const defaultCGU = {
   accepted: false
 }
 
+const majeur = false
+
 export const UPDATE_CGU = (state, cgu) => {
   state.cgu = cgu
 }
@@ -22,6 +24,10 @@ export const UPDATE_AUTH = (state, auth) => {
 
 export const UPDATE_USER = (state, user) => {
   state.user = user
+}
+
+export const IS_MAJEUR = (state) => {
+  state.majeur = true
 }
 
 export const CLEAR_POST = (state) => {
@@ -39,4 +45,6 @@ export const CLEAR_ALL_DATA = (state) => {
   state.post = defaultPost
   // CGU
   state.cgu = defaultCGU
+  // Age > 18
+  state.majeur = majeur
 }

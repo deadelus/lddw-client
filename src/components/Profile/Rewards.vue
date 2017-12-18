@@ -1,6 +1,5 @@
 <template>
   <div class="awards">
-    <article class="col-lg-8 col-lg-offset-2">
         <div class="award earned col-lg-3">
             <i>
                 <svg version="1.1" viewBox="0 0 512 512">
@@ -29,7 +28,6 @@
             </i>
             <h4 class="title">???</h4>
         </div>
-    </article>            
   </div>
 </template>
 <script>

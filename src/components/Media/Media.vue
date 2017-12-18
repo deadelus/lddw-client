@@ -1,11 +1,11 @@
 <template>
   <div id="media">
     <div id="dragzone" v-show="!filepath">
-      <input id="fileInput" type="file" @change="onFileChange" @dragenter="hilight" v-on:dragleave.drop="reset" accept="image/*;video/*;capture=camcorder"></input>
+      <input id="fileInput" type="file" @change="onFileChange" @dragenter="hilight" v-on:dragleave.drop="reset" accept="image/*;video/*;"></input>
       <label for="fileInput">
         <span>
-          <span class="ico drag camera"></span>
-          <span class="btn-drag">{{ msg || 'Prendre une photo / video' }}</span>
+          <span class="ico drag dragfile"></span>
+          Balancez votre déchêt ou ... <span class="btn-drag">{{ msg || 'Choisissez le gentiment' }}</span>
         </span>
       </label>
     </div>
@@ -21,7 +21,6 @@
     <p id="other-file" @click="remove" v-show="filepath" v-if="!image">
       Fichier selectionné (cliquer ici pour annuler)
     </p>
-
   </div>
 </template>
 <script>

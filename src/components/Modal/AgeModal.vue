@@ -44,7 +44,7 @@
               Je suis mineur
             </div>
             
-            <div class="modal-default-button yes" @click="$emit('close')">
+            <div class="modal-default-button yes" @click="$emit('majeur')">
               Je suis majeur
             </div>
           </div>

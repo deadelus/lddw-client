@@ -11,41 +11,23 @@
             </div>
 
             <div class="menu">
-                <router-link :to="{ name: 'New' }">
-                    <span>Ajouter</span>
+                <router-link :to="{ name: 'Gif' }">
+                    <span>GIF</span>
                 </router-link>
-                <router-link :to="{ name: 'Trending' }">
-                    <span>Populaire</span>
+                <router-link :to="{ name: 'Video' }">
+                    <span>VIDEO</span>
                 </router-link>
-
-                <!--<router-link :to="{ name: 'Trending' }">
+                <router-link :to="{ name: 'NSFW' }">
                     <span class="nsfw">NSFW</span>
-                </router-link>-->
-
+                </router-link>
                 <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">
-                    <span>Nos Magnifiques T-shirts</span>
+                    <span>BOUTIQUE</span>
                 </a>
-                <router-link :to="{ name: 'Rules' }">
-                    <span>Rêgles</span>
-                </router-link>
-                <router-link :to="{ name: 'About' }">
-                    <span>A propos</span>
-                </router-link>
             </div>
-
-
-            <!--<form action="" class="col-lg-1 search">
-                <input type="hidden" class="search-input">
-                <span class="search-field">
-                     field for search engine 
-                </span>
-                <span class="ico search-submit">
-                    &nbsp;
-                </span>
-            </form>-->
                     
             <!-- If user are logued -->
             <div v-show="isLoggedIn" class="profile">
+                <div id="add" @click="showAddModal = true">+ Ajouter</div>
                 <router-link :to="{ name: 'UserPosts' }">
                     <div class="avatar">
                         <img v-if="avatar" :src="avatar" alt="avatar">
@@ -117,17 +99,28 @@
                 </div>
             </div>
         </div>
+
+        <new-post-modal 
+            v-if="showAddModal" 
+            @close="showAddModal = false">
+        </new-post-modal>
     </section>
 </template>
 <script>
+  import NewPostModal from '@/components/Modal/NewPostModal'
+
   export default {
     name: 'app-nav',
     data () {
       return {
         collapsed: false,
         isLoggedIn: false,
+        showAddModal: false,
         avatar: 'http://placehold.it/50X50'
       }
+    },
+    components: {
+      NewPostModal
     },
     // Vue 2.2
     // beforeRouteUpdate (to, from, next) {
@@ -158,5 +151,17 @@
         background: black;
         color: white !important;
         padding: 0 10px;
+    }
+    #add{
+        font-size: 1.2rem;
+        line-height: 30px;
+        margin: 10px 15px;
+        height: 30px;
+        padding: 0 10px;
+        position: absolute;
+        left: -110px;
+        font-weight: bold;
+        background: #000;
+        color: white;
     }
 </style>

@@ -1,8 +1,7 @@
 <template>
     <!-- settings -->
     <div class="settings">
-        <div class="col-lg-8 col-lg-offset-2">
-            <div class="col-lg-12">
+        
                 <header>
                     <div class="title">Paramètres</div>
                 </header>
@@ -43,8 +42,7 @@
                 <div class="btn-save" @click="updateInfo" v-if="filled">
                   Enregistrer les modifications
                 </div>
-            </div>
-        </div>
+
     </div>
 </template>
 <script>

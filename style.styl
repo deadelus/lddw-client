@@ -9,6 +9,12 @@
 ***************/
 
 normalize()
+
+autosize()
+    position relative
+    max-width 1440px
+    margin auto
+
 button(fsize, lheight, bg=#000, col=#fff)
     text-align center
     line-height lheight
@@ -107,8 +113,6 @@ a
         vertical-align top
         display inline-block
         color #000
-        &:hover
-            text-decoration underline
 
 hr
     margin 10px 0
@@ -199,11 +203,74 @@ span.ico
         width 100%
         height auto
 
-.container
-    padding-top 108px
-    @media (max-width 900px)
-        width: 100%
-        padding-top 58px
+
+/***************
+
+    Lateral
+
+***************/
+
+div.lateral
+    &.left-bar
+        position: fixed
+    &.left-bar,
+    &.right-bar
+        height: calc('100% - 108px')
+        width: 200px
+        overflow-y: scroll
+        .menu, .users
+            ul
+                margin 10px 0
+                padding 0
+                li
+                    list-style none
+        span.title
+            font-size 1.2rem
+            font-weight 100
+            color #aaa
+            display: block
+        span.link
+            display flex
+            flex-direction row
+            padding: 10px
+            &:hover
+                background #eeeeee
+                cursor pointer
+            svg
+                width 20px
+                height 20px
+                fill #999
+            span
+                padding 0 10px
+            img
+                width: 35px
+                height: 35px
+        a.router-link-exact-active.router-link-active
+            span.link
+                background #eeeeee
+                svg
+                    fill: #ec4a9f
+                
+    &.right-bar
+        text-align: right;
+        max-width: 300px;
+        overflow: hidden
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .users, .facebook-page, .ads
+            width: 100%
+        .users
+            // max-width: 250px
+            overflow: hidden
+            .name
+                text-align: left
+                height: 35px;
+                line-height: 18px;
+                /* line-height: 35px; */
+                /* overflow: hidden; */
+
 /***************
 
     Bartop
@@ -211,6 +278,12 @@ span.ico
 ***************/
 
 .container-fluid
+    .center
+        autosize()
+        padding-top 108px
+        @media (max-width 900px)
+            width: 100%
+            padding-top 58px
     &.bartop
         position fixed
         width 100%
@@ -224,10 +297,8 @@ span.ico
             padding-top 10px 
             padding-bottom 10px
         .navbar
-            position relative
-            max-width 1440px
+            autosize()
             font-size 0
-            margin auto
             .menu
                 width 100%
                 @media (min-width 900px)
@@ -373,32 +444,7 @@ span.ico
 .profile
     @media (max-width 900px)
         padding 0 !important
-// .profile
-//     header
-//         position relative
-//         display flex
-//         flex-direction row
-//         flex-wrap nowrap
-//         padding-top 15px
-//         .info
-//             padding-left 20px
-//             span
-//                 &.name
-//                     display flex
-//                     font-size 1.2rem
-//                     line-height 20px
-//                     color $font   
-//                 &.date
-//                     display block
-//                     font-size 0.9rem
-//                     color $font2
-//     .title
-//         font-size 2rem
-//         padding 0 15px 0 15px
-//         margin 20px 0 10px 0
-//         color $font
-//         font-weight bold
-//         word-wrap break-word
+
 .post, 
 .comments, 
 .comment-form
@@ -767,7 +813,7 @@ a,div
         height auto        
 
 #dragzone
-    height 40vh
+    height 240px
     background rgba(204, 204, 204, 0.15)
     position relative
     display flex
@@ -790,7 +836,43 @@ a,div
         width 50px
     &:hover
         border-color #EAEAEA
+.choices
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    svg, img
+        height: 50px
+        width: 50px
+        margin: auto
+    div
+        display: flex
+        flex-direction: column
+        text-align: center
+        width: 33%;
+        height: 15vh;
+        border: 1px solid #eaeaea;
+        margin-top: 5px;
+        cursor: pointer
+        &:hover
+            border-color: #CCC
+        span
+            line-height: 2rem;
+            font-size: 1.4rem;
+            height: 30%;
 
+.nsfwcheckbox
+    display: flex
+    margin-bottom: 10px
+    padding 10px
+    background: #b31f48
+    color white
+    input
+        width: 30px;
+        height: 30px;
+        margin: 0 20px 0 0;
+    label
+        font-size: 1.5rem
+        line-height: 2rem
 #fileInput
     opacity 0
     width 100%
@@ -846,7 +928,7 @@ a
     color black 
     &.router-link-exact-active.router-link-active
         color black
-        text-decoration underline
+        text-decoration none !important
 
 @keyframes loading
     to

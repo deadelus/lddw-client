@@ -1,5 +1,5 @@
 <template>
-      <div id="home">
+      <div id="gif">
 
         <loadpost v-show="loading"></loadpost>
 
@@ -22,7 +22,7 @@ import NewPost from '@/components/Post/NewPost'
 import Loadpost from '@/components/Info/Loadpost'
 
 export default {
-  name: 'home',
+  name: 'gif',
   components: { Thumb, NewPost, Loadpost },
   data () {
     return {
@@ -38,8 +38,8 @@ export default {
   },
   mounted () {
     this.$Progress.start()
-    // console.log(this.$route)
-    this.$http.get(this.$apiURL + '/feed')
+    console.log(this.$route)
+    this.$http.get(this.$apiURL + '/feed/gif')
       .then((response) => {
         this.posts = response.body.data
         this.paginate.next_uri = response.body.links.next
