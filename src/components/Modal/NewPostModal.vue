@@ -16,7 +16,7 @@
             <div v-if="step == 2">
               <textarea v-if="!load" v-model="title" @keydown="autoresize" id="title-post" type="text" placeholder="#tague ta publication"></textarea>
               <div class="nsfwcheckbox">
-                <input type="checkbox" value="false" name="nsfw" :value="isNsfw" @click="isNsfw = !isNsfw" id="isNsfw"/>
+                <input type="checkbox" name="nsfw" :value="isNsfw" @click="isNsfw = !isNsfw" id="isNsfw"/>
                 <label for="isNsfw">Attention, si cette publication est de type NSFW (Not Safe For Work / Pas sur pour le travail) cochez la case. Une publication mal catégorisée sera SUPRIMÉ et l'auteur banni si récidive.</label>
               </div>
             </div>
@@ -55,10 +55,10 @@
             <div class="modal-default-button cancel" @click="$emit('close')">
               Annuler
             </div>
-            <div class="modal-default-button yes" v-if="step === 2 || linkImage || linkVideo" @click="prev">
+            <div class="modal-default-button yes" v-if="step === 2" @click="prev">
               Précédent
             </div>
-            <div class="modal-default-button yes" v-if="showBtn && step === 1" @click="next">
+            <div class="modal-default-button yes" v-if="showBtn && step === 1 || linkImage || linkVideo" @click="next">
               Suivant
             </div>
             <div class="modal-default-button yes" v-if="step === 2" @click="upload">
@@ -123,7 +123,17 @@
         if (this.title !== '') {
           data.append('title', this.title)
         }
-        data.append('file', this.post.file)
+        if (this.sourceImage !== '') {
+          data.append('image_url', this.sourceImage)
+        }
+        if (this.sourceVideo !== '') {
+          data.append('video_url', this.sourceVideo)
+        }
+        if (this.sourceImage === '' || this.sourceVideo === '') {
+          data.append('file', this.post.file)
+        }
+        data.append('nsfw', this.isNsfw)
+
         this.$http({
           url: this.$store.getters.user.actions.new_post,
           body: data,

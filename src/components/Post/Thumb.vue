@@ -37,13 +37,18 @@
             <div v-if="title" class="title" v-html="titleParsed"></div>
 
             <div class="content" v-if="this.showNSFW">
-                <preview-image v-if="this.post.meta.file_type === 'picture'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-image>
-                <preview-gif v-if="this.post.meta.file_type === 'gif'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
+                <preview-image 
+                  v-if="this.post.meta.file_type === 'picture'" 
+                  v-bind:path="this.path"
+                  v-bind:thumb="this.post.meta.file_thumb"></preview-image>
+                <preview-gif 
+                  v-if="this.post.meta.file_type === 'gif'" 
+                  v-bind:path="this.path"
+                  v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
                 <preview-video 
                   v-if="this.post.meta.file_type === 'video'" 
-                  v-bind:path="this.post.meta.file_path"
-                  v-bind:thumb="this.post.meta.file_thumb">
-                </preview-video>
+                  v-bind:path="this.path" 
+                  v-bind:thumb="this.post.meta.file_thumb"></preview-video>
             </div>
             
             <div class="content" v-if="!this.showNSFW" @click="showConfirmNSFW = true">
@@ -169,6 +174,7 @@ export default {
   data () {
     return {
       title: '',
+      path: '',
       collapsed: false,
       showEditModal: false,
       showReportModal: false,
@@ -194,9 +200,9 @@ export default {
     PreviewVideo,
     EditModal,
     ReportModal,
-    NsfwModal,
     PostCommentForm,
     PostComment,
+    NsfwModal,
     ConfirmNsfwModal
   },
   mounted () {
@@ -204,6 +210,7 @@ export default {
     this.showNSFW = !this.post.nsfw
     this.nbVotes = this.post.info.nbVotes
     this.isLoggedIn = this.$store.state.auth.isLoggedIn
+    this.path = this.post.meta.file_url || this.post.meta.file_path
   },
   computed: {
     currentUserID: function () {

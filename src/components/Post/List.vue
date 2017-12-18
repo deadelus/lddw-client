@@ -9,7 +9,7 @@
                 </div>
               </div>
             </div>
-            <img :src="post.meta.file_thumb" :alt="'post-' + post.id">
+            <img :src="this.path" :alt="'post-' + post.id">
           </div>
       </router-link>
   </div>
@@ -18,6 +18,14 @@
 <script>
 export default {
   name: 'list',
-  props: ['post']
+  props: ['post'],
+  data () {
+    return {
+      path: ''
+    }
+  },
+  mounted () {
+    this.path = this.post.meta.file_url || this.post.meta.file_thumb
+  }
 }
 </script>

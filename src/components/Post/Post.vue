@@ -36,14 +36,19 @@
 
             <div v-if="title" class="title" v-html="titleParsed"></div>
 
-            <div class="content">
-              <preview-image v-if="this.post.meta.file_type === 'picture'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-image>
-              <preview-gif v-if="this.post.meta.file_type === 'gif'" v-bind:path="this.post.meta.file_path" v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
-              <preview-video 
-                v-if="this.post.meta.file_type === 'video'" 
-                v-bind:path="this.post.meta.path"
-                v-bind:thumb="this.post.meta.file_thumb">
-                </preview-video>
+            <div class="content" v-if="this.showNSFW">
+                <preview-image 
+                  v-if="this.post.meta.file_type === 'picture'" 
+                  v-bind:path="this.path"
+                  v-bind:thumb="this.post.meta.file_thumb"></preview-image>
+                <preview-gif 
+                  v-if="this.post.meta.file_type === 'gif'" 
+                  v-bind:path="this.path"
+                  v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
+                <preview-video 
+                  v-if="this.post.meta.file_type === 'video'" 
+                  v-bind:path="this.path" 
+                  v-bind:thumb="this.post.meta.file_thumb"></preview-video>
             </div>
 
             <footer class="desktop">
@@ -100,6 +105,12 @@
       v-bind:uri="post.actions.update" 
       @close="showNSFWModal = false" 
     ></nsfw-modal>
+
+    <confirm-nsfw-modal
+      v-if="showConfirmNSFW" 
+      @close="showConfirmNSFW = false"
+      @show="show"
+    ></confirm-nsfw-modal>
     
     <report-modal 
       v-if="showReportModal" 
@@ -117,7 +128,7 @@ import PostModal from '@/components/Modal/PostModal'
 import EditModal from '@/components/Modal/EditModal'
 import ReportModal from '@/components/Modal/ReportModal'
 import NsfwModal from '@/components/Modal/NsfwModal'
-
+import ConfirmNsfwModal from '@/components/Modal/ConfirmNsfwModal'
 
 export default {
   name: 'post',
@@ -129,7 +140,9 @@ export default {
       showEditModal: false,
       showReportModal: false,
       showNSFWModal: false,
-      showPostModal: false
+      showPostModal: false,
+      showConfirmNSFW: false,
+      showNSFW: false
     }
   },
   props: ['post'],
@@ -138,12 +151,15 @@ export default {
     PreviewVideo,
     EditModal,
     ReportModal,
-    NsfwModal
+    NsfwModal,
+    ConfirmNsfwModal
   },
   mounted () {
-    // console.log(this.post.owner.avatar)
     this.title = this.post.title
+    this.showNSFW = !this.post.nsfw
     this.nbVotes = this.post.info.nbVotes
+    this.isLoggedIn = this.$store.state.auth.isLoggedIn
+    this.path = this.post.meta.file_url || this.post.meta.file_path
   },
   computed: {
     currentUserID: function () {

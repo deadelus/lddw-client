@@ -1,6 +1,4 @@
 <template>
-  <div class="container">
-    <div class="row">
       <div class="about">
         <brand></brand>
         <h2>À propos</h2>
@@ -64,8 +62,7 @@
           <a href="https://bit.ly/LadéchetterieTV" target="_blank"><span class="ico small youtube"></span></a>
         </span>
       </div>
-    </div>
-  </div>
+
 </template>
 <script>
   import Brand from '@/Brand'
