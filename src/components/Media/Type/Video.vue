@@ -1,7 +1,8 @@
 <template>
   <div id="preview-video">
     <div class="video-wrapper">
-      <video controls preload="auto" :poster="thumb">
+      <!-- normal -->
+      <video v-if="type === 'normal'" controls preload="auto" :poster="thumb">
           <source :src="path" type="video/mp4"></source>
           <source :src="path" type="video/webm"></source>
           <p class="vjs-no-js">
@@ -9,91 +10,59 @@
             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
       </video>
-      <!--<div class="layer-play-pause"><span class="ico play"></span></div>
-      <div class="video-controls">
-           Video Controls 
-          <button type="button" class="play-pause">Play</button>
-          <input type="range" class="seek-bar" value="0">
-          <button type="button" class="mute">Mute</button>
-          <input type="range" class="volume-bar" min="0" max="1" step="0.1" value="1">
-          <button type="button" class="full-screen">Full-Screen</button>
-      </div>-->
+      <!-- youtube -->
+      <iframe v-if="type === 'youtube'" width="100%" height="300px" :src="youtubeUrl()" frameborder="0" allowfullscreen></iframe>
+      <!-- vimeo -->
+      <iframe v-if="type === 'vimeo'" width="100%" height="300px" :src="vimeoUrl()" frameborder="0" allowfullscreen></iframe>
     </div>
-
-    <!--<d-player :video="video"
-              :autoplay="autoplay"
-              :contextmenu="contextmenu"
-              :screenshot="screenshot"
-              :lang="lang"
-              @play="play"
-              ref="player">
-    </d-player>-->
   </div>
 </div>
 
   </div>
 </template>
 <script>
-  // import VueDPlayer from 'vue-dplayer'
-
   export default {
     name: 'preview-video',
     props: ['path', 'thumb'],
     data () {
       return {
-        video: {
-          url: '',
-          pic: ''
-        },
-        lang: 'en',
-        autoplay: false,
-        screenshot: true,
-        player: null,
-        contextmenu: [
-          {
-            text: 'La déchetterie',
-            link: ''
-          }
-        ]
+        type: '',
+        videoID: ''
       }
     },
-    components: {
-      // 'd-player': VueDPlayer
-    },
-    created () {
-      // console.log('Video Mouted')
-      // https://github.com/MoePlayer/vue-dplayer
-      this.video.url = this.$API + '/video/' + this.name
-      // console.log(this.video.url)
-
-      // this.video.url = 'https://api.ladechetterieduweb.com/storage/videos/10efc42647454d05ad3d8a68aade4756.mp4'
-      // this.video.url = 'http://local.dev.foo:8000/video/test.mp4'
-      // this.video.url = 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm'
-    },
     mounted () {
-      // this.player = this.$refs.player.dp
+      if (this.path.indexOf('youtu.be') > 0 || this.path.indexOf('youtube') > 0) {
+        this.type = 'youtube'
+        this.videoID = this.extractVideoID(this.path)
+      } else if (this.path.indexOf('vimeo') > 0) {
+        this.type = 'vimeo'
+        this.videoID = this.extractVideoID(this.path)
+      } else {
+        this.type = 'normal'
+      }
+      console.log(this.type)
     },
     methods: {
-      play: function () {
-        console.log('play callback')
+      extractVideoID: function (url) {
+        var reg = /^.*((youtu.be\/|vimeo.com\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\\&\\?]*).*/
+        var match = url.match(reg)
+
+        if (match && match[7]) {
+          return match[7]
+        } else {
+          alert('Invalid Video URL')
+        }
       },
-      pause: function () {
-        console.log('pause callback')
+      youtubeUrl: function () {
+        return '//youtube.com/embed/' + this.videoID + '?modestbranding=0&autohide=1&showinfo=0&rel=0&autoplay=0'
+      },
+      vimeoUrl: function () {
+        return '//player.vimeo.com/video/' + this.videoID + '?portrait=0&byline=0&badge=0&title=0&autoplay=0'
       }
     }
   }
 </script>
 <style>
-  /*.dplayer {
-    width: 100%;
-    max-width: 770px;
-  }
-  @media (max-width: 768px) {
-    .dplayer {
-      width: 100%;
-    }
-  }*/
-  
   video {
     width: 100% !important;
     height: auto !important;

@@ -10,20 +10,16 @@
     <section class="container-fluid">
       <div class="center">
         <div class="row">
-          <div class="col-lg-2">
-            <div class="lateral left-bar">
-              <nav-lateral></nav-lateral>
-            </div>
+          <div class="col-lg-2 lateral left-bar">
+            <nav-lateral></nav-lateral>
           </div>
-          <div class="col-lg-7">
+          <div class="feed col-lg-7 col-lg-offset-2">
             <router-view></router-view>
           </div>
-          <div class="col-lg-3" v-if="showRightBar">
-            <div class="lateral right-bar">
-              <user-info></user-info>
-              <page-info></page-info>
-              <!--<ads></ads>-->
-            </div>
+          <div class="col-lg-3 lateral right-bar" v-if="showRightBar">
+            <user-info></user-info>
+            <page-info></page-info>
+            <!--<ads></ads>-->
           </div>
         </div>
       </div>

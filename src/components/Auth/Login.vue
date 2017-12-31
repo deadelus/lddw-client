@@ -4,10 +4,9 @@
         <error v-if="errors.length" v-bind:errors="errors"></error>
         <success v-if="isLoggedIn" v-bind:msg="success.msg"></success>
         <loading v-if="load"></loading>
-
         <social></social>
 
-        <br>
+        <hr>
 
         <div class="login-form" v-show="!load">
             <div class="flex col">

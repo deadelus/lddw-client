@@ -1,7 +1,6 @@
 <template>
-  <section class="container">
+  <section id="result">
 
-      <div class="row" v-on:click="toggle">
         <thumb
           v-for="post in posts"
           v-bind:post="post"
@@ -16,11 +15,10 @@
 
 <script>
 import Thumb from '@/components/Post/Thumb'
-import NewPost from '@/components/Post/NewPost'
 
 export default {
   name: 'search',
-  components: { Thumb, NewPost },
+  components: { Thumb },
   data () {
     return {
       posts: [],

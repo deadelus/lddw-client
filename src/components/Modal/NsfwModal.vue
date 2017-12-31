@@ -23,7 +23,7 @@
             </div>
             
             <div class="modal-default-button yes" @click="upload">
-              Envoyer
+              Oui
             </div>
 
           </div>

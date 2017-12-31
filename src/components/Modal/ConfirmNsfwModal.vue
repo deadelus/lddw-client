@@ -29,7 +29,7 @@
         <div class="modal-container" v-if="!isLoggedIn">
 
           <div class="modal-header">
-            <h3>Connectin requise</h3>
+            <h3>Connection requise</h3>
           </div>
 
           <div class="modal-body">

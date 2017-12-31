@@ -55,6 +55,14 @@ $font2 = #A1A1A1
     overflow: hidden
 }
 
+.feed
+    @media(max-width: 1200px)
+        padding: 0 !important
+
+#profile 
+    header
+        @media(max-width: 1200px)
+            padding: 0 15px !important
 .brand-title
     display flex
     padding 15px
@@ -76,6 +84,9 @@ $font2 = #A1A1A1
     h1, p
         margin 0
 
+h1
+    @media (max-width 1200px)
+        font-size: 1.5rem !important
 // .title-field .title,
 div[contenteditable],
 textarea,
@@ -182,16 +193,13 @@ span.ico
     &.cross
         background-image url('./../img/picto/cross.svg') 
     &.add
-        background-image url('./../img/picto/cross.svg') 
-        transform rotate(45deg)
+        background-image url('./../img/picto/add.svg') 
     &.coins
         background-image url('./../img/picto/coins.svg') 
     &.poo
         background-image url('./../img/picto/poo.svg') 
     &.burguer
         background-image url('./../img/picto/burguer.svg') 
-    &.cam
-        background-image url('./../img/picto/camera.svg')
 
 .avatar
     width 50px
@@ -209,8 +217,18 @@ span.ico
     Lateral
 
 ***************/
-
-div.lateral
+#app-nav
+    @media (max-width 1200px)
+        border-bottom: 1px solid #CCC
+div.navbar
+    &.desktop
+        @media (max-width 1200px)
+            display none
+    &.mobile
+        @media (min-width 1200px)
+            display none
+div.lateral, 
+div.navbar.mobile
     &.left-bar
         position: fixed
     &.left-bar,
@@ -218,47 +236,46 @@ div.lateral
         height: calc('100% - 108px')
         width: 200px
         overflow-y: scroll
-        .menu, .users
-            ul
-                margin 10px 0
-                padding 0
-                li
-                    list-style none
-        span.title
-            font-size 1.2rem
-            font-weight 100
-            color #aaa
-            display: block
+        @media (max-width 1200px)
+            display: none
+    .menu, .users
+        ul
+            // margin 10px 0
+            padding 0
+            li
+                list-style none
+    span.title
+        font-size 1.2rem
+        font-weight 100
+        color #aaa
+        display: block
+    span.link
+        display flex
+        flex-direction row
+        padding: 10px
+        &:hover
+            background #eeeeee
+            cursor pointer
+        svg
+            width 20px
+            height 20px
+            fill #999
+        span
+            padding 0 10px
+        img
+            width: 20px
+            height: 20px
+    a.router-link-exact-active.router-link-active
         span.link
-            display flex
-            flex-direction row
-            padding: 10px
-            &:hover
-                background #eeeeee
-                cursor pointer
+            background #eeeeee
             svg
-                width 20px
-                height 20px
-                fill #999
-            span
-                padding 0 10px
-            img
-                width: 35px
-                height: 35px
-        a.router-link-exact-active.router-link-active
-            span.link
-                background #eeeeee
-                svg
-                    fill: #ec4a9f
+                fill: #ec4a9f
                 
     &.right-bar
         text-align: right;
         max-width: 300px;
         overflow: hidden
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
         .users, .facebook-page, .ads
             width: 100%
         .users
@@ -281,9 +298,9 @@ div.lateral
     .center
         autosize()
         padding-top 108px
-        @media (max-width 900px)
+        @media (max-width 1200px)
             width: 100%
-            padding-top 58px
+            padding-top 50px
     &.bartop
         position fixed
         width 100%
@@ -292,7 +309,7 @@ div.lateral
         padding-top 25px 
         padding-bottom 25px
         height 100px
-        @media (max-width 900px)
+        @media (max-width 1200px)
             height 50px
             padding-top 10px 
             padding-bottom 10px
@@ -301,45 +318,60 @@ div.lateral
             font-size 0
             .menu
                 width 100%
-                @media (min-width 900px)
+                @media (min-width 1200px)
                     max-width: 750px
                 margin auto
                 .list
+                    position: fixed
+                    width: 300px
+                    left: -300px
+                    top: 50px
+                    height: calc("100vh - 50px")
                     display flex
                     flex-direction column             
                     margin 0
-                    border-bottom 1px solid #CCC
                     background white
                     overflow hidden
-                    height 0px
                     text-align center
-                    transition height 0.3s
+                    transition left 0.3s 
+                    z-index 9999
+                    overflow-y scroll
                     &.active
-                        height 315px
-                    a
-                        z-index 999
-                        width 100%
-                        div.avatar
-                            margin auto
-                    .close-list
-                        position fixed
-                        top 50px
-                        left 0
-                        width 100%
-                        height 100%
-                        z-index 10
-                        &.inactive
-                            display none
+                        border-right 1px solid #CCC
+                        left 0px
+            .add-btn
+                background: black
+                height: 30px
+                color: #eeeeee
+                font-weight 500
+                display flex
+                flex-direction row
+                padding 5px
+                font-size: 1.3rem
+                &:hover
+                    cursor pointer
+                svg
+                    width 20px
+                    height 20px
+                    fill #eeeeee
+                span
+                    padding 0 10px
+                    color #eeeeee
+                position: absolute
+                @media(min-width: 1200px)
+                    right 60px
+                    top 10px
+                @media(max-width: 1200px)
+                    right 0px
+                    top 0px
             .profile,
             .brand, 
-            .burguer,
-            .cam
+            .burguer
                 position absolute
                 top 0
-            .profile,
-            .cam
+            .profile
                 right 0
-            .cam, 
+            .add-btn, 
             .burguer
                 & span 
                     margin 0
@@ -363,29 +395,20 @@ div.lateral
                     font-size 1.5rem
                     line-height 30px
                     padding 0 5px
+            &.desktop
+                @media (max-width 1200px)
+                    display none !important
+                a
+                    span
+                        font-size 1.2rem
+                        line-height 30px
+                        margin 10px 15px 
+                        height 30px
             a
                 span
                     font-size 1.2rem
-                    line-height 30px
-                    margin 10px 15px 
-                    height 30px
-            &.desktop
-                @media (max-width 900px)
-                    display none !important
-            &.mobile
-                .menu
-                    position fixed
-                    top 50px
-                    left 0
-                    width 100%
-                    // height 100%
-                .title
-                    font-size 2.3rem
-                    text-align center
-                    a.router-link-exact-active.router-link-active
-                        text-decoration none
-                @media (min-width 900px)
-                    display none !important
+            
+            
 
 /***************
 
@@ -395,9 +418,8 @@ div.lateral
 
 .posts
     display flex
-    @media (max-width 900px)
-        border-bottom 8px solid #CCC
-    border-bottom: #CCC 8px solid transparent
+    border-bottom: #CCC 8px solid
+    // margin-bottom 8px
     article 
         background: white
         padding: 0
@@ -442,7 +464,7 @@ div.lateral
             margin-top 8px
 
 .profile
-    @media (max-width 900px)
+    @media (max-width 1200px)
         padding 0 !important
 
 .post, 
@@ -476,7 +498,7 @@ div.lateral
 .comments,
 .settings
     margin-bottom 40px
-    @media (max-width 900px)
+    @media (max-width 1200px)
         margin-bottom: 15px
     .comment,
     .title
@@ -596,7 +618,7 @@ div.lateral
             .avatar
                 width 120px
                 height 120px
-                @media (max-width 900px)
+                @media (max-width 1200px)
                     width 100px
                     height 100px
             .info
@@ -655,7 +677,7 @@ div.lateral
             .post
                 max-width 200px
                 // max-height 200px
-                width 100%
+                width 33%
                 padding 10px
                 box-sizing: border-box
                 border solid 1px transparent
@@ -789,6 +811,7 @@ a,div
 
 .login-btn
     button(1.2rem, 50px, black, white)
+    margin-top: 10px
 
  .linkauth
     font-size 1.2rem
@@ -856,8 +879,8 @@ a,div
         &:hover
             border-color: #CCC
         span
-            line-height: 2rem;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+            padding: 0 5px
             height: 30%;
 
 .nsfwcheckbox
@@ -1050,7 +1073,7 @@ div.dropdown
         transform scale(0)
         transform-origin right top
         transition transform 0.3s
-        @media (max-width 900px)
+        @media (max-width 1200px)
             width 150px
         &.active
             transform scale(1)
@@ -1071,7 +1094,7 @@ div.dropdown
             padding 5px
             font-size 1rem
             cursor pointer
-            @media (max-width 900px)
+            @media (max-width 1200px)
                 font-size 1.5rem
 
 a.hashtag
@@ -1081,3 +1104,9 @@ a.hashtag
     font-weight 100
 a.hashtag:hover
     text-decoration underline
+
+// MODALE
+
+#confirm-nsfw-modal
+    .modal-container
+        max-width 400px !important

@@ -1,6 +1,6 @@
 <template>
   <div class="users">
-    <span class="title">Les meilleurs du moment</span>
+    <span class="title">Les meilleurs membres</span>
     <ul>
       <li v-for="user in bests">
         <span class="link">

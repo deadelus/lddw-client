@@ -29,6 +29,7 @@
                     <!--<li @click="showNSFWModal = true">NSFW ?</li>-->
                     <!--<li @click="showReportModal = true">Signaler</li>-->
                     <li v-if="post.owner.id === currentUserID" @click="showEditModal = true">Editer</li>
+                    <li v-confirm="nsfw">NSFW ?</li>
                     <li v-confirm="destroy">Supprimer</li>
                   </ul>
                 </div>
@@ -319,6 +320,22 @@ export default {
     report: function () {
       /** Todo report Post */
       console.log('OK')
+    },
+    nsfw: function () {
+      var data = new FormData()
+      data.append('_method', 'PUT')
+      data.append('nsfw', true)
+      this.$http({
+        url: this.post.actions.updateNSFW,
+        body: data,
+        method: 'POST'
+      })
+      .then((response) => {
+        this.$emit('remove')
+      })
+      .catch((errorResponse) => {
+        console.log(errorResponse)
+      })
     },
     show: function () {
       this.showNSFW = true

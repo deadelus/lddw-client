@@ -24,10 +24,13 @@
                     <span>BOUTIQUE</span>
                 </a>
             </div>
-                    
+       
             <!-- If user are logued -->
+            <div class="add-btn" v-show="isLoggedIn">
+                <svg viewBox="0 0 32 33"><path d="M16,0c-8.837,0 -16,7.163 -16,16c0,8.837 7.163,16 16,16c8.836,0 16,-7.163 16,-16c0,-8.837 -7.164,-16 -16,-16Zm0,28c-6.617,0 -12,-5.383 -12,-12c0,-6.617 5.383,-12 12,-12c6.617,0 12,5.383 12,12c0,6.617 -5.383,12 -12,12Zm0.02,-20c1.101,0.008 1.98,0.891 1.98,1.98l0,4.02l4.02,0c1.093,0 1.98,0.887 1.98,1.98l0,0.04c0,1.093 -0.887,1.98 -1.98,1.98l-4.02,0l0,4.02c0,1.093 -0.887,1.98 -1.98,1.98l-0.04,0c-1.094,0 -1.98,-0.887 -1.98,-1.98l0,-4.02l-4.02,0c-1.101,-0.008 -1.98,-0.891 -1.98,-1.98l0,-0.04c0,-1.089 0.879,-1.972 1.98,-1.98l4.02,0l0,-4.02c0,-1.089 0.879,-1.972 1.98,-1.98l0.04,0Z"/></svg>
+                <span>Télécharger</span>
+            </div>
             <div v-show="isLoggedIn" class="profile">
-                <div id="add" @click="showAddModal = true">+ Ajouter</div>
                 <router-link :to="{ name: 'UserPosts' }">
                     <div class="avatar">
                         <img v-if="avatar" :src="avatar" alt="avatar">
@@ -56,46 +59,68 @@
                 </router-link>
             </div>
 
-            <div class="cam">
-                <router-link :to="{ name: 'New' }">
-                    <span class="ico medium cam"></span>
-                </router-link>
+            <div class="add-btn" @click="showAddModal = true">
+                <svg viewBox="0 0 32 33"><path d="M16,0c-8.837,0 -16,7.163 -16,16c0,8.837 7.163,16 16,16c8.836,0 16,-7.163 16,-16c0,-8.837 -7.164,-16 -16,-16Zm0,28c-6.617,0 -12,-5.383 -12,-12c0,-6.617 5.383,-12 12,-12c6.617,0 12,5.383 12,12c0,6.617 -5.383,12 -12,12Zm0.02,-20c1.101,0.008 1.98,0.891 1.98,1.98l0,4.02l4.02,0c1.093,0 1.98,0.887 1.98,1.98l0,0.04c0,1.093 -0.887,1.98 -1.98,1.98l-4.02,0l0,4.02c0,1.093 -0.887,1.98 -1.98,1.98l-0.04,0c-1.094,0 -1.98,-0.887 -1.98,-1.98l0,-4.02l-4.02,0c-1.101,-0.008 -1.98,-0.891 -1.98,-1.98l0,-0.04c0,-1.089 0.879,-1.972 1.98,-1.98l4.02,0l0,-4.02c0,-1.089 0.879,-1.972 1.98,-1.98l0.04,0Z"/></svg>
+                <span>Télécharger</span>
             </div>
 
             <div class="menu">
                 <div v-bind:class="{ active: collapsed }" class="list">
-                    <div @click="collapse" v-bind:class="{ inactive: !collapsed }" class="close-list">&nbsp;</div>
-                    <router-link :to="{ name: 'New' }">
-                        <span>Ajouter</span>
-                    </router-link>
-                    <router-link :to="{ name: 'Trending' }">
-                        <span>Populaire</span>
-                    </router-link>
-                    <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">
-                        <span>Nos Magnifiques T-shirts</span>
-                    </a>
-                    
-                    <router-link :to="{ name: 'Rules' }">
-                        <span>Rêgles</span>
-                    </router-link>
-
-                    <router-link :to="{ name: 'About' }">
-                        <span>A propos</span>
-                    </router-link>
-
-                    <!-- iF -->
-                    <router-link v-show="isLoggedIn" :to="{ name: 'UserPosts' }">
-                        <div class="avatar">
-                            <img v-if="avatar" :src="avatar" alt="avatar">
-                            <img v-if="!avatar" src="./assets/user.png" alt="avatar">
-                        </div>
-                    </router-link>
-                    <!-- Else -->
-                    <router-link v-show="!isLoggedIn" :to="{ name: 'Auth' }">
-                        <span>
-                        Se connecter
-                        </span>
-                    </router-link>
+                    <ul>
+                        <li>
+                            <!-- if log -->
+                            <router-link v-show="isLoggedIn" :to="{ name: 'UserPosts' }">
+                                <span class="link">
+                                    <img v-if="avatar" :src="avatar" alt="avatar" class="avatar">
+                                    <img v-if="!avatar" src="./assets/user.png" alt="avatar" class="avatar">
+                                    <span>Mon compte</span>
+                                </span>
+                            </router-link>
+                            <!-- else -->
+                            <router-link v-show="!isLoggedIn" :to="{ name: 'Auth' }">
+                                <span class="link">
+                                    <img v-if="!avatar" src="./assets/user.png" alt="avatar" class="avatar">                                
+                                    <span>Se connecter</span>
+                                </span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'NSFW' }">
+                                <span class="nsfw link">
+                                    <img src="./assets/shock.png" alt="home alone shock">                                
+                                    <span class="nsfw">
+                                        NSFW
+                                    </span>
+                                </span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'Gif' }">
+                                <span class="link">
+                                    <img src="./assets/nyan.gif" alt="nyan cat">                                
+                                    <span>Gif</span>
+                                </span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'Video' }">
+                                <span class="link">
+                                    <svg viewBox="0 0 37 28"><path d="M34,0c1.107,0.002 2,0.897 2,2l0,24c0,1.103 -0.893,1.998 -2,2l-32,0c-1.105,0 -2,-0.895 -2,-2l0,-24c0,-1.103 0.894,-1.998 2,-2l32,0Zm-26,24l0,-4l-4,0l0,4l4,0Zm4,-20l0,20l12,0l0,-20l-12,0Zm16,20l4,0l0,-4l-4,0l0,4Zm-24,-12l0,4l4,0l0,-4l-4,0Zm4,-8l-4,0l0,4l4,0l0,-4Zm24,0l-4,0l0,4l4,0l0,-4Zm-4,12l4,0l0,-4l-4,0l0,4Z"/></svg>
+                                    <span>Video</span>
+                                </span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <a id="shop" href="https://bit.ly/Déchet-Shop" target="_blank">
+                                <span class="link">
+                                    <svg viewBox="0 0 32 33"><path d="M11.995,29c0,1.657 -1.342,3 -2.998,3c-1.657,0 -2.999,-1.343 -2.999,-3c0,-1.657 1.342,-3 2.999,-3c1.656,0 2.998,1.343 2.998,3Zm15.994,0c0,1.657 -1.342,3 -2.999,3c-1.656,0 -2.998,-1.343 -2.998,-3c0,-1.657 1.342,-3 2.998,-3c1.657,0 2.999,1.343 2.999,3Zm0.998,-29c1.954,0.003 3.383,1.836 2.91,3.728l-2.362,9.964c-0.32,1.353 -1.528,2.308 -2.918,2.308l-18.62,0l0,4l19.992,0c1.105,0 2,0.895 2,2c0,1.103 -0.893,1.997 -2,2l-20.992,0c-1.656,0 -2.999,-1.343 -2.999,-3l0,-17l-1.999,0c-1.106,-0.003 -1.999,-0.897 -1.999,-2c0,-1.103 0.893,-1.997 1.999,-2l26.988,0Zm-3.16,12l1.896,-8l-19.726,0l0,8l17.83,0Z"/></svg>
+                                    <span>Boutique</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <nav-lateral></nav-lateral>
                 </div>
             </div>
         </div>
@@ -108,6 +133,7 @@
 </template>
 <script>
   import NewPostModal from '@/components/Modal/NewPostModal'
+  import NavLateral from '@/NavLateral'
 
   export default {
     name: 'app-nav',
@@ -120,7 +146,8 @@
       }
     },
     components: {
-      NewPostModal
+      NewPostModal,
+      NavLateral
     },
     // Vue 2.2
     // beforeRouteUpdate (to, from, next) {
