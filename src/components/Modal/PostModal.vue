@@ -2,7 +2,6 @@
   <div id="post-modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="close-layer" @click="$emit('close')"></div>
         <div class="modal-container">
           <div class="modal-body">
             
@@ -47,6 +46,7 @@
           </div>
         </div>
       </div>
+      <div class="modal-layer" @click="cancel()"></div>
     </div>
   </div>
 </template>
@@ -75,12 +75,13 @@
     mounted () {
       this.isLoggedIn = this.$store.state.auth.isLoggedIn
       this.fetchComment(this.post.links.Comment_read)
-      window.document.body.style.overflow = 'hidden'
       this.loading = false
+      this.freeze(true)
     },
-    beforeDestroy () {
-      window.document.body.style.overflow = ''
-    },
+    // Other Solution
+    // beforeDestroy () {
+    //   window.document.body.style.overflow = ''
+    // },
     methods: {
       fetchComment: function (uri) {
         this.$http.get(uri)
@@ -112,110 +113,15 @@
       addcomment: function (comment) {
         let old = this.comments
         this.comments = old.concat(comment)
+      },
+      freeze (bool) {
+        const body = document.getElementsByTagName('body')[0]
+        body.style.overflow = bool ? 'hidden' : ''
+      },
+      cancel () {
+        this.freeze(false)
+        this.$emit('close')
       }
     }
   }
 </script>
-<style>
-  @keyframes showModal {
-    from {
-      opacity: 0
-    }
-
-    to {
-      opacity: 1
-    }
-  }
-
-  .modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    display: table;
-    animation-duration: 0.3s;
-    animation-name: showModal;
-  }
-
-  .modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  #post-modal .close-layer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-  #post-modal .modal-container .container{
-    padding: 0 15px
-  }
-  #post-modal .modal-container {
-    width: calc(100% - 15px);
-    max-width: 1170px;
-    max-height: 80vh;
-    margin: 0px auto;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-    transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-    z-index: 999999;
-    overflow: scroll
-  }
-
-  .modal-body {
-    padding-top: 15px !important;
-    overflow-y: scroll !important;
-  }
-  .modal-footer {
-    padding: 10px 15px;
-    /*border-top: 1px #ccc solid;*/
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-  }
-
-  /*
-  * The following styles are auto-applied to elements with
-  * transition="modal" when their visibility is toggled
-  * by Vue.js.
-  *
-  * You can easily play with the modal transition by editing
-  * these styles.
-  */
-
-  .modal-enter {
-    opacity: 0;
-  }
-
-  .modal-leave-active {
-    opacity: 0;
-  }
-
-  .modal-enter .modal-container,
-  .modal-leave-active .modal-container {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-
-  /*  */
-  .singlepost .social-btns{
-    display: flex !important;
-  }
-  .more {
-    display: block;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-  }
-  .more:hover {
-    text-decoration: underline;
-  }
-</style>

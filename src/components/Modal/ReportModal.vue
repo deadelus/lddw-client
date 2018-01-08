@@ -16,17 +16,18 @@
 
           <div class="modal-footer">
 
-            <div class="modal-default-button cancel" @click="$emit('close')">
+            <div class="modal-default-button cancel" @click="cancel()">
               Annuler
             </div>
             
-            <div class="modal-default-button yes" @click="upload">
+            <div class="modal-default-button yes" @click="ok()">
               Envoyer
             </div>
 
           </div>
         </div>
       </div>
+      <div class="modal-layer" @click="cancel()"></div>
     </div>
   </div>
 </template>
@@ -43,6 +44,9 @@
         load: false,
         errors: []
       }
+    },
+    mounted () {
+      this.freeze(true)
     },
     components: { Loading, Error },
     methods: {
@@ -73,6 +77,18 @@
             })
           }
         })
+      },
+      freeze (bool) {
+        const body = document.getElementsByTagName('body')[0]
+        body.style.overflow = bool ? 'hidden' : ''
+      },
+      cancel () {
+        this.freeze(false)
+        this.$emit('close')
+      },
+      ok () {
+        this.freeze(false)
+        this.upload()
       }
     }
   }

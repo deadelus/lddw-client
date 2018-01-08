@@ -152,7 +152,7 @@ export default {
     EditModal,
     ReportModal,
     NsfwModal,
-    ConfirmNsfwModal
+    ConfirmNsfwModal,
   },
   mounted () {
     this.title = this.post.title

@@ -330,6 +330,10 @@ span.ico {
   height: 15px;
   cursor: pointer;
 }
+span.ico.little {
+  width: 20px;
+  height: 20px;
+}
 span.ico.medium {
   width: 30px;
   height: 30px;
@@ -584,8 +588,7 @@ div.navbar.mobile.right-bar .users .name {
 @media (max-width: 1200px) {
   .container-fluid.bartop {
     height: 50px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
   }
 }
 .container-fluid.bartop .navbar {
@@ -951,6 +954,7 @@ div.navbar.mobile.right-bar .users .name {
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  max-height: 80vh;
 }
 .post .content .layer-video {
   width: 100%;
@@ -1603,7 +1607,6 @@ span.more:hover {
   width: 0;
   -webkit-animation: cursor 1s infinite;
   animation: cursor 1s infinite;
-  -webkit-animation: cursor 1s infinite;
 }
 /*
 
@@ -1700,6 +1703,116 @@ a.hashtag:hover {
 }
 #confirm-nsfw-modal .modal-container {
   max-width: 400px !important;
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: showModal;
+  animation-name: showModal;
+  background-color: rgba(0,0,0,0.5);
+}
+.modal-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  cursor: pointer;
+}
+.modal-wrapper {
+  margin: auto;
+  padding: 10px;
+  z-index: 9999;
+  max-width: 750px;
+  width: 100%;
+  max-height: 100vh;
+  overflow: scroll;
+}
+.modal-container {
+  width: 100%;
+  margin: 0px auto;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.33);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.modal-footer {
+  padding: 10px 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  justify-content: flex-end;
+}
+.modal-header {
+  color: #fff;
+  background: #000;
+}
+.modal-header h3 {
+  margin: 0;
+  font-size: 2rem;
+}
+.modal-header,
+.modal-body {
+  padding: 15px;
+  line-height: 2rem;
+}
+.modal-default-button {
+  margin-left: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.modal-default-button.cancel:hover {
+  text-decoration: underline;
+}
+.modal-default-button.yes {
+  color: #fff;
+  background: #000;
+  border-radius: 2px;
+}
+.modal-default-button.yes:hover {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  opacity: 0.8;
+}
+.modal-enter {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-leave-active {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 @-moz-keyframes loading {
   to {
@@ -1812,6 +1925,54 @@ a.hashtag:hover {
     opacity: 1;
   }
   100% {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+@-moz-keyframes showModal {
+  from {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  to {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes showModal {
+  from {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  to {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+@-o-keyframes showModal {
+  from {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  to {
+    -ms-filter: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+@keyframes showModal {
+  from {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  to {
     -ms-filter: none;
     filter: none;
     opacity: 1;

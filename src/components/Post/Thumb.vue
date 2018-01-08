@@ -169,7 +169,6 @@ import ReportModal from '@/components/Modal/ReportModal'
 import NsfwModal from '@/components/Modal/NsfwModal'
 import ConfirmNsfwModal from '@/components/Modal/ConfirmNsfwModal'
 
-
 export default {
   name: 'thumb',
   data () {
@@ -212,7 +211,7 @@ export default {
     this.showNSFW = !this.post.nsfw
     this.nbVotes = this.post.info.nbVotes
     this.isLoggedIn = this.$store.state.auth.isLoggedIn
-    this.path = this.post.meta.file_url || this.post.meta.file_path
+    this.path = this.post.meta.file_url ? this.post.meta.file_url : this.$API + this.post.meta.file_path
     // state of nsfw
     this.$store.watch((state) => {
       this.show_all_nsfw = this.$store.state.showNsfw

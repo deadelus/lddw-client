@@ -50,12 +50,12 @@
         </div>
         <div class="navbar mobile">
             <div class="burguer" @click="collapse">
-                <span class="ico medium burguer"></span>
+                <span class="ico little burguer" style="margin: 5px 0;"></span>
             </div>
 
-            <div class="logo">
+            <div class="logo mobile">
                 <router-link :to="{ name: 'Home' }">
-                    <img scr="./assets/logo.png" alt="logo">
+                    <img src="./assets/logo.png" alt="logo">
                 </router-link>
             </div>
 
@@ -122,6 +122,9 @@
                     <hr>
                     <nav-lateral></nav-lateral>
                 </div>
+                <transition name="fade">
+                    <div class="layer" @click="collapse" v-if="collapsed"></div>
+                </transition>
             </div>
         </div>
 
@@ -169,11 +172,32 @@
     methods: {
       collapse: function () {
         this.collapsed = !this.collapsed
+        const body = document.getElementsByTagName('body')[0]
+        body.style.overflow = this.collapsed ? 'hidden' : ''
       }
     }
   }
 </script>
 <style>
+    .logo.mobile  img{
+        width: 210px;
+        display: block;
+        margin: auto;
+    }
+    .mobile .menu .layer {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 50px;
+        background: #00000099;
+        right: 0;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0
+    }
     .nsfw{
         background: black;
         color: white !important;
