@@ -279,14 +279,9 @@ div.navbar.mobile
         .users, .facebook-page, .ads
             width: 100%
         .users
-            // max-width: 250px
             overflow: hidden
             .name
                 text-align: left
-                height: 35px;
-                line-height: 18px;
-                /* line-height: 35px; */
-                /* overflow: hidden; */
 
 /***************
 
@@ -359,7 +354,7 @@ div.navbar.mobile
                     color #eeeeee
                 position: absolute
                 @media(min-width: 1200px)
-                    right 60px
+                    right 67px
                     top 10px
                 @media(max-width: 1200px)
                     right 0px
@@ -418,7 +413,8 @@ div.navbar.mobile
 
 .posts
     display flex
-    border-bottom: #CCC 8px solid
+    @media (max-width 1200px)
+        border-bottom: #CCC 8px solid
     // margin-bottom 8px
     article 
         background: white

@@ -37,7 +37,7 @@
 
             <div v-if="title" class="title" v-html="titleParsed"></div>
 
-            <div class="content" v-if="this.showNSFW">
+            <div class="content" v-if="this.showNSFW || show_all_nsfw">
                 <preview-image 
                   v-if="this.post.meta.file_type === 'picture'" 
                   v-bind:path="this.path"
@@ -52,7 +52,7 @@
                   v-bind:thumb="this.post.meta.file_thumb"></preview-video>
             </div>
             
-            <div class="content" v-if="!this.showNSFW" @click="showConfirmNSFW = true">
+            <div class="content" v-if="!this.showNSFW && !show_all_nsfw" @click="showConfirmNSFW = true">
               <img src="./../../assets/nsfw.jpg" alt="nsfw"/>
             </div>
 
@@ -186,6 +186,7 @@ export default {
       loading: true,
       isLoggedIn: false,
       showNSFW: false,
+      show_all_nsfw: false,
       comments: [],
       paginate: {
         uri: '',
@@ -212,6 +213,10 @@ export default {
     this.nbVotes = this.post.info.nbVotes
     this.isLoggedIn = this.$store.state.auth.isLoggedIn
     this.path = this.post.meta.file_url || this.post.meta.file_path
+    // state of nsfw
+    this.$store.watch((state) => {
+      this.show_all_nsfw = this.$store.state.showNsfw
+    })
   },
   computed: {
     currentUserID: function () {
@@ -257,7 +262,7 @@ export default {
       const regex = /#\S+/g
       const str = this.title
       var fixed = str.replace(regex, function (match) {
-        var urlparam = match.replace('#', '')
+        var urlparam = match.replace('#', '%23')
         return '<a class="hashtag" href="/search/tag/' + urlparam + '">' + match + '</a>'
       })
       return fixed
@@ -337,9 +342,12 @@ export default {
         console.log(errorResponse)
       })
     },
-    show: function () {
+    show: function (all = false) {
       this.showNSFW = true
       this.showConfirmNSFW = false
+      if (all) {
+        this.$store.commit('SHOW_NSFW', true)
+      }
     },
     collapse: function () {
       this.collapsed = !this.collapsed

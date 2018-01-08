@@ -32,21 +32,27 @@ export default {
     }
   },
   props: ['tagname'],
+  watch: {
+    '$route' (to, from) {
+      this.fetch()
+    }
+  },
   mounted () {
-    console.log('ok')
-    this.$http.get(this.$apiURL + '/search/' + this.tagname)
-      .then((response) => {
-        console.log(response)
-        this.posts = response.body.data
-        this.paginate.next_uri = response.body.links.next
-        this.paginate.uri = response.body.links.current
-        this.paginate.prev_uri = response.body.links.prev
-      })
-      .catch((errorResponse) => {
-        // console.log(errorResponse)
-      })
+    this.fetch()
   },
   methods: {
+    fetch: function () {
+      this.$http.get(this.$apiURL + '/search/' + this.tagname.replace('#', '%23'))
+        .then((response) => {
+          this.posts = response.body.data
+          this.paginate.next_uri = response.body.links.next
+          this.paginate.uri = response.body.links.current
+          this.paginate.prev_uri = response.body.links.prev
+        })
+        .catch((errorResponse) => {
+          // console.log(errorResponse)
+        })
+    },
     toggle: function () {
       this.add = !this.add
     },

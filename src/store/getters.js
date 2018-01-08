@@ -25,5 +25,11 @@ export const getters = {
    */
   majeur: state => {
     return state.majeur
+  },
+  /**
+   * Get if show nsfw
+   */
+  showNsfw: state => {
+    return state.showNsfw
   }
 }

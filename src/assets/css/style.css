@@ -554,10 +554,6 @@ div.navbar.mobile.right-bar .users {
 div.lateral.right-bar .users .name,
 div.navbar.mobile.right-bar .users .name {
   text-align: left;
-  height: 35px;
-  line-height: 18px;
-/* line-height: 35px; */
-/* overflow: hidden; */
 }
 /***************
 
@@ -668,7 +664,7 @@ div.navbar.mobile.right-bar .users .name {
 }
 @media (min-width: 1200px) {
   .container-fluid.bartop .navbar .add-btn {
-    right: 60px;
+    right: 67px;
     top: 10px;
   }
 }
@@ -755,7 +751,11 @@ div.navbar.mobile.right-bar .users .name {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border-bottom: #ccc 8px solid;
+}
+@media (max-width: 1200px) {
+  .posts {
+    border-bottom: #ccc 8px solid;
+  }
 }
 .posts article {
   background: #fff;

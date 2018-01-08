@@ -1,14 +1,15 @@
+const version = '2.0.1'
+const defaultCGU = {
+  version: '1.0',
+  accepted: false
+}
+
 const defaultPost = {
   isLoading: false,
   file: {}
 }
-
-const defaultCGU = {
-  version: '0.1',
-  accepted: false
-}
-
 const majeur = false
+const showNsfw = false
 
 export const UPDATE_CGU = (state, cgu) => {
   state.cgu = cgu
@@ -30,11 +31,19 @@ export const IS_MAJEUR = (state) => {
   state.majeur = true
 }
 
+export const SHOW_NSFW = (state) => {
+  state.showNsfw = true
+}
+
 export const CLEAR_POST = (state) => {
   state.post = defaultPost
 }
 
 export const CLEAR_ALL_DATA = (state) => {
+  // AppVersion
+  state.version = version
+  // CGU
+  state.cgu = defaultCGU
   // Auth
   state.auth.isLoggedIn = false
   state.auth.accessToken = null
@@ -43,8 +52,8 @@ export const CLEAR_ALL_DATA = (state) => {
   state.user = {}
   // Post
   state.post = defaultPost
-  // CGU
-  state.cgu = defaultCGU
   // Age > 18
   state.majeur = majeur
+  // show nsfw ?
+  state.showNsfw = showNsfw
 }

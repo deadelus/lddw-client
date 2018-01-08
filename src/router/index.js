@@ -32,9 +32,10 @@ import Shop from '@/components/Shop/Shop'
 // Law About
 import About from '@/components/Disclaimer/About'
 import Rules from '@/components/Disclaimer/Rules'
-// import Disclaimer from '@/components/Disclaimer'
+import CGU from '@/components/Disclaimer/CGU'
 // Errors
 import p404 from '@/components/Error/p404'
+import Contact from '@/components/Contact'
 
 Vue.use(Router)
 
@@ -101,13 +102,14 @@ const router = new Router({
     {
       path: '/disclaimer',
       name: 'Disclaimer',
-      component: Rules
+      component: CGU
     },
     {
       path: '/search/tag/:tagname',
       name: 'Search',
       component: Result,
-      props: true
+      props: true,
+      force: true
     },
     {
       path: '/post/:id',
@@ -203,6 +205,11 @@ const router = new Router({
     {
       path: '/404',
       component: p404
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: Contact
     },
     {
       path: '/*',

@@ -7,7 +7,8 @@ const localStoragePlugin = store => {
       user: state.user,
       post: state.post,
       cgu: state.cgu,
-      majeur: state.majeur
+      majeur: state.majeur,
+      showNsfw: state.showNsfw
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(syncedData))

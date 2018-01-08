@@ -12,6 +12,9 @@
             <p>
               Indication qu'un texte, une image, une vidéo, un son ou un lien contient des éléments jugés particulièrement <b>inappropriés</b> pour un écran de travail, s'agissant généralement de contenu indécent : vulgaire, à caractère sexuel ou violent.
             </p>
+            <div class="checkMsg">
+              <input id="checkbox" type="checkbox" v-model="all"/><label for="checkbox">Voir toute les publication NSFW ?</label>
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -20,7 +23,7 @@
               Annuler
             </div>
             
-            <div class="modal-default-button yes" @click="$emit('show')">
+            <div class="modal-default-button yes" @click="$emit('show', all)">
               Oui
             </div>
 
@@ -54,7 +57,8 @@
     name: 'confirm-nsfw-modal',
     data () {
       return {
-        isLoggedIn: false
+        isLoggedIn: false,
+        all: false
       }
     },
     components: { Login },
@@ -74,6 +78,23 @@
     to {
       opacity: 1
     }
+  }
+
+  .checkMsg {
+    padding: 5px;
+  }
+
+  .checkMsg input {
+    width: 15px;
+    height: 15px;
+    margin: 0 10px 0 0;
+  }
+  .checkMsg label {
+    line-height: 20px;
+    display: inline-block;
+    height: 20px;
+    vertical-align: top;
+    text-decoration: underline;
   }
 
   .modal-mask {

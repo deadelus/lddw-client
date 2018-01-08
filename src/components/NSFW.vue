@@ -38,7 +38,7 @@ export default {
   },
   mounted () {
     this.$Progress.start()
-    console.log(this.$route)
+    // console.log(this.$route)
     this.$http.get(this.$apiURL + '/feed/nsfw')
       .then((response) => {
         this.posts = response.body.data

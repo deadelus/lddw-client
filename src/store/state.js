@@ -1,6 +1,7 @@
 export const STORAGE_KEY = 'la-dechetterie-du-web'
 
 let syncedData = {
+  version: '',
   auth: {
     isLoggedIn: false,
     accessToken: null,
@@ -22,7 +23,8 @@ let syncedData = {
     version: '0.1',
     accepted: false
   },
-  majeur: false
+  majeur: false,
+  showNsfw: false
 }
 
 // Sync with local storage.

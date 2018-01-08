@@ -203,7 +203,7 @@ export default {
       const regex = /#\S+/g
       const str = this.title
       var fixed = str.replace(regex, function (match) {
-        var urlparam = match.replace('#', '')
+        var urlparam = match.replace('#', '%23')
         return '<a class="hashtag" href="/search/tag/' + urlparam + '">' + match + '</a>'
       })
       return fixed
