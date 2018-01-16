@@ -1,48 +1,44 @@
 <template>
     <!-- settings -->
-    <div class="settings">
-        
-                <header>
-                    <div class="title">Paramètres</div>
-                </header>
-                <div class="setting">
-                    <div class="section-title">Compte</div>
-                    <hr>
-                    <div class="flex col">
-                        <label for="email">Email</label>
-                        <input v-model="update.email" type="text" id="email" class="col-lg-6" :placeholder="user.email">
-                    </div>
-                    <div class="flex col"> 
-                        <label for="bio">Mini bio ({{ char }})</label>
-                        <textarea v-model="update.bio" id="bio" class="col-lg-8" :placeholder="user.bio"></textarea>
-                    </div>
-                    <div class="flex col">
-                        <label for="name">Nom affiché</label>
-                        <input v-model="update.name" type="text" id="name" class="col-lg-8" :placeholder="user.name">
-                    </div>
-                </div>
-                <div class="setting">
-                    <div class="section-title">Connections</div>
-                    <hr>
-                    <!--
-                    <a href="#" class="social facebook">
-                        Ajouter mon compte Facebook
-                    </a>
-
-                    <a href="#" class="social twitter">
-                        Ajouter mon compte Twitter
-                    </a>-->
-
-                    <a class="social btn-logout" @click.prevent="logout" href="#">
-                        Se deconnecter
-                    </a>
-                </div>
-                <div class="setting">
-                </div>
-                <div class="btn-save" @click="updateInfo" v-if="filled">
-                  Enregistrer les modifications
-                </div>
-
+    <div class="settings"> 
+      <header>
+          <div class="title">Paramètres</div>
+      </header>
+      <div class="setting">
+          <div class="section-title">Compte</div>
+          <hr>
+          <div class="flex col">
+              <label for="email">Email</label>
+              <input v-model="update.email" type="text" id="email" class="col-lg-6" :placeholder="user.email">
+          </div>
+          <div class="flex col"> 
+              <label for="bio">Mini bio ({{ char }})</label>
+              <textarea v-model="update.bio" id="bio" class="col-lg-8" :placeholder="user.bio"></textarea>
+          </div>
+          <div class="flex col">
+              <label for="name">Nom affiché</label>
+              <input v-model="update.name" type="text" id="name" class="col-lg-8" :placeholder="user.name">
+          </div>
+      </div>
+      <div class="setting">
+          <div class="section-title">Connections</div>
+          <hr>
+          <!--
+          <a href="#" class="social facebook">
+              Ajouter mon compte Facebook
+          </a>
+          <a href="#" class="social twitter">
+              Ajouter mon compte Twitter
+          </a>-->
+          <a class="social btn-logout" @click.prevent="logout" href="#">
+              Se deconnecter
+          </a>
+      </div>
+      <div class="setting">
+      </div>
+      <div class="btn-save" @click="updateInfo" v-if="filled">
+        Enregistrer les modifications
+      </div>
     </div>
 </template>
 <script>

@@ -1,5 +1,6 @@
 build/*.js
 config/*.js
+src/assets/js/*.js
 src/components/Auth/Btn/Facebook.vue
 src/components/Post/Thumb.vue
 src/components/Post/Post.vue

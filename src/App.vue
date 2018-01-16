@@ -7,6 +7,11 @@
       @majeur="confirmAge()"
       ></age-modal>
 
+    <disclaimer-modal 
+      v-if="showDiscModal" 
+      @ok="acceptDisclaimer()"
+      ></disclaimer-modal>
+
     <section class="container-fluid">
       <div class="center">
         <div class="row">
@@ -34,14 +39,19 @@ import NavLateral from '@/NavLateral'
 import PageInfo from '@/PageInfo'
 import UserInfo from '@/UserInfo'
 import Ads from '@/Ads'
-import AgeModal from '@/components/Modal/AgeModal'
+import DisclaimerModal from '@/components/Modal/DisclaimerModal'
 
 export default {
   name: 'app',
   data () {
     return {
       showAgeModal: true,
-      showRightBar: true
+      showDiscModal: true,
+      showRightBar: true,
+      cgu: {
+        version: '0.3',
+        accepted: true
+      }
     }
   },
   watch: {
@@ -60,14 +70,18 @@ export default {
       }
     }
   },
-  components: { AppNav, AgeModal, NavLateral, UserInfo, PageInfo, Ads },
+  components: { AppNav, DisclaimerModal, NavLateral, UserInfo, PageInfo, Ads },
   created () {
-    this.showAgeModal = !this.$store.getters.majeur
+    if (this.$store.getters.cgu.version === this.cgu.version) {
+      this.showDiscModal = false
+    }
   },
   methods: {
-    confirmAge: function () {
-      this.showAgeModal = false
+    acceptDisclaimer: function () {
+      this.cgu.accepted = true
+      this.showDiscModal = false
       this.$store.commit('IS_MAJEUR')
+      this.$store.commit('UPDATE_CGU', this.cgu)
     }
   }
 }

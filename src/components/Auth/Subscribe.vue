@@ -5,6 +5,9 @@
         <success v-if="success.code" v-bind:msg="success.msg"></success>
         <loading v-if="load"></loading>
         
+        <social></social>
+
+        <hr>
         <div v-show="!load">
             <div class="flex col">
                 <label for="name">Nom affiché <span class="error" v-if="this.error.name">Nom invalide. (min: 2 caractères)</span></label>
@@ -32,6 +35,7 @@
   import Loading from '@/components/Info/Loading'
   import Error from '@/components/Info/Error'
   import Success from '@/components/Info/Success'
+  import Social from '@/components/Auth/Social'
 
   export default {
     name: 'subscribe',
@@ -50,7 +54,7 @@
         error: false
       }
     },
-    components: {Loading, Error, Success},
+    components: { Social, Loading, Error, Success },
     methods: {
       subscribe: function () {
         // this.$http.post('')

@@ -16,20 +16,15 @@
     name: 'light-box',
     props: ['path'],
     mounted () {
-      this.freeze(true)
-      console.log('ok')
+      this.$freeze(true)
     },
     // Other Solution
     // beforeDestroy () {
     //   window.document.body.style.overflow = ''
     // },
     methods: {
-      freeze (bool) {
-        const body = document.getElementsByTagName('body')[0]
-        body.style.overflow = bool ? 'hidden' : ''
-      },
       cancel () {
-        this.freeze(false)
+        this.$freeze(false)
         this.$emit('close')
       }
     }

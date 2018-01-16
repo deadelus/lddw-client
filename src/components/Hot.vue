@@ -47,10 +47,10 @@ export default {
         this.paginate.prev_uri = response.body.links.prev
         this.$Progress.finish()
         this.loading = false
+        console.log(response)
       })
       .catch((errorResponse) => {
         this.$Progress.fail()
-        // console.log(errorResponse)
       })
   },
   methods: {

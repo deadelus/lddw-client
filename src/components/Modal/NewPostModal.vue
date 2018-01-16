@@ -78,6 +78,18 @@
 
           <div class="modal-body">
             <login></login>
+            <!--<router-link :to="{ name: 'Forgot' }">
+                <span class="linkauth">Mot de passe oublié.</span>
+            </router-link>
+            <router-link :to="{ name: 'Subscribe' }">
+                <span class="linkauth">Je n'ai pas encore de compte.</span>
+            </router-link>-->
+            <a href="#" @click.prevent="go('Forgot')">
+                <span class="linkauth">Mot de passe oublié.</span>
+            </a>
+            <a href="#" @click.prevent="go('Subscribe')">
+                <span class="linkauth">Je n'ai pas encore de compte.</span>
+            </a>
           </div>
 
           <div class="modal-footer">
@@ -129,7 +141,7 @@
       this.$store.watch((state) => {
         this.post = this.$store.getters.post
       })
-      this.freeze(true)
+      this.$freeze(true)
     },
     methods: {
       loadFile: function (file) {
@@ -239,17 +251,18 @@
           el.style.cssText = 'height:' + el.scrollHeight + 'px'
         }, 0)
       },
-      freeze (bool) {
-        const body = document.getElementsByTagName('body')[0]
-        body.style.overflow = bool ? 'hidden' : ''
-      },
       cancel () {
-        this.freeze(false)
+        this.$freeze(false)
         this.$emit('close')
       },
       ok () {
-        this.freeze(false)
+        this.$freeze(false)
         this.upload()
+      },
+      go (Link) {
+        this.$freeze(false)
+        this.$emit('close')
+        this.$router.push({name: Link})
       }
     },
     computed: {

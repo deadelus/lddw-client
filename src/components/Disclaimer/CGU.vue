@@ -1,6 +1,5 @@
 <template>
-  <div class="rules">
-    <brand></brand>
+  <div id="cgu">
     <h1>Conditions générales d'utilisation du site </h1>
     <h2>ARTICLE 1 : Objet</h2>
     <p>
@@ -103,10 +102,8 @@
   </div>  
 </template>
 <script>
-  import Brand from '@/Brand'
   export default {
     name: 'cgu',
-    components: { Brand },
     mounted () {
       this.$Progress.start()
       this.$Progress.finish()
@@ -114,6 +111,9 @@
   }
 </script>
 <style>
+  #cgu {
+    padding: 5px;
+  }
   .rules {
     text-align: left;
     margin: auto;

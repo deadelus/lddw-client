@@ -76,7 +76,7 @@
       this.isLoggedIn = this.$store.state.auth.isLoggedIn
       this.fetchComment(this.post.links.Comment_read)
       this.loading = false
-      this.freeze(true)
+      this.$freeze(true)
     },
     // Other Solution
     // beforeDestroy () {
@@ -114,12 +114,8 @@
         let old = this.comments
         this.comments = old.concat(comment)
       },
-      freeze (bool) {
-        const body = document.getElementsByTagName('body')[0]
-        body.style.overflow = bool ? 'hidden' : ''
-      },
       cancel () {
-        this.freeze(false)
+        this.$freeze(false)
         this.$emit('close')
       }
     }

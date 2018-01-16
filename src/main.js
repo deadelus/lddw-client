@@ -8,11 +8,10 @@ import VueResource from 'vue-resource'
 import Moment from 'vue-moment'
 // import Meta from 'vue-meta'
 import VueProgressBar from 'vue-progressbar'
-
 /* Assets */
 import './assets/css/bootstrap.css'
 import './assets/css/style.css'
-
+import './assets/js/gifplayer.js'
 /* Auth plugin */
 import Auth from './auth'
 import MediaMaker from './mediamaker'
@@ -57,50 +56,43 @@ Vue.use(Auth)
 Vue.use(Moment)
 Vue.use(MediaMaker)
 
-// Vue.use(Meta, {
-//   keyName: 'metaInfo'
-// })
-// keyName: 'metaInfo', // the component option name that vue-meta looks for meta info on.
-// attribute: 'data-vue-meta', // the attribute name vue-meta adds to the tags it observes
-// ssrAttribute: 'data-vue-meta-server-rendered', // the attribute name that lets vue-meta know that meta info has already been server-rendered
-// tagIDKeyName: 'vmid' // the property name that vue-meta uses to determine whether to overwrite or append a tag
-
 Vue.moment.locale('fr')
 Vue.config.productionTip = false
 
-// PROD API
-Vue.prototype.$assetURL = 'https://api.ladechetterieduweb.com'
-Vue.prototype.$apiURL = 'https://api.ladechetterieduweb.com/api'
-Vue.prototype.$API = 'https://api.ladechetterieduweb.com'
-Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+// API
+Vue.prototype.$assetURL = API_ASSET_URI
+Vue.prototype.$API = API_BASE_URI
+Vue.prototype.$apiURL = API_URI
+Vue.prototype.$URL = APP_URL
 
-// Preprod API
-// Vue.prototype.$assetURL = 'http://preprod.ladechetterieduweb.com/storage'
-// Vue.prototype.$apiURL = 'http://preprod.ladechetterieduweb.com/api'
-// Vue.prototype.$API = 'http://preprod.ladechetterieduweb.com'
-// Vue.prototype.$URL = 'https://www.ladechetterieduweb.com'
+// Freeze scroll when modal opened
+Vue.prototype.$freeze = function (bool) {
+  const body = document.getElementsByTagName('body')[0]
+  const html = document.getElementsByTagName('html')[0]
+  var pos = html.scrollTop
 
-// Local API
-// Vue.prototype.$assetURL = 'http://localhost:8000/storage'
-// Vue.prototype.$apiURL = 'http://localhost:8000/api'
-// Vue.prototype.$API = 'http://localhost:8000'
-// Vue.prototype.$URL = 'http://localhost:8000'
+  body.style.overflow = bool ? 'hidden' : ''
+  body.style.position = bool ? 'fixed' : ''
+  //
+  html.style.overflow = bool ? 'hidden' : ''
+  html.style.position = bool ? 'fixed' : ''
+  // html.style.top = bool ? '-' + pos + 'px' : ''
+  
+  // if (!bool) {
+  //   console.log(pos)
+  //   window.scrollTo(0, pos)
+  // }
+}
+
 /* eslint-disable no-new */
-
+console.log("Running App version " + VERSION);
 new Vue({
   el: '#app',
-  // metaInfo: {
-  //   // if no subcomponents specify a metaInfo.title, this title will be used
-  //   title: 'La déchetterie du web',
-  //   // all titles will be injected into this template
-  //   titleTemplate: '%s | Home'
-  // },
   created: function () {
     window.Vue = this
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '631741580331636',
-        // appId      : '2211517428989297',
+        appId      : FB_APP_ID,
         cookie     : true,
         xfbml      : true,
         version    : 'v2.8'
@@ -114,9 +106,6 @@ new Vue({
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  },
-  mounted: function () {
-    // console.log(this.$store.getters.cgu)
   },
   router,
   store,

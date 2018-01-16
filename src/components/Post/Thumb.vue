@@ -41,15 +41,17 @@
                 <preview-image 
                   v-if="this.post.meta.file_type === 'picture'" 
                   v-bind:path="this.path"
-                  v-bind:thumb="this.post.meta.file_thumb"></preview-image>
-                <preview-gif 
-                  v-if="this.post.meta.file_type === 'gif'" 
-                  v-bind:path="this.path"
-                  v-bind:thumb="this.post.meta.file_thumb"></preview-gif>
+                  v-bind:thumb="this.thumb"></preview-image>
+
+                <gif-player
+                    v-if="this.post.meta.file_type === 'gif'" 
+                    v-bind:thumb="this.thumb"
+                    v-bind:path="this.path"></gif-player>
+
                 <preview-video 
                   v-if="this.post.meta.file_type === 'video'" 
                   v-bind:path="this.path" 
-                  v-bind:thumb="this.post.meta.file_thumb"></preview-video>
+                  v-bind:thumb="this.thumb"></preview-video>
             </div>
             
             <div class="content" v-if="!this.showNSFW && !show_all_nsfw" @click="showConfirmNSFW = true">
@@ -159,7 +161,6 @@
 
 <script>
 import PreviewImage from '@/components/Media/Type/Image.vue'
-import PreviewGif from '@/components/Media/Type/Gif.vue'
 import PreviewVideo from '@/components/Media/Type/Video.vue'
 import PostComment from '@/components/Post/PostComment.vue'
 import PostCommentForm from '@/components/Post/PostCommentForm.vue'
@@ -168,6 +169,7 @@ import EditModal from '@/components/Modal/EditModal'
 import ReportModal from '@/components/Modal/ReportModal'
 import NsfwModal from '@/components/Modal/NsfwModal'
 import ConfirmNsfwModal from '@/components/Modal/ConfirmNsfwModal'
+import GifPlayer from '@/components/Widget/GifPlayer'
 
 export default {
   name: 'thumb',
@@ -175,6 +177,7 @@ export default {
     return {
       title: '',
       path: '',
+      thumb: '',
       collapsed: false,
       showEditModal: false,
       showReportModal: false,
@@ -197,7 +200,7 @@ export default {
   props: ['post'],
   components: {
     PreviewImage,
-    PreviewGif,
+    GifPlayer,
     PreviewVideo,
     EditModal,
     ReportModal,
@@ -206,12 +209,14 @@ export default {
     NsfwModal,
     ConfirmNsfwModal
   },
-  mounted () {
+  beforeMount () {
     this.title = this.post.title
     this.showNSFW = !this.post.nsfw
     this.nbVotes = this.post.info.nbVotes
     this.isLoggedIn = this.$store.state.auth.isLoggedIn
-    this.path = this.post.meta.file_url ? this.post.meta.file_url : this.$API + this.post.meta.file_path
+    // path
+    this.thumb = this.post.meta.file_thumb ? this.$API + this.post.meta.file_thumb : ''
+    this.path = this.post.meta.file_path ? this.$API + this.post.meta.file_path : this.post.meta.file_url
     // state of nsfw
     this.$store.watch((state) => {
       this.show_all_nsfw = this.$store.state.showNsfw

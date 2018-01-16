@@ -1,5 +1,5 @@
 <template>
-  <div class="contact">
+  <div id="contact">
     <brand></brand>
     <h2>Nous contacter</h2>
     <p v-if="success" class="sucessmsg">
@@ -81,6 +81,9 @@
   }
 </script>
 <style>
+  #contact {
+    padding: 5px;
+  }
   .sucessmsg {
     padding: 15px;
     border: #eaeaea 2px solid;

@@ -9,6 +9,9 @@ export default {
 }
 </script>
 <style>
+#loading-wrapper {
+  margin: 5px 0;
+}
 #loading-wrapper .loading {
   display: block;
   width: 40px;

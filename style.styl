@@ -52,17 +52,17 @@ $font = #000000
 $font2 = #A1A1A1
 
 .popuped{
-    overflow: hidden
+    overflow hidden
 }
 
 .feed
-    @media(max-width: 1200px)
-        padding: 0 !important
+    @media(max-width 1200px)
+        padding 0 !important
 
 #profile 
     header
-        @media(max-width: 1200px)
-            padding: 0 15px !important
+        @media(max-width 1200px)
+            padding 0 15px !important
 .brand-title
     display flex
     padding 15px
@@ -86,7 +86,7 @@ $font2 = #A1A1A1
 
 h1
     @media (max-width 1200px)
-        font-size: 1.5rem !important
+        font-size 1.5rem !important
 // .title-field .title,
 div[contenteditable],
 textarea,
@@ -111,6 +111,7 @@ hide()
     right 0
     opacity 0
     z-index -99999
+    -webkit-transform translate3d(0,0,0)
 
 .hide
     hide()
@@ -124,6 +125,7 @@ a
         vertical-align top
         display inline-block
         color #000
+        overflow hidden
 
 hr
     margin 10px 0
@@ -132,6 +134,7 @@ hr
 body
     padding-bottom 100px
     font-family Noto
+    width 100vw
 
 span.ico
     display inline-block
@@ -222,7 +225,7 @@ span.ico
 ***************/
 #app-nav
     @media (max-width 1200px)
-        border-bottom: 1px solid #CCC
+        border-bottom 1px solid #eaeaea
 div.navbar
     &.desktop
         @media (max-width 1200px)
@@ -233,58 +236,60 @@ div.navbar
 div.lateral, 
 div.navbar.mobile
     &.left-bar
-        position: fixed
+        position fixed
     &.left-bar,
     &.right-bar
-        height: calc('100% - 108px')
-        width: 200px
-        overflow-y: scroll
+        height calc('100% - 108px')
+        width 200px
+        overflow scroll
         @media (max-width 1200px)
-            display: none
+            display none
     .menu, .users
         ul
-            // margin 10px 0
             padding 0
             li
                 list-style none
+                text-align left
     span.title
         font-size 1.2rem
         font-weight 100
         color #aaa
-        display: block
+        display block
     span.link
         display flex
         flex-direction row
-        padding: 10px
-        &:hover
-            background #eeeeee
-            cursor pointer
+        padding 10px
+        @media (min-width 1200px)
+            &:hover
+                background #eeeeee
+                cursor pointer
         svg
             width 20px
             height 20px
             fill #999
         span
             padding 0 10px
+            width 100%
         img
-            width: 20px
-            height: 20px
+            width 20px
+            height 20px
     a.router-link-exact-active.router-link-active
         span.link
             background #eeeeee
             svg
-                fill: #ec4a9f
+                fill #ec4a9f
                 
     &.right-bar
-        text-align: right;
-        max-width: 300px;
-        overflow: hidden
-        width: 100%;
+        text-align right
+        max-width 300px
+        overflow hidden
+        width 100%
         .users, .facebook-page, .ads
-            width: 100%
+            width 100%
         .users
-            overflow: hidden
+            overflow hidden
             .name
-                text-align: left
+                text-align left
 
 /***************
 
@@ -297,7 +302,7 @@ div.navbar.mobile
         autosize()
         padding-top 108px
         @media (max-width 1200px)
-            width: 100%
+            width 100%
             padding-top 50px
     &.bartop
         position fixed
@@ -307,6 +312,7 @@ div.navbar.mobile
         padding-top 25px 
         padding-bottom 25px
         height 100px
+        -webkit-transform translate3d(0,0,0)
         @media (max-width 1200px)
             height 50px
             padding 10px
@@ -316,14 +322,14 @@ div.navbar.mobile
             .menu
                 width 100%
                 @media (min-width 1200px)
-                    max-width: 750px
+                    max-width 750px
                 margin auto
                 .list
-                    position: fixed
-                    width: 300px
-                    left: -300px
-                    top: 50px
-                    height: calc("100vh - 50px")
+                    position fixed
+                    width 300px
+                    left -300px
+                    top 50px
+                    height calc("100vh - 50px")
                     display flex
                     flex-direction column             
                     margin 0
@@ -333,18 +339,19 @@ div.navbar.mobile
                     transition left 0.3s 
                     z-index 9999
                     overflow-y scroll
+                    -webkit-overflow-scrolling: touch;
+                    -webkit-transform translate3d(0,0,0)
                     &.active
-                        border-right 1px solid #CCC
                         left 0px
             .add-btn
-                background: black
-                height: 30px
-                color: #eeeeee
+                background black
+                height 30px
+                color #eeeeee
                 font-weight 500
                 display flex
                 flex-direction row
                 padding 5px
-                font-size: 1.3rem
+                font-size 1.3rem
                 &:hover
                     cursor pointer
                 svg
@@ -354,11 +361,11 @@ div.navbar.mobile
                 span
                     padding 0 10px
                     color #eeeeee
-                position: absolute
-                @media(min-width: 1200px)
+                position absolute
+                @media(min-width 1200px)
                     right 67px
                     top 10px
-                @media(max-width: 1200px)
+                @media(max-width 1200px)
                     right 0px
                     top 0px
             .profile,
@@ -368,10 +375,13 @@ div.navbar.mobile
                 top 0
             .profile
                 right 0
-            .add-btn, 
             .burguer
-                & span 
-                    margin 0
+                width: 30px;
+                height: 30px;
+                span
+                    margin: 5px 0;
+                    width: 20px;
+                    height: 20px;
             .brand
                 float left
                 overflow visible
@@ -416,15 +426,15 @@ div.navbar.mobile
 .posts
     display flex
     @media (max-width 1200px)
-        border-bottom: #CCC 8px solid
+        border-bottom #CCC 8px solid
     // margin-bottom 8px
     article 
-        background: white
-        padding: 0
-        width: 100%
-        max-width: 1200px
+        background white
+        padding 0
+        width 100%
+        max-width 1200px
         @media (min-width 992px)
-            max-width: 770px
+            max-width 770px
     aside
         position relative
         .btns
@@ -450,7 +460,7 @@ div.navbar.mobile
                 &.social-btns
                     opacity 1
 .comment-block
-    max-width: 770px
+    max-width 770px
     width 100%
     margin auto
 
@@ -497,17 +507,17 @@ div.navbar.mobile
 .settings
     margin-bottom 40px
     @media (max-width 1200px)
-        margin-bottom: 15px
+        margin-bottom 15px
     .comment,
     .title
         margin-bottom 40px
         @media (max-width 992px)
-            margin-bottom: 8px
+            margin-bottom 8px
     .content 
         font-size 1.4rem !important
         background inherit !important
-        text-align: left !important
-        padding: 15px
+        text-align left !important
+        padding 15px
         @media (max-width 992px)
             margin 8px 0
             padding 0 15px
@@ -523,8 +533,8 @@ div.navbar.mobile
         margin-bottom 15px
         border solid #EAEAEA 2px
         @media (max-width 992px)
-            min-height: 0px
-            margin-bottom: 8px
+            min-height 0px
+            margin-bottom 8px
 
 .comment-btn,
 .post-btn
@@ -534,20 +544,21 @@ div.navbar.mobile
 
 .post
     .content
-        background: #000
-        font-size: 0
+        background #000
+        font-size 0
         text-align center
         cursor pointer
         overflow hidden
         position relative
-        max-height: 80vh
+        max-height 80vh
         .layer-video
             width 100%
             height 100%
             background #00000040
             position absolute
             display flex
-            z-index: 100
+            z-index 100
+            -webkit-transform translate3d(0,0,0)
             .round
                 height 50px
                 width 50px
@@ -568,14 +579,22 @@ div.navbar.mobile
                     position absolute
                     top 14px
                     right 17px
+                .gif
+                    color white
+                    text-align center
+                    font-size 18px
+                    line-height 43px
+                    height 100%
+                    width 100%
         a
             display block
             width 100%
         img
-            width 100%
+            width auto
+            max-width 100%
             margin auto
         video
-            max-height: 50vh
+            max-height 50vh
     footer
         width 100%
         padding 15px 
@@ -599,8 +618,8 @@ div.navbar.mobile
             cursor pointer
             .label
                 margin 0 15px 0 8px
-                @media (max-width: 450px)
-                    margin: 0 8px;
+                @media (max-width 450px)
+                    margin 0 8px
 
 /*******
     
@@ -610,10 +629,10 @@ div.navbar.mobile
 #profile
     .profile
         margin-bottom 60px
-        header
-            display: flex
-            flex-wrap: nowrap
-            margin-top: 15px
+        div.top
+            display flex
+            flex-wrap nowrap
+            margin-top 15px
             .avatar
                 width 120px
                 height 120px
@@ -631,24 +650,24 @@ div.navbar.mobile
                 .name
                     font-size 2.2rem !important
                     font-weight bold
-                    line-height: 3rem
-                    display: flex
-                    flex-wrap: nowrap
+                    line-height 3rem
+                    display flex
+                    flex-wrap nowrap
                 .desc
                     font-size 1.3rem
                     margin-top 15px
                     color #737373
                 .links
                     display flex
-                    font-size: 0
-                    margin-bottom: 15px
+                    font-size 0
+                    margin-bottom 15px
                     & > span
                         padding-right 10px
-                        cursor: pointer
+                        cursor pointer
                         span.label
-                            font-size: 1.2rem
-                            vertical-align: top
-                            padding: 0 5px
+                            font-size 1.2rem
+                            vertical-align top
+                            padding 0 5px
 
 #profile
     .btn-save
@@ -668,24 +687,20 @@ div.navbar.mobile
         btn()
 
     .posts
-        border: none
+        border none
         .tuile
-            display flex
-            flex-direction row
-            flex-wrap wrap
+            column-count: 3;
+            column-gap: 8px;
+            font-size: 0;
+            @media (max-width 700px)
+                column-count: 2;
+                column-gap: 8px;
             .post
-                max-width 200px
-                // max-height 200px
-                width 33%
-                padding 10px
-                box-sizing: border-box
-                border solid 1px transparent
-                // margin: auto
-                &:hover
-                    border solid 1px #EAEAEA
+                margin: 0 0 8px;
+                width: 100%;
                 a
-                    display: block
-                    height: 100%
+                    display block
+                    height 100%
 
 .nb-dechet
     font-weight bold
@@ -748,7 +763,7 @@ a,div
         display block
         max-width 200px
         margin-bottom 15px
-        cursor: pointer
+        cursor pointer
         &.facebook
             button(1.2rem, 50px, #3B5997)
         &.twitter
@@ -762,40 +777,49 @@ a,div
     Awards
 
 */
-
-.award
-    text-align center
-    cursor pointer
-    border 1px solid transparent
-    height 200px
-    i
-        &:before
-            font-size 7rem
-            margin auto
-    &:hover
-        box-sizing border-box
-        border 1px solid #EAEAEA
-    &.earned
-        background #6b6b6b
+#awards
+    column-count: 3;
+    column-gap: 8px;
+    @media (max-width 700px)
+        column-count: 2;
+        column-gap: 8px;
+    .award
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid transparent;
+        min-height: 200px;
+        width: 100%;
+        display: inline-block;
+        box-sizing: border-box;
+        margin-bottom: 8px
         i
-            font-size 7rem
-            margin auto
-            svg
-                width 50px
-                fill white
-        h4, span
-            color white
+            &:before
+                font-size 7rem
+                margin auto
         &:hover
-            border-color black
-    &.missing
-        i
-            font-size 7rem
-            margin auto
-            svg
-                width 50px
-                fill #afafaf
-        h4, span
-            color #afafaf
+            box-sizing border-box
+            border 1px solid #EAEAEA
+        &.earned
+            background #6b6b6b
+            i
+                font-size 7rem
+                margin auto
+                svg
+                    width 50px
+                    fill white
+            h4, span
+                color white
+            &:hover
+                border-color black
+        &.missing
+            i
+                font-size 7rem
+                margin auto
+                svg
+                    width 50px
+                    fill #afafaf
+            h4, span
+                color #afafaf
 
 /*
  
@@ -810,14 +834,14 @@ a,div
 
 .login-btn
     button(1.2rem, 50px, black, white)
-    margin-top: 10px
+    margin-top 10px
 
  .linkauth
     font-size 1.2rem
     text-align left
     display inline-block
-    line-height: 3rem;
-    padding-right: 10px;
+    line-height 3rem
+    padding-right 10px
     &:hover
         text-decoration underline
 
@@ -859,42 +883,42 @@ a,div
     &:hover
         border-color #EAEAEA
 .choices
-    display: flex
-    flex-direction: row
-    justify-content: space-between
+    display flex
+    flex-direction row
+    justify-content space-between
     svg, img
-        height: 50px
-        width: 50px
-        margin: auto
+        height 50px
+        width 50px
+        margin auto
     div
-        display: flex
-        flex-direction: column
-        text-align: center
-        width: 33%;
-        height: 15vh;
-        border: 1px solid #eaeaea;
-        margin-top: 5px;
-        cursor: pointer
+        display flex
+        flex-direction column
+        text-align center
+        width 33%
+        height 15vh
+        border 1px solid #eaeaea
+        margin-top 5px
+        cursor pointer
         &:hover
-            border-color: #CCC
+            border-color #CCC
         span
-            font-size: 1.2rem;
-            padding: 0 5px
-            height: 30%;
+            font-size 1.2rem
+            padding 0 5px
+            height 30%
 
 .nsfwcheckbox
-    display: flex
-    margin-bottom: 10px
+    display flex
+    margin-bottom 10px
     padding 10px
-    background: #b31f48
+    background #b31f48
     color white
     input
-        width: 30px;
-        height: 30px;
-        margin: 0 20px 0 0;
+        width 30px
+        height 30px
+        margin 0 20px 0 0
     label
-        font-size: 1.5rem
-        line-height: 2rem
+        font-size 1.5rem
+        line-height 2rem
 #fileInput
     opacity 0
     width 100%
@@ -905,10 +929,10 @@ a,div
 #preview
     position relative
     min-height 100px
-    max-height: 30vh
+    max-height 30vh
     border 2px solid #EAEAEA
     cursor pointer
-    overflow: scroll
+    overflow scroll
     .close-btn
         display none
         svg
@@ -1045,6 +1069,7 @@ div.dropdown
     right 15px
     top 15px
     z-index 200
+    -webkit-transform translate3d(0,0,0)
     .btn
         position absolute
         right 0
@@ -1122,12 +1147,13 @@ a.hashtag:hover
     z-index 9998
     top 0
     left 0
-    width 100%
-    height 100%
+    width 100vw
+    height 100vh
     display flex
     animation-duration 0.3s
     animation-name showModal
     background-color rgba(0, 0, 0, .5)
+    -webkit-transform translate3d(0,0,0)
 
 .modal-layer
     position absolute
@@ -1136,16 +1162,18 @@ a.hashtag:hover
     width 100vw
     height 100vh
     z-index 9998
-    cursor: pointer
+    cursor pointer
+    -webkit-transform translate3d(0,0,0)
 
 .modal-wrapper
     margin auto
     padding 10px
     z-index 9999
     max-width 750px
-    width: 100%
-    max-height: 100vh;
-    overflow: scroll;
+    width 100%
+    max-height 100vh
+    overflow scroll
+    -webkit-transform translate3d(0,0,0)
 
 .modal-container
     width 100%

@@ -49,7 +49,7 @@
     components: { Loading, Error },
     mounted () {
       this.replaceTitle = this.title
-      this.freeze(true)
+      this.$freeze(true)
     },
     computed: {
       char: function () {
@@ -93,16 +93,12 @@
           }
         })
       },
-      freeze (bool) {
-        const body = document.getElementsByTagName('body')[0]
-        body.style.overflow = bool ? 'hidden' : ''
-      },
       cancel () {
-        this.freeze(false)
+        this.$freeze(false)
         this.$emit('close')
       },
       ok () {
-        this.freeze(false)
+        this.$freeze(false)
         this.upload()
       }
     }

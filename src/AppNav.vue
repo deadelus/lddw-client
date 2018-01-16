@@ -50,7 +50,7 @@
         </div>
         <div class="navbar mobile">
             <div class="burguer" @click="collapse">
-                <span class="ico little burguer" style="margin: 5px 0;"></span>
+                <span class="ico little burguer"></span>
             </div>
 
             <div class="logo mobile">
@@ -161,6 +161,10 @@
     watch: {
       '$route' (to, from) {
         this.collapsed = false
+        this.$freeze(false)
+      },
+      'showAddModal': function () {
+        this.collapsed = false
       }
     },
     mounted () {
@@ -168,12 +172,12 @@
         this.isLoggedIn = this.$store.state.auth.isLoggedIn
         this.avatar = this.$store.state.user.avatar
       })
+      this.$freeze(false)
     },
     methods: {
       collapse: function () {
         this.collapsed = !this.collapsed
-        const body = document.getElementsByTagName('body')[0]
-        body.style.overflow = this.collapsed ? 'hidden' : ''
+        this.$freeze(this.collapsed)
       }
     }
   }

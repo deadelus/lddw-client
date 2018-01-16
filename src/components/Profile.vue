@@ -7,7 +7,7 @@
           <div class="profile">
               <form enctype="multipart/form-data" action="" metods="POST">
               <input type="hidden" name="_method" value="PUT"/>
-              <header>
+              <div class="top">
                   <label for="avatar" class="avatar" v-if="!filepath">
                       <img v-if="user.avatar" :src="user.avatar" :alt="user.name">
                       <img v-if="!user.avatar" src="./../assets/user.png" alt="avatar">
@@ -15,9 +15,7 @@
                   <div class="avatar" @click="reset" v-if="filepath">
                       <img :src="filepath" alt="avatar">
                   </div>
-
                   <input @change="sync" id="avatar" name="avatar" type="file" accept="image/*;" class="hide">
-                  
                   <div class="info">
                       <span class="name">
                         <span>{{ user.name }}</span>
@@ -35,7 +33,7 @@
                           
                       </span>
                   </div>
-              </header>
+              </div>
               <span @click="upload" class="btn-save" v-if="filepath">
                   Enregistrer
               </span>
@@ -86,6 +84,20 @@ export default {
   methods: {
     reset: function () {
       this.remove()
+    },
+    fetch: function () {
+      this.$http({
+        url: this.$apiURL + '/user',
+        method: 'GET'
+      })
+      .then((response) => {
+        this.$Progress.finish()
+        // this.$store.commit('UPDATE_USER', response.body.)
+        console.log(response)
+      })
+      .catch((errorResponse) => {
+        // console.log(errorResponse)
+      })
     },
     upload: function (e) {
       this.$Progress.start()

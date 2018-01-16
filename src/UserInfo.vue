@@ -46,7 +46,7 @@
       fetchInfo: function () {
         this.$http.get(this.$apiURL + '/userInfo')
         .then((response) => {
-          console.log(response)
+          // console.log(response)
           this.news = response.body.userLast.data
           this.bests = response.body.userRank.data
           this.nb = response.body.userNB

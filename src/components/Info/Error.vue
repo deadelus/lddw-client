@@ -18,6 +18,7 @@ export default {
   background: #bb3030;
   width: 100%;
   padding: 15px;
+  margin: 5px 0;
 }
 #error-wrapper ul {
   margin: 0;

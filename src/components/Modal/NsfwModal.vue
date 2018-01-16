@@ -46,7 +46,7 @@
       }
     },
     mounted () {
-      this.freeze(true)
+      this.$freeze(true)
     },
     components: { Loading, Error },
     methods: {
@@ -67,16 +67,12 @@
           })
         })
       },
-      freeze (bool) {
-        const body = document.getElementsByTagName('body')[0]
-        body.style.overflow = bool ? 'hidden' : ''
-      },
       cancel () {
-        this.freeze(false)
+        this.$freeze(false)
         this.$emit('close')
       },
       ok () {
-        this.freeze(false)
+        this.$freeze(false)
         this.upload()
       }
     }

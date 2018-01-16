@@ -1,6 +1,5 @@
 <template>
-  <div class="rules">
-    <brand></brand>
+  <div id="rules">
     <h2>Les 3 rêgles de base</h2>
     <p>      
       1. Pas d'insulte ici, on est la pour se marrer.
@@ -25,10 +24,8 @@
   </div>  
 </template>
 <script>
-  import Brand from '@/Brand'
   export default {
     name: 'rules',
-    components: { Brand },
     mounted () {
       this.$Progress.start()
       this.$Progress.finish()
@@ -36,6 +33,9 @@
   }
 </script>
 <style>
+  #rules {
+    padding: 5px;
+  }
   .rules {
     text-align: left;
     margin: auto;

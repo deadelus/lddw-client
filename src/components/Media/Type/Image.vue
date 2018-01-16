@@ -25,7 +25,7 @@
       }
     },
     mounted () {
-      this.source = this.thumb ? this.$API + this.thumb : this.path
+      this.source = this.thumb !== '' ? this.thumb : this.path
     },
     components: {
       LightBox

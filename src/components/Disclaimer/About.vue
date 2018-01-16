@@ -1,6 +1,5 @@
 <template>
-      <div class="about">
-        <brand></brand>
+      <div id="about">
         <h2>À propos</h2>
         <p>
           Comme vous l’avez surement remarqué, le groupe facebook n’est plus ce qu’il était à ses débuts… Malheureusement la politique de Facebook sur le contenu nous a forcé nous restreindre à des publications bien plus « fragile » pour maintenir le groupe en vie… 
@@ -65,10 +64,8 @@
 
 </template>
 <script>
-  import Brand from '@/Brand'
   export default {
     name: 'about',
-    components: { Brand },
     mounted () {
       this.$Progress.start()
       this.$Progress.finish()
@@ -76,6 +73,9 @@
   }
 </script>
 <style>
+  #about {
+    padding: 5px;
+  }
   .sign {
     display: block;
     text-align: right;

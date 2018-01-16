@@ -92,7 +92,18 @@ var webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    new webpack.DefinePlugin({
+      VERSION:  JSON.stringify('2.0.1'),
+      APP_URL:  JSON.stringify('https://www.ladechetterieduweb.com'),
+      API_ASSET_URI: JSON.stringify('https://api.ladechetterieduweb.com/storage'),
+      API_BASE_URI:  JSON.stringify('https://api.ladechetterieduweb.com'),
+      API_URI:  JSON.stringify('https://api.ladechetterieduweb.com/api'),
+      FB_APP_ID:  JSON.stringify('631741580331636')
+      // Credentials for lddw server
+      // CLIENT_ID: JSON.stringify('2'),
+      // CLIENT_SECRET: JSON.stringify('TrY9E5Evt58tpLcmsfo64PAcnXJF9S3d90zt9MBa')
+    }) 
   ]
 })
 

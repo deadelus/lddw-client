@@ -2,14 +2,17 @@
   <div class="container">
     <div class="row">
       <div class="disclaimer">
+        <brand></brand>
         <router-view></router-view>
       </div>
     </div>
   </div>  
 </template>
 <script>
+  import Brand from '@/Brand'
   export default {
-    name: 'disclaimer'
+    name: 'disclaimer',
+    components: { Brand }
   }
 </script>
 <style>

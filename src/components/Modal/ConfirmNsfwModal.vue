@@ -67,19 +67,15 @@
       this.$store.watch((state) => {
         this.isLoggedIn = this.$store.state.auth.isLoggedIn
       })
-      this.freeze(true)
+      this.$freeze(true)
     },
     methods: {
-      freeze (bool) {
-        const body = document.getElementsByTagName('body')[0]
-        body.style.overflow = bool ? 'hidden' : ''
-      },
       cancel () {
-        this.freeze(false)
+        this.$freeze(false)
         this.$emit('close')
       },
       ok () {
-        this.freeze(false)
+        this.$freeze(false)
         this.$emit('show', this.all)
       }
     }

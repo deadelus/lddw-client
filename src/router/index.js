@@ -32,7 +32,7 @@ import Shop from '@/components/Shop/Shop'
 // Law About
 import About from '@/components/Disclaimer/About'
 import Rules from '@/components/Disclaimer/Rules'
-import CGU from '@/components/Disclaimer/CGU'
+import Cgu from '@/components/Disclaimer/Cgu'
 // Errors
 import p404 from '@/components/Error/p404'
 import Contact from '@/components/Contact'
@@ -100,9 +100,9 @@ const router = new Router({
       component: Rules
     },
     {
-      path: '/disclaimer',
+      path: '/cgu',
       name: 'Disclaimer',
-      component: CGU
+      component: Cgu
     },
     {
       path: '/search/tag/:tagname',

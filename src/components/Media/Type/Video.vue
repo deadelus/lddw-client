@@ -2,7 +2,7 @@
   <div id="preview-video">
     <div class="video-wrapper">
       <!-- normal -->
-      <video v-if="type === 'normal'" controls preload="auto" :poster="thumb">
+      <video v-if="host === 'local'" controls preload="auto" :poster="thumb">
           <source :src="path" type="video/mp4"></source>
           <source :src="path" type="video/webm"></source>
           <p class="vjs-no-js">
@@ -11,9 +11,9 @@
           </p>
       </video>
       <!-- youtube -->
-      <iframe v-if="type === 'youtube'" width="100%" height="300px" :src="youtubeUrl()" frameborder="0" allowfullscreen></iframe>
+      <iframe v-if="host === 'youtube'" width="100%" height="300px" :src="youtubeUrl()" frameborder="0" allowfullscreen></iframe>
       <!-- vimeo -->
-      <iframe v-if="type === 'vimeo'" width="100%" height="300px" :src="vimeoUrl()" frameborder="0" allowfullscreen></iframe>
+      <iframe v-if="host === 'vimeo'" width="100%" height="300px" :src="vimeoUrl()" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -26,21 +26,21 @@
     props: ['path', 'thumb'],
     data () {
       return {
-        type: '',
+        host: '',
         videoID: ''
       }
     },
     mounted () {
       if (this.path.indexOf('youtu.be') > 0 || this.path.indexOf('youtube') > 0) {
-        this.type = 'youtube'
+        this.host = 'youtube'
         this.videoID = this.extractVideoID(this.path)
       } else if (this.path.indexOf('vimeo') > 0) {
-        this.type = 'vimeo'
+        this.host = 'vimeo'
         this.videoID = this.extractVideoID(this.path)
       } else {
-        this.type = 'normal'
+        this.host = 'local'
       }
-      console.log(this.type)
+      // console.log(this.host)
     },
     methods: {
       extractVideoID: function (url) {
